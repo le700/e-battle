@@ -1,8 +1,22 @@
 # FriendBattle — AI 好友 Battle 系统
 
+![GitHub stars](https://img.shields.io/github/stars/le700/FriendBattle?style=social)
+![GitHub forks](https://img.shields.io/github/forks/le700/FriendBattle?style=social)
+![GitHub license](https://img.shields.io/github/license/le700/FriendBattle)
+![GitHub last commit](https://img.shields.io/github/last-commit/le700/FriendBattle)
+![Python version](https://img.shields.io/badge/python-3.12-blue.svg)
+
 FriendBattle 让你克隆两个微信/电报好友的聊天风格，然后用 AI 让他们针对任何话题进行 Battle！甜豆花 vs 咸豆花、原神 vs 王者荣耀、周杰伦 vs 林俊杰...你的好友 AI 替你吵架！
 
 [Website](https://github.com/le700/FriendBattle) · [Docs](https://github.com/le700/FriendBattle) · [Showcase](https://github.com/le700/FriendBattle) · [FAQ](https://github.com/le700/FriendBattle) · [Discord](https://discord.gg/clawd)
+
+---
+
+<div align="center">
+
+🔥 **让你的好友 AI 替你吵架！** 🔥
+
+</div>
 
 ## 核心功能
 
@@ -152,20 +166,55 @@ FriendBattle 使用向量数据库实现长期记忆：
 
 如果未找到微信数据，会自动生成示例聊天记录供测试。
 
-## 示例 Battle
+## 🎮 示例 Battle
+
+### 📌 辩题：甜豆花 vs 咸豆花
 
 ```
-📌 辩题：甜豆花 vs 咸豆花
-
 【小明 🤬 杠精模式】
 豆花当然是甜的好吃！
 你告诉我，豆花放糖不香吗？
+咸豆花是什么黑暗料理？
+
+【小红 😎 阴阳怪气模式】
+哟，咸豆花党急了急了~
+也就只有你们才会在豆花里放盐
+甜豆花才是永恒的经典好吗！
+
+【小明 🤬 杠精模式】
+经典？甜豆花那是甜品好吗！
+咸豆花才是正餐！
+你早餐吃甜品？
 
 【小红 🧠 理性模式】
 从营养学角度，两者各有优势。
 北方咸豆花历史悠久，
 南方甜豆花口味丰富。
+不过...我还是站甜豆花😏
 ```
+
+---
+
+### 📌 辩题：今晚吃什么
+
+```
+【妈 👩 温和模式】
+晚上想吃啥？
+你做啥我吃啥
+不过...清淡点好吗？
+
+【爸 👨 直男模式】
+随便
+你定
+啥都行
+（然后挑三拣四）
+```
+
+---
+
+<div align="center">
+  <b>💡 你的脑洞有多大，Battle 就有多精彩！</b>
+</div>
 
 ## 项目结构
 
