@@ -17,6 +17,10 @@ data/avatars/*
 data/debates/*
 data/shares/*
 data/wechat_decrypted/*
+data/sample_data/*
+data/memory/*
+data/profiles/*
+data/friends.json
 !data/chatlogs/.gitkeep
 !data/avatars/.gitkeep
 !data/debates/.gitkeep
@@ -24,3 +28,5 @@ data/wechat_decrypted/*
 models/
 *.log
 .DS_Store
+screenshots/
+test_*.py
