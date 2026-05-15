@@ -1,6 +1,4 @@
-# 🦞 FriendBattle — AI 好友 Battle 系统
-
-**EXFOLIATE! EXFOLIATE!**
+# FriendBattle — AI 好友 Battle 系统
 
 FriendBattle 让你克隆两个微信/电报好友的聊天风格，然后用 AI 让他们针对任何话题进行 Battle！甜豆花 vs 咸豆花、原神 vs 王者荣耀、周杰伦 vs 林俊杰...你的好友 AI 替你吵架！
 
