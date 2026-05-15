@@ -1,3 +1,4 @@
+# 核心依赖
 flask>=3.0.0
 flask-cors>=4.0.0
 werkzeug>=3.0.0
@@ -11,14 +12,6 @@ requests>=2.31.0
 python-dotenv>=1.0.0
 beautifulsoup4>=4.12.0
 lxml>=4.9.0
-transformers>=4.35.0
-torch>=2.0.0
-accelerate>=0.25.0
-bitsandbytes>=0.41.0
-peft>=0.7.0
-sentencepiece>=0.1.99
-protobuf>=4.25.0
-tqdm>=4.66.0
 numpy>=1.24.0
 pandas>=2.1.0
 pyyaml>=6.0.0
@@ -27,5 +20,17 @@ anthropic>=0.20.0
 google-generativeai>=0.3.0
 psutil>=5.9.0
 scikit-learn>=1.3.0
-chromadb>=0.4.20
-sentence-transformers>=2.2.0
+tqdm>=4.66.0
+
+# 可选：RAG记忆库（需要ChromaDB，首次运行会下载向量模型）
+# chromadb>=0.4.20
+# sentence-transformers>=2.2.0
+
+# 可选：本地模型支持
+# transformers>=4.35.0
+# torch>=2.0.0
+# accelerate>=0.25.0
+# bitsandbytes>=0.41.0
+# peft>=0.7.0
+# sentencepiece>=0.1.99
+# protobuf>=4.25.0
