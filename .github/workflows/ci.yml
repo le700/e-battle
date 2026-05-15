@@ -1,0 +1,45 @@
+name: FriendBattle CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.12'
+        
+    - name: Install dependencies
+      run: |
+        pip install -r requirements.txt
+        
+    - name: Run tests
+      run: |
+        python -m pytest tests/ -v
+        
+  docker:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Build Docker image
+      run: |
+        cd docker
+        docker build -t le700/friend-battle:${{ github.sha }} .
+        
+    - name: Test Docker image
+      run: |
+        docker run -d -p 3000:3000 --name friend-battle le700/friend-battle:${{ github.sha }}
+        sleep 5
+        docker logs friend-battle
+        docker stop friend-battle

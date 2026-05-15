@@ -1,0 +1,39 @@
+FROM ubuntu:22.04
+
+LABEL maintainer="FriendDebate Team"
+LABEL description="FriendDebate CPU Version"
+
+ENV DEBIAN_FRONTEND=noninteractive
+ENV PYTHONUNBUFFERED=1
+
+RUN apt-get update && apt-get install -y \
+    python3.12 \
+    python3-pip \
+    python3.12-venv \
+    git \
+    git-lfs \
+    wget \
+    curl \
+    libgl1-mesa-glx \
+    libglib2.0-0 \
+    libsm6 \
+    libxext6 \
+    libxrender-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+COPY requirements.txt .
+RUN pip3 install --no-cache-dir -r requirements.txt
+
+COPY . .
+
+RUN mkdir -p /app/data/chatlogs /app/data/avatars /app/data/debates
+
+EXPOSE 3000
+
+ENV HOST=0.0.0.0
+ENV PORT=3000
+ENV DEVICE=cpu
+
+CMD ["python3", "src/web/app.py"]

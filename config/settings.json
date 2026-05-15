@@ -1,0 +1,39 @@
+{
+    "model": {
+        "base_model": "Qwen/Qwen2.5-7B-Instruct",
+        "device": "cuda",
+        "quantization": 4,
+        "max_memory": {
+            "0": "12GB",
+            "cpu": "20GB"
+        }
+    },
+    "debate": {
+        "max_rounds": 10,
+        "max_tokens": 300,
+        "temperature": 0.8,
+        "top_p": 0.9,
+        "top_k": 50
+    },
+    "clone": {
+        "platform": "telegram",
+        "min_messages": 100,
+        "max_messages": 10000
+    },
+    "web": {
+        "host": "0.0.0.0",
+        "port": 3000,
+        "debug": false
+    },
+    "share": {
+        "theme": "light",
+        "default_style": "朋友圈",
+        "output_dir": "data/shares"
+    },
+    "storage": {
+        "base_dir": "data",
+        "avatars_dir": "data/avatars",
+        "debates_dir": "data/debates",
+        "chatlogs_dir": "data/chatlogs"
+    }
+}

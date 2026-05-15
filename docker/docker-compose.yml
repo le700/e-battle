@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  friend-battle:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    image: le700/friend-battle:latest
+    container_name: friend-battle
+    ports:
+      - "3000:3000"
+    volumes:
+      - ../data:/app/data
+    environment:
+      - HOST=0.0.0.0
+      - PORT=3000
+      - CUDA_VISIBLE_DEVICES=0
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    restart: unless-stopped
+    networks:
+      - friend-battle-network
+
+networks:
+  friend-battle-network:
+    driver: bridge
