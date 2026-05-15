@@ -23,10 +23,9 @@ FriendBattle 让你克隆两个微信/电报好友的聊天风格，然后用 AI
 | 功能 | 说明 |
 |------|------|
 | 🤖 **AI 克隆** | 从微信/Telegram 聊天记录克隆好友语言风格 |
-| 🧠 **RAG 记忆库** | 向量数据库存储聊天历史，AI 记得上下文 |
-| 🎭 **6 种 Battle 策略** | 杠精、理性、搞笑、激进、和事佬、阴阳怪气 |
+| 🧠 **RAG 记忆库** | 可选向量数据库，AI 记得上下文 |
+| 🎭 **智能 Battle** | 多种风格，真实还原好友吵架 |
 | 💬 **实时 Battle** | Web 界面观看两个 AI 互怼 |
-| 📱 **社交分享** | 一键生成朋友圈/微博分享图 |
 | 📲 **内置微信导出** | 无需安装其他软件，一键导出聊天记录 |
 | 🌐 **多 AI 支持** | OpenAI、Claude、Gemini、DeepSeek、智谱AI、本地模型 |
 | 🖥️ **三种界面** | CLI 命令行、TUI 终端界面、GUI Web 界面 |
@@ -55,6 +54,8 @@ docker run -p 3000:3000 le700/friend-battle
 ```bash
 git clone https://github.com/le700/FriendBattle.git
 cd FriendBattle
+
+# 快速安装（只安装核心依赖，无需下载大模型）
 pip install -r requirements.txt
 
 # 三种运行方式，任选其一
@@ -62,6 +63,22 @@ python friendbattle.py          # 显示菜单选择界面
 python friendbattle.py cli      # CLI 命令行
 python friendbattle.py tui      # TUI 终端界面
 python friendbattle.py gui      # GUI Web 界面
+```
+
+## 可选高级功能
+
+需要更强大的功能？按需安装：
+
+### 🧠 RAG 记忆库（向量检索）
+
+```bash
+pip install chromadb>=0.4.20 sentence-transformers>=2.2.0
+```
+
+### 🤖 本地模型支持
+
+```bash
+pip install transformers>=4.35.0 torch>=2.0.0 accelerate>=0.25.0
 ```
 
 ## 三种界面模式
@@ -116,14 +133,14 @@ python friendbattle.py cli select
 
 启动后访问 http://localhost:3000
 
-## RAG 记忆库系统
+## 记忆库系统
 
-FriendBattle 使用向量数据库实现长期记忆：
+FriendBattle 支持两种记忆模式，自动适配：
 
-- **记忆持久化**：聊天历史保存到本地
-- **上下文检索**：AI 会记得之前说过的话
-- **语义搜索**：基于向量相似度找到相关记忆
-- **智能回复**：结合历史对话生成更真实的回复
+| 模式 | 说明 | 需要安装 |
+|------|------|---------|
+| 📄 **文件模式** | 关键词匹配，快速启动 | 无需安装 |
+| 🧠 **向量模式** | 语义检索，更智能 | `chromadb, sentence-transformers` |
 
 ### 增强的 AI 克隆系统
 
@@ -230,30 +247,29 @@ FriendBattle/
 │   ├── debate/          # 辩论引擎
 │   ├── web/             # Web 界面
 │   ├── cli/             # CLI 命令行界面
-│   ├── tui/             # TUI 终端界面
-│   └── share/           # 分享模块
+│   └── tui/             # TUI 终端界面
 ├── data/                # 数据目录
 │   ├── profiles/        # 好友档案
 │   └── memory/          # 记忆库存储
 ├── config/
 │   └── config.yaml      # 配置文件
 ├── docker/              # Docker 配置
-└── requirements.txt     # 依赖列表
+└── requirements.txt     # 依赖列表（核心依赖）
 ```
 
 ## 开发路线图
 
 - [x] AI 克隆引擎
 - [x] 微信/Telegram 聊天记录支持
-- [x] 6 种 Battle 策略
 - [x] Web 界面
 - [x] Docker 部署
 - [x] Windows EXE 打包
 - [x] CLI 命令行界面
 - [x] TUI 终端用户界面
 - [x] 好友管理器
-- [x] RAG 记忆库系统
+- [x] RAG 记忆库系统（可选）
 - [x] 增强的角色分析
+- [x] 优化依赖，快速安装
 - [ ] 语音克隆
 - [ ] 实时视频生成
 - [ ] 多人 Battle 模式
