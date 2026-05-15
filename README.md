@@ -9,11 +9,14 @@ FriendBattle 让你克隆两个微信/电报好友的聊天风格，然后用 AI
 | 功能 | 说明 |
 |------|------|
 | 🤖 **AI 克隆** | 从微信/Telegram 聊天记录克隆好友语言风格 |
+| 🧠 **RAG 记忆库** | 向量数据库存储聊天历史，AI 记得上下文 |
 | 🎭 **6 种 Battle 策略** | 杠精、理性、搞笑、激进、和事佬、阴阳怪气 |
 | 💬 **实时 Battle** | Web 界面观看两个 AI 互怼 |
 | 📱 **社交分享** | 一键生成朋友圈/微博分享图 |
 | 📲 **内置微信导出** | 无需安装其他软件，一键导出聊天记录 |
 | 🌐 **多 AI 支持** | OpenAI、Claude、Gemini、DeepSeek、智谱AI、本地模型 |
+| 🖥️ **三种界面** | CLI 命令行、TUI 终端界面、GUI Web 界面 |
+| 👥 **好友管理** | 导入、删除、管理多个好友档案 |
 
 ## 快速开始（TL;DR）
 
@@ -39,8 +42,95 @@ docker run -p 3000:3000 le700/friend-battle
 git clone https://github.com/le700/FriendBattle.git
 cd FriendBattle
 pip install -r requirements.txt
-python src/web/app.py
+
+# 三种运行方式，任选其一
+python friendbattle.py          # 显示菜单选择界面
+python friendbattle.py cli      # CLI 命令行
+python friendbattle.py tui      # TUI 终端界面
+python friendbattle.py gui      # GUI Web 界面
 ```
+
+## 三种界面模式
+
+### 🖥️ CLI 命令行界面
+
+适合脚本和自动化操作：
+
+```bash
+# 列出好友
+python friendbattle.py cli list
+
+# 导入聊天记录
+python friendbattle.py cli import /path/to/chat.txt "好友名"
+
+# 创建示例好友
+python friendbattle.py cli sample
+
+# 删除好友
+python friendbattle.py cli delete "好友名"
+
+# 选择好友进行辩论
+python friendbattle.py cli select
+```
+
+### 📱 TUI 终端用户界面
+
+美观的交互式终端界面：
+
+```
+======================================================================
+                    FriendBattle
+               AI 好友辩论系统
+======================================================================
+
+📱 主菜单
+----------------------------------------
+  1. 📋 查看好友列表
+  2. 📤 导入聊天记录
+  3. 🗑️ 删除好友
+  4. ⚔️ 选择好友辩论
+  5. 🎨 创建示例好友
+  0. 👋 退出
+----------------------------------------
+
+请输入选择 [0-5]:
+```
+
+### 🌐 GUI Web 界面
+
+可视化操作，最友好的方式：
+
+启动后访问 http://localhost:3000
+
+## RAG 记忆库系统
+
+FriendBattle 使用向量数据库实现长期记忆：
+
+- **记忆持久化**：聊天历史保存到本地
+- **上下文检索**：AI 会记得之前说过的话
+- **语义搜索**：基于向量相似度找到相关记忆
+- **智能回复**：结合历史对话生成更真实的回复
+
+### 增强的 AI 克隆系统
+
+从聊天记录提取更丰富的特征：
+
+- 📊 语言风格分析
+- 😊 表情使用习惯
+- 🎤 常用词汇和口头禅
+- 🎭 性格特点（乐观/严谨/幽默等）
+- 📝 典型对话示例（Few-shot）
+- 💬 沟通习惯（问句/感叹词频率）
+
+## 好友管理器
+
+管理你的所有 AI 好友：
+
+- 📤 **导入好友**：从聊天记录创建新好友
+- 📋 **查看列表**：显示所有已克隆的好友
+- 🗑️ **删除好友**：删除好友及其记忆库
+- ⚔️ **选择对战**：选择两个好友开始 Battle
+- 📦 **批量管理**：支持多个好友档案
 
 ## 支持的 AI 提供商
 
@@ -81,11 +171,21 @@ python src/web/app.py
 
 ```
 FriendBattle/
+├── friendbattle.py      # 主入口脚本
 ├── src/
 │   ├── clone/           # 克隆模块
+│   │   ├── cloner.py    # 好友克隆器
+│   │   ├── manager.py   # 好友管理器
+│   │   ├── memory.py    # RAG 记忆库
+│   │   └── parser.py    # 聊天记录解析
 │   ├── debate/          # 辩论引擎
 │   ├── web/             # Web 界面
+│   ├── cli/             # CLI 命令行界面
+│   ├── tui/             # TUI 终端界面
 │   └── share/           # 分享模块
+├── data/                # 数据目录
+│   ├── profiles/        # 好友档案
+│   └── memory/          # 记忆库存储
 ├── config/
 │   └── config.yaml      # 配置文件
 ├── docker/              # Docker 配置
@@ -100,6 +200,11 @@ FriendBattle/
 - [x] Web 界面
 - [x] Docker 部署
 - [x] Windows EXE 打包
+- [x] CLI 命令行界面
+- [x] TUI 终端用户界面
+- [x] 好友管理器
+- [x] RAG 记忆库系统
+- [x] 增强的角色分析
 - [ ] 语音克隆
 - [ ] 实时视频生成
 - [ ] 多人 Battle 模式
