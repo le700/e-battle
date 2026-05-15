@@ -1,0 +1,48 @@
+name: Build Windows Executable
+
+on:
+  push:
+    branches: [ main ]
+  release:
+    types: [created]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.12'
+        
+    - name: Install dependencies
+      run: |
+        pip install pyinstaller
+        pip install -r requirements.txt
+        
+    - name: Create directories
+      run: |
+        mkdir -p assets
+        mkdir -p data/chatlogs data/avatars data/debates data/shares
+        
+    - name: Build EXE
+      run: |
+        pyinstaller pyinstaller.spec --clean
+        
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: FriendBattle.exe
+        path: dist/FriendBattle.exe
+        
+    - name: Upload to Release
+      if: github.event_name == 'release'
+      uses: actions/upload-release-asset@v1
+      with:
+        upload_url: ${{ github.event.release.upload_url }}
+        asset_path: dist/FriendBattle.exe
+        asset_name: FriendBattle.exe
+        asset_content_type: application/octet-stream

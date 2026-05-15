@@ -34,7 +34,17 @@
 
 ## 🚀 30 秒快速开始
 
-### 使用 Docker（推荐）
+### 📥 方式一：直接下载 EXE（推荐）
+
+**Windows 用户最简单！**
+
+1. 下载 `FriendBattle.exe`
+2. 双击运行
+3. 访问 http://localhost:3000
+
+**下载地址**：[Releases](https://github.com/le700/FriendBattle/releases)
+
+### 🐳 方式二：使用 Docker
 
 ```bash
 # 一行命令，启动 Battle！
@@ -43,7 +53,7 @@ docker run -p 3000:3000 le700/friend-battle
 
 然后访问 http://localhost:3000
 
-### 本地运行
+### 💻 方式三：本地运行
 
 ```bash
 # 克隆项目
