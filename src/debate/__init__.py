@@ -12,6 +12,8 @@ from .skills import (
     HumorousSkill,
     AggressiveSkill,
     DiplomaticSkill,
+    SarcasticSkill,
+    get_skill,
 )
 from .formatters import DebateFormatter, ConsoleFormatter, JSONFormatter
 
@@ -25,6 +27,8 @@ __all__ = [
     "HumorousSkill",
     "AggressiveSkill",
     "DiplomaticSkill",
+    "SarcasticSkill",
+    "get_skill",
     "DebateFormatter",
     "ConsoleFormatter",
     "JSONFormatter",

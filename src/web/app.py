@@ -13,8 +13,8 @@ from pathlib import Path
 from flask import Flask, render_template, request, jsonify, redirect, url_for
 from flask_cors import CORS
 
-# 添加 src 目录到路径
-sys.path.append(str(Path(__file__).parent.parent))
+# 添加项目根目录到路径
+sys.path.append(str(Path(__file__).parent.parent.parent))
 
 from src.wechat_exporter import WeChatExporter, AIProvider
 from src.clone import FriendCloner
@@ -24,7 +24,7 @@ app = Flask(__name__)
 CORS(app)
 
 # 加载配置
-CONFIG_PATH = Path(__file__).parent.parent / "config" / "config.yaml"
+CONFIG_PATH = Path(__file__).parent.parent.parent / "config" / "config.yaml"
 with open(CONFIG_PATH, 'r', encoding='utf-8') as f:
     config = yaml.safe_load(f)
 
