@@ -1,0 +1,87 @@
+# FriendBattle 配置文件
+
+# AI 设置
+ai:
+  # 默认 AI 提供商
+  provider: openai
+  
+  # API Key（运行时可配置）
+  api_key: ""
+  
+  # 自定义基础 URL（用于本地部署或代理）
+  base_url: ""
+  
+  # 默认模型
+  model: gpt-3.5-turbo
+  
+  # 最大 token 数
+  max_tokens: 512
+  
+  # 温度（0-1，越高越随机）
+  temperature: 0.7
+
+# 支持的 AI 提供商
+providers:
+  - name: openai
+    label: OpenAI
+    models:
+      - gpt-3.5-turbo
+      - gpt-4
+      - gpt-4o
+    base_url: https://api.openai.com/v1
+  
+  - name: claude
+    label: Claude
+    models:
+      - claude-3-sonnet-20240229
+      - claude-3-opus-20240229
+    base_url: https://api.anthropic.com/v1
+  
+  - name: gemini
+    label: Gemini
+    models:
+      - gemini-pro
+      - gemini-1.5-pro
+    base_url: https://generativelanguage.googleapis.com/v1
+  
+  - name: deepseek
+    label: DeepSeek
+    models:
+      - deepseek-chat
+    base_url: https://api.deepseek.com/v1
+  
+  - name: zhipu
+    label: 智谱AI
+    models:
+      - glm-4
+      - glm-4v
+    base_url: https://open.bigmodel.cn/api/paas/v4
+  
+  - name: local
+    label: 本地模型
+    models:
+      - Qwen2-0.5B-Chat
+      - Llama-3-8B-Instruct
+    base_url: ""
+
+# Web 服务设置
+web:
+  host: 0.0.0.0
+  port: 3000
+  
+# 数据存储设置
+data:
+  chatlogs_dir: data/chatlogs
+  avatars_dir: data/avatars
+  debates_dir: data/debates
+  shares_dir: data/shares
+
+# 微信导出设置
+wechat:
+  auto_export: true
+  max_messages: 10000
+
+# 日志设置
+logging:
+  level: INFO
+  file: logs/app.log
