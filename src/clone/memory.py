@@ -45,8 +45,14 @@ class MemoryStore:
             persist_dir: 持久化目录，默认为 data/memory/{friend_name}
         """
         self.friend_name = friend_name
+        # 生成安全的集合名称（只包含ASCII字符）
+        # 使用hash方法确保只包含字母和数字
+        import hashlib
+        hash_name = hashlib.md5(friend_name.encode('utf-8')).hexdigest()[:16]
+        self.safe_name = f"friend_{hash_name}"
+        
         if persist_dir is None:
-            persist_dir = Path(f"data/memory/{friend_name}")
+            persist_dir = Path(f"data/memory/{self.safe_name}")
         self.persist_dir = persist_dir
         self.persist_dir.mkdir(parents=True, exist_ok=True)
         
@@ -66,9 +72,9 @@ class MemoryStore:
                 )
             )
             
-            # 创建或获取集合
+            # 创建或获取集合（使用安全的名称）
             self.collection = self.client.get_or_create_collection(
-                name=f"friend_{self.friend_name}",
+                name=self.safe_name,
                 metadata={"description": f"Memory store for {self.friend_name}"}
             )
             
