@@ -23,7 +23,6 @@ from src.clone import FriendCloner
 from src.clone.manager import FriendManager
 from src.debate import DebateEngine, get_skill
 from src.export import export_chat, list_export_formats, get_exporter
-from src.weflow import weflow_integrator, is_weflow_available, get_weflow_sessions, get_weflow_chat_history
 from src.wechat_integration import wechat_integration, get_wechat_status, get_wechat_friends, get_wechat_messages, import_wechat_friend
 
 app = Flask(__name__)
@@ -611,94 +610,6 @@ def list_avatars():
     
     return jsonify(avatars)
 
-@app.route('/weflow')
-def weflow_page():
-    """WeFlow集成页面"""
-    return render_template('weflow.html')
-
-@app.route('/api/weflow/status', methods=['GET'])
-def get_weflow_status():
-    """获取WeFlow状态"""
-    status = weflow_integrator.check_weflow()
-    return jsonify(status)
-
-@app.route('/api/weflow/sessions', methods=['GET'])
-def get_weflow_sessions_api():
-    """获取WeFlow会话列表"""
-    try:
-        sessions = get_weflow_sessions()
-        return jsonify({
-            'success': True,
-            'sessions': sessions
-        })
-    except Exception as e:
-        return jsonify({
-            'success': False,
-            'error': str(e)
-        })
-
-@app.route('/api/weflow/import', methods=['POST'])
-def import_from_weflow():
-    """从WeFlow导入聊天记录"""
-    try:
-        data = request.json
-        talker = data.get('talker')
-
-        if not talker:
-            return jsonify({
-                'success': False,
-                'error': '缺少会话ID'
-            })
-
-        # 获取聊天历史
-        messages = get_weflow_chat_history(talker, limit=500)
-
-        if not messages:
-            return jsonify({
-                'success': False,
-                'error': '未找到聊天记录'
-            })
-
-        # 保存到临时文件
-        temp_file = Path(config['data']['chatlogs_dir']) / f"weflow_{talker}.json"
-        with open(temp_file, 'w', encoding='utf-8') as f:
-            json.dump(messages, f, ensure_ascii=False, indent=2)
-
-        # 获取联系人名称
-        contact_info = weflow_integrator.get_contact_info(talker)
-        name = contact_info.get('nickName', contact_info.get('remark', talker)) if contact_info else talker
-
-        # 创建好友
-        profile = friend_manager.import_friend(temp_file, name, platform='wechat', min_messages=10)
-
-        return jsonify({
-            'success': True,
-            'message': f'成功导入 {name} 的聊天记录',
-            'name': name,
-            'message_count': len(messages)
-        })
-
-    except Exception as e:
-        return jsonify({
-            'success': False,
-            'error': str(e)
-        })
-
-@app.route('/api/weflow/launch', methods=['POST'])
-def launch_weflow():
-    """启动WeFlow"""
-    try:
-        success = weflow_integrator.launch_weflow()
-        return jsonify({
-            'success': success,
-            'message': 'WeFlow已启动' if success else '启动失败'
-        })
-    except Exception as e:
-        return jsonify({
-            'success': False,
-            'error': str(e)
-        })
-
 @app.route('/wechat')
 def wechat_page():
     """独立的微信导入页面"""
@@ -837,7 +748,6 @@ def main():
     port = config['web']['port']
 
     print(f"🚀 FriendBattle 启动于 http://{host}:{port}")
-    print(f"🔗 WeFlow集成: {weflow_integrator._weflow_path or '未找到WeFlow'}")
     print(f"📱 独立微信模块: 就绪")
     app.run(host=host, port=port, debug=True)
 
