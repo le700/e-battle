@@ -19,21 +19,10 @@ jobs:
         python-version: '3.12'
         cache: 'pip'
         
-    - name: Show Python version
+    - name: Install minimal dependencies for tests
       run: |
-        python --version
-        pip --version
+        pip install pytest flask flask-cors Pillow beautifulsoup4 lxml pandas numpy pyyaml
         
-    - name: List directory structure
+    - name: Run tests
       run: |
-        ls -la
-        ls -la tests/
-        
-    - name: Install dependencies
-      run: |
-        pip install pytest
-        pip install -r requirements.txt --quiet
-        
-    - name: Run tests with verbose output
-      run: |
-        python -m pytest tests/test_basic.py -v --tb=long
+        python -m pytest tests/test_basic.py -v
