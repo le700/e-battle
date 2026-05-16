@@ -52,6 +52,16 @@ def init_dirs():
 
 init_dirs()
 
+@app.route('/api/health', methods=['GET'])
+def health_check():
+    """API健康检查"""
+    return jsonify({
+        'status': 'healthy',
+        'service': 'FriendBattle',
+        'version': '2.0',
+        'timestamp': datetime.now().isoformat()
+    })
+
 @app.route('/')
 def index():
     providers = config['providers']
@@ -194,6 +204,52 @@ def handle_avatars():
             
         except Exception as e:
             return jsonify({'success': False, 'error': str(e)})
+
+
+@app.route('/api/debate/create', methods=['POST'])
+def create_debate():
+    """创建辩论（支持双人/多人）"""
+    try:
+        data = request.json
+        topic = data.get('topic', '')
+        debaters = data.get('debaters', [])
+
+        if not topic:
+            return jsonify({
+                'success': False,
+                'message': '辩题不能为空'
+            }), 400
+
+        if len(debaters) < 2:
+            return jsonify({
+                'success': False,
+                'message': '至少需要两个辩手'
+            }), 400
+
+        # 创建辩论
+        engine = DebateEngine()
+        debate = engine.create_debate(topic, debaters)
+
+        return jsonify({
+            'success': True,
+            'debate_id': debate.id,
+            'topic': topic,
+            'debaters': debaters,
+            'mode': 'multiplayer' if debate.is_multiplayer else 'duel',
+            'message': '辩论创建成功'
+        }), 201
+
+    except ValueError as e:
+        return jsonify({
+            'success': False,
+            'message': str(e)
+        }), 400
+
+    except Exception as e:
+        return jsonify({
+            'success': False,
+            'message': f'创建失败: {str(e)}'
+        }), 400
 
 
 @app.route('/api/debate/start', methods=['POST'])

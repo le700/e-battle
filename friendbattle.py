@@ -32,13 +32,50 @@ def run_gui():
 
 
 def main():
+    import argparse
+
+    parser = argparse.ArgumentParser(
+        description='FriendBattle - AI好友辩论系统',
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog='''
+示例:
+  python friendbattle.py          # 显示模式选择菜单
+  python friendbattle.py cli      # 命令行模式
+  python friendbattle.py tui      # 终端界面模式
+  python friendbattle.py gui      # Web界面模式
+        '''
+    )
+
+    parser.add_argument(
+        'mode',
+        nargs='?',
+        choices=['cli', 'tui', 'gui'],
+        help='运行模式: cli (命令行), tui (终端界面), gui (Web界面)'
+    )
+
+    parser.add_argument(
+        '--version',
+        action='version',
+        version='FriendBattle 2.0'
+    )
+
+    # 允许额外的参数（传递给子命令）
+    parser.add_argument(
+        'extra_args',
+        nargs='*',
+        help='额外参数（传递给CLI子命令）'
+    )
+
+    args = parser.parse_args()
+
     # 检查是否指定了模式
-    if len(sys.argv) > 1 and sys.argv[1] in ['cli', 'tui', 'gui']:
-        mode = sys.argv[1]
+    if args.mode:
+        mode = args.mode
         
         if mode == 'cli':
             # 传递所有剩余参数给CLI（去掉 'cli' 本身）
-            sys.argv = ['friendbattle-cli'] + sys.argv[2:]
+            cli_args = [sys.argv[0]] + args.extra_args
+            sys.argv = cli_args
             run_cli()
         elif mode == 'tui':
             run_tui()
