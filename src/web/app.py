@@ -24,6 +24,7 @@ from src.clone.manager import FriendManager
 from src.debate import DebateEngine, get_skill
 from src.export import export_chat, list_export_formats, get_exporter
 from src.weflow import weflow_integrator, is_weflow_available, get_weflow_sessions, get_weflow_chat_history
+from src.wechat_integration import wechat_integration, get_wechat_status, get_wechat_friends, get_wechat_messages, import_wechat_friend
 
 app = Flask(__name__)
 CORS(app)
@@ -698,6 +699,134 @@ def launch_weflow():
             'error': str(e)
         })
 
+@app.route('/wechat')
+def wechat_page():
+    """独立的微信导入页面"""
+    return render_template('wechat_import.html')
+
+@app.route('/api/wechat/scan', methods=['GET'])
+def scan_wechat():
+    """扫描微信安装和数据"""
+    try:
+        status = get_wechat_status()
+        return jsonify(status)
+    except Exception as e:
+        return jsonify({
+            'installed': False,
+            'running': False,
+            'error': str(e)
+        })
+
+@app.route('/api/wechat/friends', methods=['GET'])
+def get_wechat_friends_api():
+    """获取微信好友列表"""
+    try:
+        friends = get_wechat_friends()
+        return jsonify({
+            'success': True,
+            'friends': friends
+        })
+    except Exception as e:
+        return jsonify({
+            'success': False,
+            'error': str(e),
+            'friends': []
+        })
+
+@app.route('/api/wechat/messages', methods=['GET'])
+def get_wechat_messages_api():
+    """获取微信消息"""
+    try:
+        talker = request.args.get('talker', '')
+        limit = int(request.args.get('limit', 500))
+
+        if not talker:
+            return jsonify({
+                'success': False,
+                'error': '缺少会话ID'
+            })
+
+        messages = get_wechat_messages(talker, limit)
+        return jsonify({
+            'success': True,
+            'messages': messages
+        })
+    except Exception as e:
+        return jsonify({
+            'success': False,
+            'error': str(e)
+        })
+
+@app.route('/api/wechat/import', methods=['POST'])
+def import_from_wechat():
+    """从微信导入聊天记录"""
+    try:
+        data = request.json
+        talker = data.get('talker')
+
+        if not talker:
+            return jsonify({
+                'success': False,
+                'error': '缺少会话ID'
+            })
+
+        # 使用独立的微信集成模块导入
+        result = import_wechat_friend(talker)
+
+        if not result:
+            return jsonify({
+                'success': False,
+                'error': '未找到聊天记录或导入失败'
+            })
+
+        # 保存消息到临时文件
+        temp_file = Path(config['data']['chatlogs_dir']) / f"wechat_{talker}.json"
+        with open(temp_file, 'w', encoding='utf-8') as f:
+            json.dump(result['messages'], f, ensure_ascii=False, indent=2)
+
+        # 创建好友
+        profile = friend_manager.import_friend(temp_file, result['name'], platform='wechat', min_messages=10)
+
+        return jsonify({
+            'success': True,
+            'message': f'成功导入 {result["name"]} 的聊天记录',
+            'name': result['name'],
+            'message_count': result['message_count']
+        })
+
+    except Exception as e:
+        return jsonify({
+            'success': False,
+            'error': str(e)
+        })
+
+@app.route('/api/wechat/decrypt-images', methods=['POST'])
+def decrypt_wechat_images_api():
+    """解密微信图片"""
+    try:
+        data = request.json
+        input_dir = data.get('input_dir')
+        output_dir = data.get('output_dir')
+
+        if not input_dir:
+            return jsonify({
+                'success': False,
+                'error': '缺少输入目录'
+            })
+
+        from src.wechat_image import decrypt_wechat_images
+        result = decrypt_wechat_images(input_dir, output_dir)
+
+        return jsonify({
+            'success': True,
+            'result': result
+        })
+    except Exception as e:
+        return jsonify({
+            'success': False,
+            'error': str(e)
+        })
+
 def main():
     global debate_engine
 
@@ -709,6 +838,7 @@ def main():
 
     print(f"🚀 FriendBattle 启动于 http://{host}:{port}")
     print(f"🔗 WeFlow集成: {weflow_integrator._weflow_path or '未找到WeFlow'}")
+    print(f"📱 独立微信模块: 就绪")
     app.run(host=host, port=port, debug=True)
 
 if __name__ == '__main__':
