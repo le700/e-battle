@@ -9,10 +9,10 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/github/stars/le700/FriendBattle?style=social" alt="GitHub stars">
-  <img src="https://img.shields.io/github/forks/le700/FriendBattle?style=social" alt="GitHub forks">
-  <img src="https://img.shields.io/github/license/le700/FriendBattle" alt="GitHub license">
-  <img src="https://img.shields.io/github/last-commit/le700/FriendBattle" alt="GitHub last commit">
+  <img src="https://img.shields.io/github/stars/le700/e-battle?style=social" alt="GitHub stars">
+  <img src="https://img.shields.io/github/forks/le700/e-battle?style=social" alt="GitHub forks">
+  <img src="https://img.shields.io/github/license/le700/e-battle" alt="GitHub license">
+  <img src="https://img.shields.io/github/last-commit/le700/e-battle" alt="GitHub last commit">
   <img src="https://img.shields.io/badge/python-3.12-blue.svg" alt="Python version">
   <img src="https://img.shields.io/badge/build-passing-brightgreen" alt="Build Status">
 </p>
@@ -125,7 +125,7 @@
 ### 💻 本地运行（推荐）
 
 ```bash
-git clone https://github.com/le700/FriendBattle.git
+git clone https://github.com/le700/e-battle.git
 cd 赛博吵架
 
 # 快速安装（只安装核心依赖）
@@ -140,7 +140,7 @@ python friendbattle.py gui      # GUI Web界面
 
 ### 📥 Windows用户（最简单）
 
-下载EXE版本（Coming Soon）：[Releases](https://github.com/le700/FriendBattle/releases)
+下载EXE版本（Coming Soon）：[Releases](https://github.com/le700/e-battle/releases)
 
 1. 下载 `赛博吵架.exe`
 2. 双击运行
@@ -427,6 +427,6 @@ MIT License - 详见 [LICENSE](LICENSE)
 
 **⭐ 如果觉得有趣，给个 Star 吧！**
 
-[![Star](https://img.shields.io/github/stars/le700/FriendBattle?style=social)](https://github.com/le700/FriendBattle)
+[![Star](https://img.shields.io/github/stars/le700/e-battle?style=social)](https://github.com/le700/e-battle)
 
 </div>
