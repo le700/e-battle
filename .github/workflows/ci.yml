@@ -19,10 +19,21 @@ jobs:
         python-version: '3.14'
         cache: 'pip'
         
-    - name: Install minimal dependencies for tests
+    - name: Debug info
       run: |
-        pip install pytest flask flask-cors Pillow beautifulsoup4 lxml pandas numpy pyyaml
+        python --version
+        pip --version
+        pip list
+        
+    - name: Install dependencies
+      run: |
+        pip install pytest flask flask-cors Pillow beautifulsoup4 lxml pandas numpy pyyaml --quiet
+        
+    - name: List project structure
+      run: |
+        ls -la
+        ls -la tests/
         
     - name: Run tests
       run: |
-        python -m pytest tests/test_basic.py -v
+        python -m pytest tests/test_basic.py -v --tb=long
