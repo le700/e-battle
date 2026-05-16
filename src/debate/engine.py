@@ -136,6 +136,7 @@ class DebateEngine:
         """
         self.output_dir = output_dir or Path("data/debates")
         self.debaters: Dict[str, Debater] = {}
+        self.debates: Dict[str, Debate] = {}
         self.model_loader: Optional[Callable] = None
 
     def add_debater(
@@ -305,6 +306,87 @@ class DebateEngine:
         )
 
         return response
+
+    def create_debate(self, topic: str, debater1: str, debater2: str, skill1: str = "rational", skill2: str = "contrarian") -> Debate:
+        """
+        创建辩论
+
+        Args:
+            topic: 辩论主题
+            debater1: 辩手1名称
+            debater2: 辩手2名称
+            skill1: 辩手1策略
+            skill2: 辩手2策略
+
+        Returns:
+            Debate: 创建的辩论实例
+        """
+        from .skills import get_skill
+
+        # 添加辩手
+        self.add_debater(debater1, skill=get_skill(skill1))
+        self.add_debater(debater2, skill=get_skill(skill2))
+
+        debate = Debate(
+            id=str(uuid.uuid4())[:8],
+            topic=topic,
+            status=DebateStatus.PENDING,
+            debater1=debater1,
+            debater2=debater2,
+            skill1=skill1,
+            skill2=skill2
+        )
+
+        self.debates[debate.id] = debate
+        return debate
+
+    def get_debate(self, debate_id: str) -> Debate:
+        """
+        获取辩论
+
+        Args:
+            debate_id: 辩论ID
+
+        Returns:
+            Debate: 辩论实例
+
+        Raises:
+            ValueError: 辩论不存在
+        """
+        if debate_id not in self.debates:
+            raise ValueError(f"辩论不存在: {debate_id}")
+        return self.debates[debate_id]
+
+    def add_turn(self, debate_id: str, speaker: str, content: str, skill_used: str = ""):
+        """
+        添加辩论回合
+
+        Args:
+            debate_id: 辩论ID
+            speaker: 发言者
+            content: 内容
+            skill_used: 使用的策略
+        """
+        debate = self.get_debate(debate_id)
+        debate.add_turn(speaker, content, skill_used)
+        if debate.status == DebateStatus.PENDING:
+            debate.status = DebateStatus.IN_PROGRESS
+
+    def complete_debate(self, debate_id: str):
+        """
+        完成辩论
+
+        Args:
+            debate_id: 辩论ID
+        """
+        debate = self.get_debate(debate_id)
+        debate.status = DebateStatus.COMPLETED
+        debate.completed_at = datetime.now()
+        debate.save(self.output_dir)
+
+    def list_debates(self) -> List[Dict]:
+        """列出所有辩论"""
+        return [d.to_dict() for d in self.debates.values()]
 
 
 @dataclass

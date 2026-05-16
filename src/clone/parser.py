@@ -732,7 +732,7 @@ def get_parser(platform: str) -> ChatParser:
     根据平台名称获取对应的解析器
 
     Args:
-        platform: 平台名称 (telegram, wechat, qq)
+        platform: 平台名称 (telegram, wechat, qq, txt, json)
 
     Returns:
         对应的解析器实例
@@ -742,14 +742,152 @@ def get_parser(platform: str) -> ChatParser:
         "wechat": WeChatChatParser,
         "weixin": WeChatChatParser,
         "qq": QQChatParser,
+        "txt": GenericTextParser,
+        "text": GenericTextParser,
+        "json": GenericJSONParser,
     }
 
     platform_lower = platform.lower()
+    
+    # 精确匹配
+    if platform_lower in parsers:
+        return parsers[platform_lower]()
+    
+    # 部分匹配
     for key in parsers.keys():
         if key in platform_lower:
             return parsers[key]()
 
-    raise ValueError(f"不支持的平台: {platform}。支持的平台: telegram, wechat, qq")
+    raise ValueError(f"不支持的平台: {platform}。支持的平台: telegram, wechat, qq, txt, json")
+
+
+class GenericTextParser(ChatParser):
+    """通用文本格式解析器 - 解析标准TXT格式聊天记录"""
+    
+    def can_parse(self, path: Path) -> Tuple[bool, float]:
+        """检查是否能解析"""
+        if not path.is_file():
+            return False, 0.0
+        if path.suffix.lower() in [".txt", ".text"]:
+            return True, 0.8
+        return False, 0.0
+    
+    def parse(self, path: Path) -> List[ChatMessage]:
+        """
+        解析通用文本格式聊天记录
+        
+        支持格式:
+        2024-01-01 10:00:00
+        用户1: 消息内容
+        用户2: 消息内容
+        """
+        messages = []
+        
+        time_pattern = re.compile(r"(\d{4}[-/]\d{2}[-/]\d{2}[\s]\d{2}:\d{2}:\d{2})")
+        sender_pattern = re.compile(r"^([^:：]+)[:：]\s*(.+)")
+        
+        current_time = datetime.now()
+        current_sender = None
+        current_content = []
+        
+        with open(path, "r", encoding="utf-8") as f:
+            for line in f:
+                line = line.strip()
+                if not line:
+                    continue
+                
+                # 检查是否是时间行
+                time_match = time_pattern.search(line)
+                if time_match:
+                    try:
+                        time_str = time_match.group(1).replace("/", "-")
+                        current_time = datetime.strptime(time_str, "%Y-%m-%d %H:%M:%S")
+                    except:
+                        current_time = datetime.now()
+                    continue
+                
+                # 检查是否是发送者行
+                sender_match = sender_pattern.match(line)
+                if sender_match:
+                    # 保存之前的消息
+                    if current_sender and current_content:
+                        messages.append(ChatMessage(
+                            sender=current_sender,
+                            content=" ".join(current_content),
+                            timestamp=current_time,
+                            platform="txt"
+                        ))
+                    
+                    current_sender = sender_match.group(1).strip()
+                    current_content = [sender_match.group(2).strip()]
+                elif current_sender:
+                    # 内容延续
+                    current_content.append(line)
+        
+        # 保存最后一条消息
+        if current_sender and current_content:
+            messages.append(ChatMessage(
+                sender=current_sender,
+                content=" ".join(current_content),
+                timestamp=current_time,
+                platform="txt"
+            ))
+        
+        return messages
+
+
+class GenericJSONParser(ChatParser):
+    """通用JSON格式解析器"""
+    
+    def can_parse(self, path: Path) -> Tuple[bool, float]:
+        """检查是否能解析"""
+        if not path.is_file():
+            return False, 0.0
+        if path.suffix.lower() == ".json":
+            try:
+                with open(path, "r", encoding="utf-8") as f:
+                    data = json.load(f)
+                    if isinstance(data, dict) and "messages" in data:
+                        return True, 0.9
+                    if isinstance(data, list):
+                        return True, 0.85
+            except:
+                pass
+        return False, 0.0
+    
+    def parse(self, path: Path) -> List[ChatMessage]:
+        """解析通用JSON格式聊天记录"""
+        messages = []
+        
+        with open(path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        
+        # 处理不同的JSON格式
+        messages_data = data.get("messages", data) if isinstance(data, dict) else data
+        
+        for msg_data in messages_data:
+            if isinstance(msg_data, dict):
+                sender = msg_data.get("sender", msg_data.get("user", msg_data.get("name", "Unknown")))
+                content = msg_data.get("content", msg_data.get("text", msg_data.get("message", "")))
+                timestamp_str = msg_data.get("timestamp", msg_data.get("time", msg_data.get("date", "")))
+                
+                # 解析时间戳
+                try:
+                    if isinstance(timestamp_str, (int, float)):
+                        timestamp = datetime.fromtimestamp(timestamp_str)
+                    else:
+                        timestamp = datetime.strptime(str(timestamp_str), "%Y-%m-%d %H:%M:%S")
+                except:
+                    timestamp = datetime.now()
+                
+                messages.append(ChatMessage(
+                    sender=str(sender),
+                    content=str(content),
+                    timestamp=timestamp,
+                    platform="json"
+                ))
+        
+        return messages
 
 
 def smart_parse_chat(path: Path) -> ParseResult:

@@ -270,7 +270,18 @@ class FriendCloner:
             language_style=analysis["language_style"],
             common_phrases=analysis["common_phrases"],
             personality_traits=analysis["personality_traits"],
-            topics_of_interest=[]
+            topics_of_interest=analysis.get("conversation_topics", []),
+            vocabulary_patterns=analysis.get("vocabulary_patterns", {}),
+            emoji_usage=analysis.get("emoji_usage", {}),
+            avg_message_length=analysis.get("avg_message_length", 0),
+            response_speed_hints=analysis.get("response_speed_hints", ""),
+            conversation_topics=analysis.get("conversation_topics", []),
+            typical_exchanges=analysis.get("typical_exchanges", []),
+            humor_style=analysis.get("humor_style", ""),
+            formality_level=analysis.get("formality_level", ""),
+            question_frequency=analysis.get("question_frequency", 0),
+            exclamation_frequency=analysis.get("exclamation_frequency", 0),
+            slang_terms=analysis.get("slang_terms", [])
         )
 
         if output_dir:

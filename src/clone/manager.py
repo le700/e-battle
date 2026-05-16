@@ -190,7 +190,25 @@ class FriendManager:
             好友信息列表，按创建时间排序
         """
         return sorted(self.friends.values(), key=lambda x: x.created_at)
-    
+
+    def list_friends(self) -> List[Dict]:
+        """
+        列出所有好友（字典格式）
+        
+        Returns:
+            好友信息字典列表
+        """
+        return [
+            {
+                "name": info.name,
+                "platform": info.platform,
+                "created_at": info.created_at.isoformat(),
+                "message_count": info.message_count,
+                "last_used_at": info.last_used_at.isoformat() if info.last_used_at else None
+            }
+            for info in self.get_friend_list()
+        ]
+
     def get_friend_profile(self, friend_name: str) -> FriendProfile:
         """
         获取好友画像

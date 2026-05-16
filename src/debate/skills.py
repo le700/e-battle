@@ -659,7 +659,7 @@ SKILL_REGISTRY = {
 }
 
 
-def get_skill(skill_name: str) -> BaseSkill:
+def get_skill(skill_name: str) -> Optional[BaseSkill]:
     """
     根据名称获取辩论策略
 
@@ -667,12 +667,14 @@ def get_skill(skill_name: str) -> BaseSkill:
         skill_name: 策略名称
 
     Returns:
-        对应的策略实例
+        对应的策略实例，如果不存在则返回None
     """
+    if not skill_name:
+        return None
+
     skill_class = SKILL_REGISTRY.get(skill_name.lower())
     if not skill_class:
-        # 默认返回理性派
-        return RationalSkill()
+        return None
 
     return skill_class()
 
