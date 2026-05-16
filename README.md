@@ -1,7 +1,7 @@
-# FriendBattle — AI好友Battle系统
+# Friend吵架 — AI代吵架系统
 
 <p align="center">
-  <img src="assets/logo.png" alt="FriendBattle Logo" width="256" height="256">
+  <img src="assets/logo.png" alt="Friend吵架 Logo" width="256" height="256">
 </p>
 
 <p align="center">
@@ -9,16 +9,16 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/github/stars/le700/FriendBattle?style=social" alt="GitHub stars">
-  <img src="https://img.shields.io/github/forks/le700/FriendBattle?style=social" alt="GitHub forks">
-  <img src="https://img.shields.io/github/license/le700/FriendBattle" alt="GitHub license">
-  <img src="https://img.shields.io/github/last-commit/le700/FriendBattle" alt="GitHub last commit">
+  <img src="https://img.shields.io/github/stars/le700/Friend吵架?style=social" alt="GitHub stars">
+  <img src="https://img.shields.io/github/forks/le700/Friend吵架?style=social" alt="GitHub forks">
+  <img src="https://img.shields.io/github/license/le700/Friend吵架" alt="GitHub license">
+  <img src="https://img.shields.io/github/last-commit/le700/Friend吵架" alt="GitHub last commit">
   <img src="https://img.shields.io/badge/python-3.12-blue.svg" alt="Python version">
   <img src="https://img.shields.io/badge/build-passing-brightgreen" alt="Build Status">
 </p>
 
 <p align="center">
-  <strong>🔥 让你的微信好友"克隆人"互相对骂，笑到喷饭！</strong><br>
+  <strong>🔥 两个人想吵架，但自己太累！</strong><br>
   <strong>⭐ 一个让你停不下来的AI社交娱乐神器</strong>
 </p>
 
@@ -28,9 +28,9 @@
 
 ## 🎯 一句话介绍
 
-**FriendBattle** 可以让你克隆两个微信好友的聊天风格，然后用AI让它们针对任何话题进行Battle！
+**Friend吵架** 可以让你克隆两个好友的聊天风格，然后用AI让它们针对任何话题进行吵架！
 
-[🔥 快速开始](#-快速开始) · [✨ 核心功能](#-核心功能) · [🎭 Battle策略](#-battle-策略) · [📖 使用指南](#-使用指南)
+[🔥 快速开始](#-快速开始) · [✨ 核心功能](#-核心功能) · [🎭 吵架策略](#-battle-策略) · [📖 使用指南](#-使用指南)
 
 </div>
 
@@ -40,8 +40,8 @@
 
 <table>
 <tr>
-<td><strong>辩题：甜豆花 vs 咸豆花</strong></td>
-<td><strong>辩题：程序员该不该写注释</strong></td>
+<td><strong>吵架主题：甜豆花 vs 咸豆花</strong></td>
+<td><strong>吵架主题：程序员该不该写注释</strong></td>
 </tr>
 <tr>
 <td>
@@ -75,9 +75,9 @@
 
 ---
 
-## 🎭 示例Battle
+## 🎭 示例吵架
 
-**辩题：甜豆花 vs 咸豆花**
+**吵架主题：甜豆花 vs 咸豆花**
 
 ```
 【小明 🤬 杠精模式】
@@ -110,9 +110,9 @@
 |------|------|
 | 🤖 **AI克隆** | 从微信聊天记录克隆好友语言风格 |
 | 🧠 **RAG记忆库** | 可选向量数据库，AI记得上下文 |
-| 🎭 **9种Battle策略** | 杠精、理性、搞笑、激进、和事佬、阴阳怪气、学者、毒舌、摸鱼 |
-| 👥 **多人Battle** | 支持2人双人对战或3人以上多人混战 |
-| 💬 **实时Battle** | Web界面观看AI互怼 |
+| 🎭 **9种吵架策略** | 杠精、理性、搞笑、激进、和事佬、阴阳怪气、学者、毒舌、摸鱼 |
+| 👥 **多人吵架** | 支持2人双人对战或3人以上多人混战 |
+| 💬 **实时吵架** | Web界面观看AI互怼 |
 | 📱 **内置微信导出** | 无需安装其他软件，一键导出聊天记录 |
 | 🌐 **多AI支持** | OpenAI、Claude、Gemini、DeepSeek、智谱AI、本地模型 |
 | 🖥️ **三种界面** | CLI命令行、TUI终端界面、GUI Web界面 |
@@ -125,8 +125,8 @@
 ### 💻 本地运行（推荐）
 
 ```bash
-git clone https://github.com/le700/FriendBattle.git
-cd FriendBattle
+git clone https://github.com/le700/Friend吵架.git
+cd Friend吵架
 
 # 快速安装（只安装核心依赖）
 pip install -r requirements.txt
@@ -140,23 +140,23 @@ python friendbattle.py gui      # GUI Web界面
 
 ### 📥 Windows用户（最简单）
 
-下载EXE版本（Coming Soon）：[Releases](https://github.com/le700/FriendBattle/releases)
+下载EXE版本（Coming Soon）：[Releases](https://github.com/le700/Friend吵架/releases)
 
-1. 下载 `FriendBattle.exe`
+1. 下载 `Friend吵架.exe`
 2. 双击运行
 3. 访问 http://localhost:3000
 
 ---
 
-## 🎭 Battle策略
+## 🎭 吵架策略
 
-FriendBattle提供9种精心设计的辩论策略：
+Friend吵架提供9种精心设计的吵架策略：
 
 | 策略 | 风格 | 适合场景 |
 |------|------|---------|
 | 🤬 **杠精** | 总是反驳对方 | 搞笑对战 |
 | 🧠 **理性派** | 摆事实讲道理 | 严肃讨论 |
-| 😂 **搞笑** | 金句频出 | 娱乐Battle |
+| 😂 **搞笑** | 金句频出 | 娱乐吵架 |
 | 🔥 **激进** | 观点鲜明激烈 | 激烈对战 |
 | 🤝 **和事佬** | 试图调解 | 和谐讨论 |
 | 😏 **阴阳怪气** | 表面客气实则讽刺 | 高级互怼 |
@@ -176,7 +176,7 @@ FriendBattle提供9种精心设计的辩论策略：
 
 1. **完全关闭微信** - 确保微信没有在运行
 2. **重新打开微信并登录** - 使用手机扫码登录
-3. **打开FriendBattle的Web界面** - 访问 `/wechat` 页面
+3. **打开Friend吵架的Web界面** - 访问 `/wechat` 页面
 4. **点击"重新检测密钥"** - 系统会自动提取微信数据库密钥
 5. **选择好友** - 从列表中选择要导入的好友
 6. **点击"导入"** - 一键创建AI好友克隆
@@ -197,9 +197,9 @@ python friendbattle.py cli import /path/to/chat.txt "好友名"
 python friendbattle.py cli sample
 ```
 
-### 3️⃣ 开始Battle！
+### 3️⃣ 开始吵架！
 
-选择两个好友，设置辩题，开始观看AI互怼！
+选择两个好友，设置吵架主题，开始观看AI互怼！
 
 ---
 
@@ -229,8 +229,8 @@ pip install transformers>=4.35.0 torch>=2.0.0 accelerate>=0.25.0
 
 ```
 ======================================================================
-                    FriendBattle
-               AI 好友辩论系统
+                    Friend吵架
+               AI 好友吵架系统
 ======================================================================
 
 📱 主菜单
@@ -238,7 +238,7 @@ pip install transformers>=4.35.0 torch>=2.0.0 accelerate>=0.25.0
   1. 📋 查看好友列表
   2. 📤 导入聊天记录
   3. 🗑️ 删除好友
-  4. ⚔️ 选择好友辩论
+  4. ⚔️ 选择好友吵架
   5. 🎨 创建示例好友
   0. 👋 退出
 ----------------------------------------
@@ -263,7 +263,7 @@ python friendbattle.py cli sample
 # 删除好友
 python friendbattle.py cli delete "好友名"
 
-# 选择好友进行辩论
+# 选择好友进行吵架
 python friendbattle.py cli select
 ```
 
@@ -278,7 +278,7 @@ python friendbattle.py cli select
 ## 🏗️ 项目结构
 
 ```
-FriendBattle/
+Friend吵架/
 ├── friendbattle.py          # 主入口脚本
 ├── src/
 │   ├── clone/               # 克隆模块
@@ -286,9 +286,9 @@ FriendBattle/
 │   │   ├── manager.py       # 好友管理器
 │   │   ├── memory.py        # RAG记忆库
 │   │   └── parser.py        # 聊天记录解析
-│   ├── debate/              # 辩论引擎
-│   │   ├── engine.py        # 辩论引擎核心
-│   │   └── skills.py        # 辩论策略库
+│   ├── debate/              # 吵架引擎
+│   │   ├── engine.py        # 吵架引擎核心
+│   │   └── skills.py        # 吵架策略库
 │   ├── web/                 # Web界面
 │   │   ├── app.py           # Flask应用
 │   │   └── templates/       # HTML模板
@@ -334,7 +334,7 @@ python friendbattle.py cli clone
 - 选择要克隆的聊天记录文件
 - 命名好友档案
 
-### 3️⃣ 第三步：开始Battle
+### 3️⃣ 第三步：开始吵架
 
 ```bash
 python friendbattle.py gui   # 推荐，Web界面最直观
@@ -343,13 +343,13 @@ python friendbattle.py gui   # 推荐，Web界面最直观
 ```bash
 python friendbattle.py cli debate
 ```
-选择两个已克隆的好友，设置辩题，选择Battle策略，开始观看！
+选择两个已克隆的好友，设置吵架主题，选择吵架策略，开始观看！
 
 ### 💡 高级功能
 
 - **RAG记忆库**：可选安装chromadb，让AI更好地理解上下文
 - **多AI切换**：可以随时切换不同的AI提供商
-- **策略混合**：可以为每个辩论者选择不同的策略
+- **策略混合**：可以为每个吵架者选择不同的策略
 
 ---
 
@@ -396,13 +396,13 @@ python friendbattle.py cli debate
 - [x] RAG记忆库系统（可选）
 - [x] 增强的角色分析
 - [x] 优化依赖，快速安装
-- [x] 9种Battle策略
+- [x] 9种吵架策略
 - [x] 独立的微信数据库扫描
 - [x] 微信图片解密
 - [ ] 语音克隆
 - [ ] 实时视频生成
-- [ ] 多人Battle模式
-- [ ] Battle模板市场
+- [ ] 多人吵架模式
+- [ ] 吵架模板市场
 
 ---
 
@@ -423,10 +423,10 @@ MIT License - 详见 [LICENSE](LICENSE)
 
 <div align="center">
 
-## 💡 你的脑洞有多大，Battle就有多精彩！
+## 💡 你的脑洞有多大，吵架就有多精彩！
 
 **⭐ 如果觉得有趣，给个 Star 吧！**
 
-[![Star](https://img.shields.io/github/stars/le700/FriendBattle?style=social)](https://github.com/le700/FriendBattle)
+[![Star](https://img.shields.io/github/stars/le700/Friend吵架?style=social)](https://github.com/le700/Friend吵架)
 
 </div>

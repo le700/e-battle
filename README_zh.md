@@ -1,4 +1,4 @@
-# FriendBattle — AI Friend Battle System
+# FriendBattle — AI Argument Proxy System
 
 <p align="center">
   <img src="assets/logo.png" alt="FriendBattle Logo" width="256" height="256">
@@ -18,7 +18,7 @@
 </p>
 
 <p align="center">
-  <strong>🔥 Let your WeChat friends' "clones" battle each other, hilarious!</strong><br>
+  <strong>🔥 Let your WeChat friends' "clones" argue each other, hilarious!</strong><br>
   <strong>⭐ An AI social entertainment tool you can't put down</strong>
 </p>
 
@@ -28,9 +28,9 @@
 
 ## 🎯 Quick Introduction
 
-**FriendBattle** lets you clone two WeChat friends' chat styles, then make them battle on any topic with AI!
+**FriendBattle** lets you clone two WeChat friends' chat styles, then make them argue on any topic with AI!
 
-[🚀 Quick Start](#-quick-start) · [✨ Core Features](#-core-features) · [🎭 Battle Strategies](#-battle-strategies) · [📖 User Guide](#-user-guide)
+[🚀 Quick Start](#-quick-start) · [✨ Core Features](#-core-features) · [🎭 Battle Strategies](#-argue-strategies) · [📖 User Guide](#-user-guide)
 
 </div>
 
@@ -130,10 +130,10 @@ cd FriendBattle
 pip install -r requirements.txt
 
 # Three ways to run, choose one
-python friendbattle.py          # Menu interface
-python friendbattle.py cli      # CLI command line
-python friendbattle.py tui      # TUI terminal interface
-python friendbattle.py gui      # GUI Web interface
+python friendargue.py          # Menu interface
+python friendargue.py cli      # CLI command line
+python friendargue.py tui      # TUI terminal interface
+python friendargue.py gui      # GUI Web interface
 ```
 
 ### 📥 Windows Users (Easiest)
@@ -148,14 +148,14 @@ Download EXE version (Coming Soon): [Releases](https://github.com/le700/FriendBa
 
 ## 🎭 Battle Strategies
 
-FriendBattle provides 9 carefully designed debate strategies:
+FriendBattle provides 9 carefully designed argue strategies:
 
 | Strategy | Style | Best For |
 |----------|-------|----------|
-| 🤬 **Contrarian** | Always argues against the other | Funny battles |
+| 🤬 **Contrarian** | Always argues against the other | Funny argues |
 | 🧠 **Rational** | Facts and logic | Serious discussions |
-| 😂 **Funny** | One-liners | Entertainment battles |
-| 🔥 **Aggressive** | Strong opinions | Intense battles |
+| 😂 **Funny** | One-liners | Entertainment argues |
+| 🔥 **Aggressive** | Strong opinions | Intense argues |
 | 🤝 **Peacemaker** | Tries to mediate | Harmonious discussions |
 | 😏 **Sarcastic** | Polite on surface, ironic underneath | Sophisticated roasts |
 | 🎓 **Scholar** | Cites references, academic tone | Academic discussions |
@@ -189,15 +189,15 @@ We provide a completely independent WeChat data import feature, **no other softw
 
 ```bash
 # Import from chat records
-python friendbattle.py cli import /path/to/chat.txt "Friend Name"
+python friendargue.py cli import /path/to/chat.txt "Friend Name"
 
 # Create example friend
-python friendbattle.py cli sample
+python friendargue.py cli sample
 ```
 
 ### 3️⃣ Start Battle!
 
-Choose two friends, set a topic, and watch the AI battle!
+Choose two friends, set a topic, and watch the AI argue!
 
 ---
 
@@ -250,19 +250,19 @@ Good for scripts and automation:
 
 ```bash
 # List friends
-python friendbattle.py cli list
+python friendargue.py cli list
 
 # Import chat records
-python friendbattle.py cli import /path/to/chat.txt "Friend Name"
+python friendargue.py cli import /path/to/chat.txt "Friend Name"
 
 # Create example friend
-python friendbattle.py cli sample
+python friendargue.py cli sample
 
 # Delete friend
-python friendbattle.py cli delete "Friend Name"
+python friendargue.py cli delete "Friend Name"
 
-# Select friends for battle
-python friendbattle.py cli select
+# Select friends for argue
+python friendargue.py cli select
 ```
 
 ### 🌐 GUI Web Interface
@@ -277,14 +277,14 @@ After launch, visit http://localhost:3000
 
 ```
 FriendBattle/
-├── friendbattle.py          # Main entry script
+├── friendargue.py          # Main entry script
 ├── src/
 │   ├── clone/               # Clone module
 │   │   ├── cloner.py        # Friend cloner
 │   │   ├── manager.py       # Friend manager
 │   │   ├── memory.py        # RAG memory
 │   │   └── parser.py        # Chat record parser
-│   ├── debate/              # Debate engine
+│   ├── argue/              # Debate engine
 │   │   ├── engine.py        # Debate engine core
 │   │   └── skills.py        # Debate strategy library
 │   ├── web/                 # Web interface
@@ -328,7 +328,7 @@ FriendBattle/
 **A:** Absolutely not! All data is processed locally, protecting your privacy.
 
 ### Q: Can I play without WeChat chat records?
-**A:** Yes! Built-in multiple preset personalities, just let the AI battle directly!
+**A:** Yes! Built-in multiple preset personalities, just let the AI argue directly!
 
 ### Q: When will EXE version be available?
 **A:** GitHub Actions is already auto-packaging, will be available on Releases page soon!
@@ -359,12 +359,12 @@ Issues and Pull Requests welcome! Let's make this project more fun together!
 - [x] RAG memory system (optional)
 - [x] Enhanced character analysis
 - [x] Optimized dependencies, fast install
-- [x] 9 battle strategies
+- [x] 9 argue strategies
 - [x] Independent WeChat database scanner
 - [x] WeChat image decryption
 - [ ] Voice cloning
 - [ ] Real-time video generation
-- [ ] Multi-player battle mode
+- [ ] Multi-player argue mode
 - [ ] Battle template marketplace
 
 ---
@@ -386,7 +386,7 @@ MIT License - See [LICENSE](LICENSE) for details.
 
 <div align="center">
 
-## 💡 How wild your imagination is, how epic the battle will be!
+## 💡 How wild your imagination is, how epic the argue will be!
 
 **⭐ If you find this fun, give a Star!**
 
