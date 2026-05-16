@@ -25,8 +25,11 @@ jobs:
         
     - name: Create directories
       run: |
-        mkdir -p assets
-        mkdir -p data/chatlogs data/avatars data/debates data/shares
+        New-Item -ItemType Directory -Force -Path assets
+        New-Item -ItemType Directory -Force -Path data/chatlogs
+        New-Item -ItemType Directory -Force -Path data/avatars
+        New-Item -ItemType Directory -Force -Path data/debates
+        New-Item -ItemType Directory -Force -Path data/shares
         
     - name: Build EXE
       run: |

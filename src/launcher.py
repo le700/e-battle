@@ -7,10 +7,10 @@ FriendBattle Launcher - Windows 启动器
 
 import os
 import sys
-import subprocess
 import threading
 import webbrowser
 from pathlib import Path
+from io import StringIO
 
 try:
     import tkinter as tk
@@ -27,8 +27,9 @@ class FriendBattleLauncher:
         self.root.geometry("400x500")
         self.root.resizable(False, False)
 
-        self.process = None
         self.server_running = False
+        self.server_thread = None
+        self.stop_event = None
 
         self.create_widgets()
 
@@ -136,40 +137,60 @@ class FriendBattleLauncher:
         self.log_text.delete(1.0, tk.END)
         self.log_text.config(state=tk.DISABLED)
 
-        def run_server():
-            try:
-                self.process = subprocess.Popen(
-                    [sys.executable, "-m", "src.web.app"],
-                    stdout=subprocess.PIPE,
-                    stderr=subprocess.STDOUT,
-                    text=True,
-                    cwd=str(Path(__file__).parent)
-                )
+        self.stop_event = threading.Event()
+        self.server_thread = threading.Thread(target=self.run_server, daemon=True)
+        self.server_thread.start()
 
-                self.server_running = True
-                self.status_label.config(text="✅ 运行中")
-                self.log("服务器已启动")
-                self.log("访问地址: http://localhost:3000")
+    def run_server(self):
+        try:
+            # 确定base_path
+            if getattr(sys, 'frozen', False):
+                base_path = Path(sys._MEIPASS)
+            else:
+                base_path = Path(__file__).parent.parent
 
-                while self.server_running:
-                    line = self.process.stdout.readline()
-                    if line:
-                        self.log(line.strip())
+            # 添加到sys.path
+            sys.path.insert(0, str(base_path))
 
-            except Exception as e:
-                self.log(f"❌ 启动失败: {e}")
-                self.status_label.config(text="❌ 启动失败")
-                self.start_button.config(text="🚀 启动 FriendBattle")
-                self.server_running = False
+            # 创建data目录
+            data_dir = base_path / "data"
+            for subdir in ["chatlogs", "avatars", "debates", "shares"]:
+                (data_dir / subdir).mkdir(parents=True, exist_ok=True)
 
-        threading.Thread(target=run_server, daemon=True).start()
+            # 导入并运行Flask app
+            from src.web.app import app
+
+            self.server_running = True
+            self.status_label.config(text="✅ 运行中")
+            self.log("服务器已启动")
+            self.log("访问地址: http://localhost:3000")
+
+            # 在新线程中运行Flask
+            def run_flask():
+                try:
+                    app.run(host='0.0.0.0', port=3000, debug=False, use_reloader=False)
+                except Exception as e:
+                    self.log(f"❌ 服务器错误: {e}")
+
+            flask_thread = threading.Thread(target=run_flask, daemon=True)
+            flask_thread.start()
+
+            # 等待停止信号
+            self.stop_event.wait()
+
+        except Exception as e:
+            self.log(f"❌ 启动失败: {e}")
+            import traceback
+            self.log(traceback.format_exc())
+            self.status_label.config(text="❌ 启动失败")
+            self.start_button.config(text="🚀 启动 FriendBattle")
+            self.server_running = False
 
     def stop_server(self):
-        if self.process:
-            self.process.terminate()
-            self.process.wait()
-
         self.server_running = False
+        if self.stop_event:
+            self.stop_event.set()
+
         self.status_label.config(text="🟢 已停止")
         self.start_button.config(text="🚀 启动 FriendBattle")
         self.log("服务器已停止")
