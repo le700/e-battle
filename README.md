@@ -5,6 +5,10 @@
 </p>
 
 <p align="center">
+  <a href="README_zh.md">English</a> | <strong>中文</strong>
+</p>
+
+<p align="center">
   <img src="https://img.shields.io/github/stars/le700/FriendBattle?style=social" alt="GitHub stars">
   <img src="https://img.shields.io/github/forks/le700/FriendBattle?style=social" alt="GitHub forks">
   <img src="https://img.shields.io/github/license/le700/FriendBattle" alt="GitHub license">

@@ -1,7 +1,11 @@
-# FriendBattle — AI好友Battle系统
+# FriendBattle — AI Friend Battle System
 
 <p align="center">
   <img src="assets/logo.png" alt="FriendBattle Logo" width="256" height="256">
+</p>
+
+<p align="center">
+  <strong>English</strong> | <a href="README.md">中文</a>
 </p>
 
 <p align="center">
@@ -14,56 +18,55 @@
 </p>
 
 <p align="center">
-  <strong>🔥 让你的微信好友"克隆人"互相对骂，笑到喷饭！</strong><br>
-  <strong>⭐ 一个让你停不下来的AI社交娱乐神器</strong>
+  <strong>🔥 Let your WeChat friends' "clones" battle each other, hilarious!</strong><br>
+  <strong>⭐ An AI social entertainment tool you can't put down</strong>
 </p>
 
 ---
 
 <div align="center">
 
-## 🎯 一句话介绍
+## 🎯 Quick Introduction
 
-**FriendBattle** 可以让你克隆两个微信好友的聊天风格，然后用AI让它们针对任何话题进行Battle！
+**FriendBattle** lets you clone two WeChat friends' chat styles, then make them battle on any topic with AI!
 
-[🔥 快速开始](#-快速开始) · [✨ 核心功能](#-核心功能) · [🎭 Battle策略](#-battle-策略) · [📖 使用指南](#-使用指南)
+[🚀 Quick Start](#-quick-start) · [✨ Core Features](#-core-features) · [🎭 Battle Strategies](#-battle-strategies) · [📖 User Guide](#-user-guide)
 
 </div>
 
-## 📸 效果展示
+## 📸 Demo
 
-> 💡 想象一下：把你平时最逗比的两个朋友的聊天记录导进来，然后让AI克隆他们互怼，效果拔群！
+> 💡 Imagine: Import chat records from your two funniest friends, let AI clone them and argue—hilarious results guaranteed!
 
 <table>
 <tr>
-<td><strong>辩题：甜豆花 vs 咸豆花</strong></td>
-<td><strong>辩题：程序员该不该写注释</strong></td>
+<td><strong>Topic: Sweet Tofu Pudding vs Salty Tofu Pudding</strong></td>
+<td><strong>Topic: Should Programmers Write Comments?</strong></td>
 </tr>
 <tr>
 <td>
 <pre>
-【小明 🤬 杠精模式】
-豆花当然是甜的好吃！
-你告诉我，豆花放糖不香吗？
-咸豆花是什么黑暗料理？
+【XiaoMing 🤬 Contrarian Mode】
+Sweet tofu pudding is obviously better!
+Tell me, isn't sugar on tofu pudding amazing?
+Salty tofu pudding is some kind of dark cuisine!
 
-【小红 😏 阴阳怪气模式】
-哟，咸豆花党急了急了~
-也就只有你们才会在豆花里放盐
-甜豆花才是永恒的经典好吗！
+【XiaoHong 😏 Sarcastic Mode】
+Oh, the salty tofu pudding crowd is getting triggered~
+Only you guys would put salt on tofu pudding
+Sweet tofu pudding is the eternal classic, right?
 </pre>
 </td>
 <td>
 <pre>
-【老张 🧑‍💻 工程师模式】
-写注释是职业素养！
-你自己写的代码三个月后
-还看得懂吗？
+【LaoZhang 🧑‍💻 Engineer Mode】
+Writing comments is professional conduct!
+Will you even understand your own code in three months?
 
-【小李 🤪 摸鱼模式】
-能跑就行，注释那么多
-老板以为我在写小说呢？
-代码就是最好的文档！
+【XiaoLi 🤪 Slacker Mode】
+If it runs, it's fine. With so many comments
+does the boss think I'm writing a novel?
+Code is the best documentation!
 </pre>
 </td>
 </tr>
@@ -71,144 +74,144 @@
 
 ---
 
-## 🎭 示例Battle
+## 🎭 Example Battle
 
-**辩题：甜豆花 vs 咸豆花**
+**Topic: Sweet Tofu Pudding vs Salty Tofu Pudding**
 
 ```
-【小明 🤬 杠精模式】
-豆花当然是甜的好吃！
-你告诉我，豆花放糖不香吗？
-咸豆花是什么黑暗料理？
+【XiaoMing 🤬 Contrarian Mode】
+Sweet tofu pudding is obviously better!
+Tell me, isn't sugar on tofu pudding amazing?
+Salty tofu pudding is some kind of dark cuisine!
 
-【小红 😏 阴阳怪气模式】
-哟，咸豆花党急了急了~
-也就只有你们才会在豆花里放盐
-甜豆花才是永恒的经典好吗！
+【XiaoHong 😏 Sarcastic Mode】
+Oh, the salty tofu pudding crowd is getting triggered~
+Only you guys would put salt on tofu pudding
+Sweet tofu pudding is the eternal classic, right?
 
-【小明 🤬 杠精模式】
-经典？甜豆花那是甜品好吗！
-咸豆花才是正餐！
-你早餐吃甜品？
+【XiaoMing 🤬 Contrarian Mode】
+Classic? Sweet tofu pudding is a dessert!
+Salty tofu pudding is a proper meal!
+Do you eat dessert for breakfast?
 
-【小红 🧠 理性模式】
-从营养学角度，两者各有优势。
-北方咸豆花历史悠久，
-南方甜豆花口味丰富。
-不过...我还是站甜豆花😏
+【XiaoHong 🧠 Rational Mode】
+From a nutrition perspective, both have their advantages.
+Northern salty tofu pudding has a long history,
+Southern sweet tofu pudding has rich flavors.
+But... I'm still team sweet tofu pudding😏
 ```
 
 ---
 
-## ✨ 核心功能
+## ✨ Core Features
 
-| 功能 | 说明 |
-|------|------|
-| 🤖 **AI克隆** | 从微信聊天记录克隆好友语言风格 |
-| 🧠 **RAG记忆库** | 可选向量数据库，AI记得上下文 |
-| 🎭 **9种Battle策略** | 杠精、理性、搞笑、激进、和事佬、阴阳怪气、学者、毒舌、摸鱼 |
-| 💬 **实时Battle** | Web界面观看两个AI互怼 |
-| 📱 **内置微信导出** | 无需安装其他软件，一键导出聊天记录 |
-| 🌐 **多AI支持** | OpenAI、Claude、Gemini、DeepSeek、智谱AI、本地模型 |
-| 🖥️ **三种界面** | CLI命令行、TUI终端界面、GUI Web界面 |
-| 👥 **好友管理** | 导入、删除、管理多个好友档案 |
+| Feature | Description |
+|---------|-------------|
+| 🤖 **AI Clone** | Clone friends' language styles from WeChat chat records |
+| 🧠 **RAG Memory** | Optional vector database, AI remembers context |
+| 🎭 **9 Battle Strategies** | Contrarian, Rational, Funny, Aggressive, Peacemaker, Sarcastic, Scholar, Sharp Tongue, Slacker |
+| 💬 **Real-time Battle** | Watch two AIs argue in Web interface |
+| 📱 **Built-in WeChat Export** | No other software needed, one-click chat record export |
+| 🌐 **Multi-AI Support** | OpenAI, Claude, Gemini, DeepSeek, Zhipu AI, Local Models |
+| 🖥️ **Three Interfaces** | CLI Command Line, TUI Terminal, GUI Web Interface |
+| 👥 **Friend Management** | Import, delete, manage multiple friend profiles |
 
 ---
 
-## 🚀 快速开始
+## 🚀 Quick Start
 
-### 💻 本地运行（推荐）
+### 💻 Local Run (Recommended)
 
 ```bash
 git clone https://github.com/le700/FriendBattle.git
 cd FriendBattle
 
-# 快速安装（只安装核心依赖）
+# Quick install (only core dependencies)
 pip install -r requirements.txt
 
-# 三种运行方式，任选其一
-python friendbattle.py          # 菜单选择界面
-python friendbattle.py cli      # CLI命令行
-python friendbattle.py tui      # TUI终端界面
-python friendbattle.py gui      # GUI Web界面
+# Three ways to run, choose one
+python friendbattle.py          # Menu interface
+python friendbattle.py cli      # CLI command line
+python friendbattle.py tui      # TUI terminal interface
+python friendbattle.py gui      # GUI Web interface
 ```
 
-### 📥 Windows用户（最简单）
+### 📥 Windows Users (Easiest)
 
-下载EXE版本（Coming Soon）：[Releases](https://github.com/le700/FriendBattle/releases)
+Download EXE version (Coming Soon): [Releases](https://github.com/le700/FriendBattle/releases)
 
-1. 下载 `FriendBattle.exe`
-2. 双击运行
-3. 访问 http://localhost:3000
-
----
-
-## 🎭 Battle策略
-
-FriendBattle提供9种精心设计的辩论策略：
-
-| 策略 | 风格 | 适合场景 |
-|------|------|---------|
-| 🤬 **杠精** | 总是反驳对方 | 搞笑对战 |
-| 🧠 **理性派** | 摆事实讲道理 | 严肃讨论 |
-| 😂 **搞笑** | 金句频出 | 娱乐Battle |
-| 🔥 **激进** | 观点鲜明激烈 | 激烈对战 |
-| 🤝 **和事佬** | 试图调解 | 和谐讨论 |
-| 😏 **阴阳怪气** | 表面客气实则讽刺 | 高级互怼 |
-| 🎓 **学者** | 引经据典，书生气 | 学术讨论 |
-| 🗡️ **毒舌** | 一针见血，说话带刺 | 激烈互怼 |
-| 😴 **摸鱼** | 敷衍但有趣 | 轻松闲聊 |
+1. Download `FriendBattle.exe`
+2. Double-click to run
+3. Visit http://localhost:3000
 
 ---
 
-## 📖 使用指南
+## 🎭 Battle Strategies
 
-### 1️⃣ 微信聊天记录导入
+FriendBattle provides 9 carefully designed debate strategies:
 
-我们提供了完全独立的微信数据导入功能，**无需安装任何其他软件**！
+| Strategy | Style | Best For |
+|----------|-------|----------|
+| 🤬 **Contrarian** | Always argues against the other | Funny battles |
+| 🧠 **Rational** | Facts and logic | Serious discussions |
+| 😂 **Funny** | One-liners | Entertainment battles |
+| 🔥 **Aggressive** | Strong opinions | Intense battles |
+| 🤝 **Peacemaker** | Tries to mediate | Harmonious discussions |
+| 😏 **Sarcastic** | Polite on surface, ironic underneath | Sophisticated roasts |
+| 🎓 **Scholar** | Cites references, academic tone | Academic discussions |
+| 🗡️ **Sharp Tongue** | Gets to the point, stinging | Intense roasts |
+| 😴 **Slacker** | Perfunctory but funny | Casual chats |
 
-**操作流程：**
+---
 
-1. **完全关闭微信** - 确保微信没有在运行
-2. **重新打开微信并登录** - 使用手机扫码登录
-3. **打开FriendBattle的Web界面** - 访问 `/wechat` 页面
-4. **点击"重新检测密钥"** - 系统会自动提取微信数据库密钥
-5. **选择好友** - 从列表中选择要导入的好友
-6. **点击"导入"** - 一键创建AI好友克隆
+## 📖 User Guide
 
-**支持的聊天记录格式：**
-- 微信官方HTML导出
-- JSON格式
-- TXT文本格式
-- 直接从微信数据库读取（推荐）
+### 1️⃣ WeChat Chat Record Import
 
-### 2️⃣ 创建AI好友
+We provide a completely independent WeChat data import feature, **no other software needed**!
+
+**Process:**
+
+1. **Completely close WeChat** - Make sure WeChat isn't running
+2. **Reopen WeChat and log in** - Use phone to scan QR code
+3. **Open FriendBattle Web interface** - Visit `/wechat` page
+4. **Click "Re-detect Key"** - System automatically extracts WeChat database key
+5. **Select friend** - Choose friend to import from list
+6. **Click "Import"** - One-click AI friend clone creation
+
+**Supported chat record formats:**
+- WeChat official HTML export
+- JSON format
+- TXT text format
+- Direct read from WeChat database (recommended)
+
+### 2️⃣ Create AI Friend
 
 ```bash
-# 从聊天记录导入
-python friendbattle.py cli import /path/to/chat.txt "好友名"
+# Import from chat records
+python friendbattle.py cli import /path/to/chat.txt "Friend Name"
 
-# 创建示例好友
+# Create example friend
 python friendbattle.py cli sample
 ```
 
-### 3️⃣ 开始Battle！
+### 3️⃣ Start Battle!
 
-选择两个好友，设置辩题，开始观看AI互怼！
+Choose two friends, set a topic, and watch the AI battle!
 
 ---
 
-## 🔧 可选高级功能
+## 🔧 Optional Advanced Features
 
-需要更强大的功能？按需安装：
+Need more powerful features? Install as needed:
 
-### 🧠 RAG记忆库（向量检索）
+### 🧠 RAG Memory (Vector Search)
 
 ```bash
 pip install chromadb>=0.4.20 sentence-transformers>=2.2.0
 ```
 
-### 🤖 本地模型支持
+### 🤖 Local Model Support
 
 ```bash
 pip install transformers>=4.35.0 torch>=2.0.0 accelerate>=0.25.0
@@ -216,211 +219,176 @@ pip install transformers>=4.35.0 torch>=2.0.0 accelerate>=0.25.0
 
 ---
 
-## 🖥️ 三种界面模式
+## 🖥️ Three Interface Modes
 
-### 📱 TUI终端界面（最推荐）
+### 📱 TUI Terminal Interface (Most Recommended)
 
-美观的交互式终端界面：
+Beautiful interactive terminal interface:
 
 ```
 ======================================================================
                     FriendBattle
-               AI 好友辩论系统
+               AI Friend Battle System
 ======================================================================
 
-📱 主菜单
+📱 Main Menu
 ----------------------------------------
-  1. 📋 查看好友列表
-  2. 📤 导入聊天记录
-  3. 🗑️ 删除好友
-  4. ⚔️ 选择好友辩论
-  5. 🎨 创建示例好友
-  0. 👋 退出
+  1. 📋 View Friend List
+  2. 📤 Import Chat Records
+  3. 🗑️ Delete Friend
+  4. ⚔️ Select Friends to Battle
+  5. 🎨 Create Example Friend
+  0. 👋 Exit
 ----------------------------------------
 
-请输入选择 [0-5]:
+Enter choice [0-5]:
 ```
 
-### 🖥️ CLI命令行界面
+### 🖥️ CLI Command Line Interface
 
-适合脚本和自动化操作：
+Good for scripts and automation:
 
 ```bash
-# 列出好友
+# List friends
 python friendbattle.py cli list
 
-# 导入聊天记录
-python friendbattle.py cli import /path/to/chat.txt "好友名"
+# Import chat records
+python friendbattle.py cli import /path/to/chat.txt "Friend Name"
 
-# 创建示例好友
+# Create example friend
 python friendbattle.py cli sample
 
-# 删除好友
-python friendbattle.py cli delete "好友名"
+# Delete friend
+python friendbattle.py cli delete "Friend Name"
 
-# 选择好友进行辩论
+# Select friends for battle
 python friendbattle.py cli select
 ```
 
-### 🌐 GUI Web界面
+### 🌐 GUI Web Interface
 
-可视化操作，最友好的方式：
+Visual operation, most user-friendly:
 
-启动后访问 http://localhost:3000
+After launch, visit http://localhost:3000
 
 ---
 
-## 🏗️ 项目结构
+## 🏗️ Project Structure
 
 ```
 FriendBattle/
-├── friendbattle.py          # 主入口脚本
+├── friendbattle.py          # Main entry script
 ├── src/
-│   ├── clone/               # 克隆模块
-│   │   ├── cloner.py        # 好友克隆器
-│   │   ├── manager.py       # 好友管理器
-│   │   ├── memory.py        # RAG记忆库
-│   │   └── parser.py        # 聊天记录解析
-│   ├── debate/              # 辩论引擎
-│   │   ├── engine.py        # 辩论引擎核心
-│   │   └── skills.py        # 辩论策略库
-│   ├── web/                 # Web界面
-│   │   ├── app.py           # Flask应用
-│   │   └── templates/       # HTML模板
-│   ├── wechat_scanner/      # 微信数据库扫描
-│   ├── wechat_image/        # 微信图片解密
-│   └── wechat_integration/  # 微信集成接口
-├── data/                    # 数据目录
-│   ├── profiles/            # 好友档案
-│   └── chatlogs/            # 聊天记录
+│   ├── clone/               # Clone module
+│   │   ├── cloner.py        # Friend cloner
+│   │   ├── manager.py       # Friend manager
+│   │   ├── memory.py        # RAG memory
+│   │   └── parser.py        # Chat record parser
+│   ├── debate/              # Debate engine
+│   │   ├── engine.py        # Debate engine core
+│   │   └── skills.py        # Debate strategy library
+│   ├── web/                 # Web interface
+│   │   ├── app.py           # Flask app
+│   │   └── templates/       # HTML templates
+│   ├── wechat_scanner/      # WeChat database scanner
+│   ├── wechat_image/        # WeChat image decryption
+│   └── wechat_integration/  # WeChat integration API
+├── data/                    # Data directory
+│   ├── profiles/            # Friend profiles
+│   └── chatlogs/            # Chat records
 ├── config/
-│   └── config.yaml          # 配置文件
-└── requirements.txt         # 依赖列表（核心依赖）
+│   └── config.yaml          # Configuration file
+└── requirements.txt         # Dependency list (core dependencies)
 ```
 
 ---
 
-## 🌐 支持的AI提供商
+## 🌐 Supported AI Providers
 
-| 提供商 | 模型 | 说明 |
-|--------|------|------|
-| **OpenAI** | gpt-3.5-turbo, gpt-4, gpt-4o | 最稳定的选择 |
-| **Claude** | claude-3-sonnet, claude-3-opus | 长文本能力强 |
-| **Gemini** | gemini-pro, gemini-1.5-pro | Google出品 |
-| **DeepSeek** | deepseek-chat | 免费额度高 |
-| **智谱AI** | glm-4, glm-4v | 国内访问快 |
-| **本地模型** | Qwen2, Llama-3 | 完全离线 |
-
----
-
-## 📖 使用指南
-
-### 1️⃣ 第一步：导出聊天记录
-
-使用内置的微信导出功能，或手动准备聊天记录文件（支持TXT、JSON等格式）。
-
-### 2️⃣ 第二步：克隆好友
-
-```bash
-python friendbattle.py cli clone
-```
-选择"导入聊天记录"，然后：
-- 选择平台（txt/json/wechat/telegram）
-- 选择要克隆的聊天记录文件
-- 命名好友档案
-
-### 3️⃣ 第三步：开始Battle
-
-```bash
-python friendbattle.py gui   # 推荐，Web界面最直观
-```
-或者使用CLI：
-```bash
-python friendbattle.py cli debate
-```
-选择两个已克隆的好友，设置辩题，选择Battle策略，开始观看！
-
-### 💡 高级功能
-
-- **RAG记忆库**：可选安装chromadb，让AI更好地理解上下文
-- **多AI切换**：可以随时切换不同的AI提供商
-- **策略混合**：可以为每个辩论者选择不同的策略
+| Provider | Models | Notes |
+|----------|--------|-------|
+| **OpenAI** | gpt-3.5-turbo, gpt-4, gpt-4o | Most stable option |
+| **Claude** | claude-3-sonnet, claude-3-opus | Strong long text capability |
+| **Gemini** | gemini-pro, gemini-1.5-pro | By Google |
+| **DeepSeek** | deepseek-chat | High free quota |
+| **Zhipu AI** | glm-4, glm-4v | Fast in China |
+| **Local Models** | Qwen2, Llama-3 | Fully offline |
 
 ---
 
-## ❓ FAQ - 常见问题
+## ❓ FAQ - Frequently Asked Questions
 
-### Q: 需要微信Root吗？
-**A:** 不需要！本项目可以直接读取微信数据库，也支持导入导出的聊天记录文件。
+### Q: Do I need WeChat Root?
+**A:** No! This project can directly read WeChat database, and also supports imported/exported chat record files.
 
-### Q: 哪些AI提供商支持？
-**A:** OpenAI、Claude、Gemini、DeepSeek、智谱AI，还有本地模型！
+### Q: Which AI providers are supported?
+**A:** OpenAI, Claude, Gemini, DeepSeek, Zhipu AI, and local models!
 
-### Q: 聊天记录会上传到服务器吗？
-**A:** 绝对不会！所有数据都在本地处理，保护你的隐私安全。
+### Q: Will chat records be uploaded to servers?
+**A:** Absolutely not! All data is processed locally, protecting your privacy.
 
-### Q: 没有微信聊天记录能玩吗？
-**A:** 可以！内置了多种预设性格，直接就能让AI互怼！
+### Q: Can I play without WeChat chat records?
+**A:** Yes! Built-in multiple preset personalities, just let the AI battle directly!
 
-### Q: EXE版本什么时候出？
-**A:** GitHub Actions已经在自动打包了，很快就能在Release页下载！
-
----
-
-## 🤝 参与贡献
-
-欢迎提交Issue和Pull Request！让我们一起让这个项目更好玩！
-
-1. Fork本仓库
-2. 创建你的功能分支 (`git checkout -b feature/AmazingFeature`)
-3. 提交你的更改 (`git commit -m 'Add some AmazingFeature'`)
-4. 推送到分支 (`git push origin feature/AmazingFeature`)
-5. 开启一个Pull Request
+### Q: When will EXE version be available?
+**A:** GitHub Actions is already auto-packaging, will be available on Releases page soon!
 
 ---
 
-## 📝 开发路线图
+## 🤝 Contributing
 
-- [x] AI克隆引擎
-- [x] 微信聊天记录支持（完全独立实现）
-- [x] Web界面
-- [x] Windows EXE打包
-- [x] CLI命令行界面
-- [x] TUI终端用户界面
-- [x] 好友管理器
-- [x] RAG记忆库系统（可选）
-- [x] 增强的角色分析
-- [x] 优化依赖，快速安装
-- [x] 9种Battle策略
-- [x] 独立的微信数据库扫描
-- [x] 微信图片解密
-- [ ] 语音克隆
-- [ ] 实时视频生成
-- [ ] 多人Battle模式
-- [ ] Battle模板市场
+Issues and Pull Requests welcome! Let's make this project more fun together!
+
+1. Fork this repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
 ---
 
-## 📜 许可证
+## 📝 Development Roadmap
 
-MIT License - 详见 [LICENSE](LICENSE)
+- [x] AI clone engine
+- [x] WeChat chat record support (fully independent implementation)
+- [x] Web interface
+- [x] Windows EXE packaging
+- [x] CLI command line interface
+- [x] TUI terminal user interface
+- [x] Friend manager
+- [x] RAG memory system (optional)
+- [x] Enhanced character analysis
+- [x] Optimized dependencies, fast install
+- [x] 9 battle strategies
+- [x] Independent WeChat database scanner
+- [x] WeChat image decryption
+- [ ] Voice cloning
+- [ ] Real-time video generation
+- [ ] Multi-player battle mode
+- [ ] Battle template marketplace
 
 ---
 
-## ⚠️ 免责声明
+## 📜 License
 
-1. 本项目仅供娱乐和学习使用
-2. AI生成内容不代表真实人物观点
-3. 请勿用于伤害他人或传播虚假信息
-4. 使用本项目即表示同意承担相关责任
+MIT License - See [LICENSE](LICENSE) for details.
+
+---
+
+## ⚠️ Disclaimer
+
+1. This project is for entertainment and learning only
+2. AI-generated content does not represent real people's opinions
+3. Do not use to harm others or spread misinformation
+4. Using this project means you agree to take responsibility
 
 ---
 
 <div align="center">
 
-## 💡 你的脑洞有多大，Battle就有多精彩！
+## 💡 How wild your imagination is, how epic the battle will be!
 
-**⭐ 如果觉得有趣，给个 Star 吧！**
+**⭐ If you find this fun, give a Star!**
 
 [![Star](https://img.shields.io/github/stars/le700/FriendBattle?style=social)](https://github.com/le700/FriendBattle)
 
