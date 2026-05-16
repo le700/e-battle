@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeFlow 集成设置 - FriendBattle</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 18px;
+            padding: 30px;
+            box-shadow: 0 12px 48px rgba(0,0,0,0.15);
+            margin-bottom: 20px;
+        }
+
+        .card h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.4em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .status-item {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .status-item .icon {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        .status-item .label {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .status-item .value {
+            font-size: 1.2em;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .status-item.success .value {
+            color: #10b981;
+        }
+
+        .status-item.error .value {
+            color: #ef4444;
+        }
+
+        .status-item.warning .value {
+            color: #f59e0b;
+        }
+
+        .btn {
+            padding: 14px 28px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin: 5px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.45);
+        }
+
+        .btn-secondary {
+            background: #f0f0f0;
+            color: #333;
+        }
+
+        .btn-secondary:hover {
+            background: #e0e0e0;
+        }
+
+        .session-list {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .session-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .session-item:hover {
+            border-color: #667eea;
+            background: #f0f4ff;
+        }
+
+        .session-item .avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            color: white;
+            margin-right: 15px;
+        }
+
+        .session-item .info {
+            flex: 1;
+        }
+
+        .session-item .name {
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .session-item .last-message {
+            font-size: 0.9em;
+            color: #888;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .session-item .unread {
+            background: #ef4444;
+            color: white;
+            border-radius: 50%;
+            padding: 3px 8px;
+            font-size: 0.8em;
+            font-weight: 700;
+        }
+
+        .search-box {
+            margin-bottom: 20px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 14px 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 1em;
+            transition: all 0.3s;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .info-box {
+            background: #f0f4ff;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .info-box h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .info-box p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .btn-group {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .progress {
+            margin: 20px 0;
+            display: none;
+        }
+
+        .progress.active {
+            display: block;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            width: 0%;
+            transition: width 0.5s;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #333, #555);
+            color: white;
+            padding: 14px 30px;
+            border-radius: 10px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 1000;
+        }
+
+        .toast.show {
+            opacity: 1;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .feature-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .feature-card .icon {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .feature-card h3 {
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .feature-card p {
+            color: #666;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔗 WeFlow 集成</h1>
+            <p>连接 WeFlow 获取微信聊天记录</p>
+        </div>
+
+        <div class="card">
+            <h2>📊 连接状态</h2>
+
+            <div class="status-grid" id="status-grid">
+                <div class="status-item" id="status-installed">
+                    <div class="icon">📦</div>
+                    <div class="label">WeFlow 安装</div>
+                    <div class="value">检测中...</div>
+                </div>
+
+                <div class="status-item" id="status-running">
+                    <div class="icon">▶️</div>
+                    <div class="label">运行状态</div>
+                    <div class="value">检测中...</div>
+                </div>
+
+                <div class="status-item" id="status-api">
+                    <div class="icon">🌐</div>
+                    <div class="label">API 服务</div>
+                    <div class="value">检测中...</div>
+                </div>
+
+                <div class="status-item" id="status-connection">
+                    <div class="icon">🔌</div>
+                    <div class="label">整体状态</div>
+                    <div class="value">检测中...</div>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <h3>💡 如何启用 WeFlow 集成</h3>
+                <p>
+                    1. 下载并安装 <strong>WeFlow</strong>（如果尚未安装）<br>
+                    2. 启动 WeFlow 并完成初始配置<br>
+                    3. 在 WeFlow 中启用 <strong>API 服务</strong>（设置 → API 服务 → 启动服务）<br>
+                    4. 确保 WeFlow 正在运行，然后刷新此页面
+                </p>
+            </div>
+
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="checkStatus()">
+                    🔄 检查状态
+                </button>
+                <button class="btn btn-secondary" onclick="downloadWeFlow()">
+                    📥 下载 WeFlow
+                </button>
+                <button class="btn btn-secondary" onclick="openWeFlowGuide()">
+                    📖 使用指南
+                </button>
+            </div>
+        </div>
+
+        <div class="card" id="sessions-card" style="display: none;">
+            <h2>💬 选择聊天记录</h2>
+
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="🔍 搜索联系人或群聊..." oninput="filterSessions()">
+            </div>
+
+            <div class="session-list" id="session-list">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>加载中...</p>
+                </div>
+            </div>
+
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="importSelected()" id="import-btn" disabled>
+                    ✅ 导入选中聊天记录
+                </button>
+            </div>
+
+            <div class="progress" id="progress">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>✨ WeFlow 功能特性</h2>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="icon">🔐</div>
+                    <h3>安全密钥提取</h3>
+                    <p>从微信进程中提取数据库密钥，无需root权限</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="icon">🗄️</div>
+                    <h3>WCDB 数据库读取</h3>
+                    <p>直接读取微信本地数据库，实时获取聊天记录</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="icon">🔓</div>
+                    <h3>图片解密</h3>
+                    <p>解密微信加密的图片和视频文件</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="icon">🌐</div>
+                    <h3>HTTP API</h3>
+                    <p>提供 RESTful API，方便第三方应用集成</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="icon">📊</div>
+                    <h3>统计分析</h3>
+                    <p>聊天时间分布、关键词统计、互动分析</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="icon">📤</div>
+                    <h3>多格式导出</h3>
+                    <p>支持 JSON、HTML、ChatLab 等多种导出格式</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script>
+        let allSessions = [];
+        let selectedSession = null;
+
+        async function checkStatus() {
+            showToast('检查 WeFlow 状态...');
+
+            try {
+                const response = await fetch('/api/weflow/status');
+                const data = await response.json();
+
+                // 更新状态显示
+                updateStatus('installed', data.installed, data.installed ? '已安装' : '未安装');
+                updateStatus('running', data.running, data.running ? '运行中' : '未运行');
+                updateStatus('api', data.api_available, data.api_available ? '可用' : '不可用');
+
+                const connected = data.installed && data.running && data.api_available;
+                updateStatus('connection', connected, connected ? '已连接' : '未连接');
+
+                if (connected) {
+                    showToast('✅ WeFlow 已就绪！');
+                    loadSessions();
+                } else {
+                    showToast('⚠️ 请检查 WeFlow 配置');
+                }
+
+            } catch (error) {
+                showToast('❌ 检查失败: ' + error.message);
+            }
+        }
+
+        function updateStatus(id, success, text) {
+            const el = document.getElementById('status-' + id);
+            el.className = 'status-item ' + (success ? 'success' : 'error');
+            el.querySelector('.value').textContent = text;
+        }
+
+        async function loadSessions() {
+            const card = document.getElementById('sessions-card');
+            const list = document.getElementById('session-list');
+
+            card.style.display = 'block';
+            list.innerHTML = '<div class="loading"><div class="spinner"></div><p>加载中...</p></div>';
+
+            try {
+                const response = await fetch('/api/weflow/sessions');
+                const data = await response.json();
+
+                if (data.sessions && data.sessions.length > 0) {
+                    allSessions = data.sessions;
+                    renderSessions(allSessions);
+                } else {
+                    list.innerHTML = '<p style="text-align: center; color: #999;">未找到聊天记录</p>';
+                }
+
+            } catch (error) {
+                list.innerHTML = '<p style="text-align: center; color: #ef4444;">加载失败: ' + error.message + '</p>';
+            }
+        }
+
+        function renderSessions(sessions) {
+            const list = document.getElementById('session-list');
+
+            if (sessions.length === 0) {
+                list.innerHTML = '<p style="text-align: center; color: #999;">没有匹配的聊天记录</p>';
+                return;
+            }
+
+            list.innerHTML = sessions.map(session => `
+                <div class="session-item" onclick="selectSession('${session.id}')">
+                    <div class="avatar">👤</div>
+                    <div class="info">
+                        <div class="name">${escapeHtml(session.name)}</div>
+                        <div class="last-message">${escapeHtml(session.lastMessage || '暂无消息')}</div>
+                    </div>
+                    ${session.unreadCount > 0 ? `<span class="unread">${session.unreadCount}</span>` : ''}
+                </div>
+            `).join('');
+        }
+
+        function selectSession(sessionId) {
+            selectedSession = sessionId;
+
+            // 更新选中状态
+            document.querySelectorAll('.session-item').forEach(item => {
+                item.style.borderColor = '#e0e0e0';
+                item.style.background = '#fff';
+            });
+
+            event.currentTarget.style.borderColor = '#667eea';
+            event.currentTarget.style.background = '#f0f4ff';
+
+            // 启用导入按钮
+            document.getElementById('import-btn').disabled = false;
+        }
+
+        function filterSessions() {
+            const keyword = document.getElementById('search-input').value.toLowerCase();
+            const filtered = allSessions.filter(session =>
+                session.name.toLowerCase().includes(keyword) ||
+                (session.lastMessage && session.lastMessage.toLowerCase().includes(keyword))
+            );
+            renderSessions(filtered);
+        }
+
+        async function importSelected() {
+            if (!selectedSession) {
+                showToast('请先选择聊天记录');
+                return;
+            }
+
+            const btn = document.getElementById('import-btn');
+            const progress = document.getElementById('progress');
+
+            btn.disabled = true;
+            progress.classList.add('active');
+
+            try {
+                updateProgress(10, '正在获取聊天记录...');
+                await new Promise(resolve => setTimeout(resolve, 500));
+
+                updateProgress(30, '正在处理消息...');
+
+                const response = await fetch('/api/weflow/import', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ talker: selectedSession })
+                });
+
+                updateProgress(80, '正在创建好友...');
+                await new Promise(resolve => setTimeout(resolve, 500));
+
+                const data = await response.json();
+
+                updateProgress(100, '完成！');
+
+                if (data.success) {
+                    showToast('✅ 导入成功！');
+                } else {
+                    showToast('❌ 导入失败: ' + (data.error || '未知错误'));
+                }
+
+            } catch (error) {
+                showToast('❌ 导入失败: ' + error.message);
+            }
+
+            setTimeout(() => {
+                progress.classList.remove('active');
+                btn.disabled = false;
+            }, 2000);
+        }
+
+        function updateProgress(percent, text) {
+            document.getElementById('progress-fill').style.width = percent + '%';
+        }
+
+        function downloadWeFlow() {
+            window.open('https://github.com/hicccc77/WeFlow/releases', '_blank');
+        }
+
+        function openWeFlowGuide() {
+            window.open('https://github.com/hicccc77/WeFlow#快速开始', '_blank');
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+
+        function escapeHtml(text) {
+            if (!text) return '';
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // 页面加载时自动检查状态
+        window.addEventListener('load', checkStatus);
+    </script>
+</body>
+</html>
