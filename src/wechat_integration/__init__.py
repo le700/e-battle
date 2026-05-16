@@ -9,25 +9,19 @@ from pathlib import Path
 from typing import List, Dict, Optional, Any
 import logging
 
-from .scanner import (
+# 修正导入路径
+from src.wechat_scanner import (
     WeChatScanner,
-    WeChatPath,
-    WeChatKeyExtractor,
     scan_wechat,
     get_wechat_sessions,
     get_wechat_messages
 )
 
-from .image import (
+from src.wechat_image import (
     WeChatImageDecryptor,
     WeChatImageLocator,
     decrypt_wechat_images,
     find_and_decrypt_all_images
-)
-
-from .parser import (
-    WeChatFileParser,
-    read_wechat_export
 )
 
 logger = logging.getLogger(__name__)

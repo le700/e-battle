@@ -543,11 +543,14 @@ class WeChatScanner:
         # 尝试读取数据库
         for db_path in msg_dbs:
             reader = WeChatDBReader(db_path, self.key_extractor.key)
-            if reader.connect():
-                messages = reader.get_messages(talker, limit)
-                reader.close()
-                if messages:
-                    return messages
+            try:
+                if reader.connect():
+                    messages = reader.get_messages(talker, limit)
+                    if messages:
+                        return messages
+            except Exception as e:
+                logger.error(f"读取数据库 {db_path} 失败: {e}")
+            finally:
                 reader.close()
 
         return []
@@ -564,11 +567,14 @@ class WeChatScanner:
 
         for db_path in msg_dbs:
             reader = WeChatDBReader(db_path, self.key_extractor.key)
-            if reader.connect():
-                sessions = reader.get_sessions(limit)
-                reader.close()
-                if sessions:
-                    return sessions
+            try:
+                if reader.connect():
+                    sessions = reader.get_sessions(limit)
+                    if sessions:
+                        return sessions
+            except Exception as e:
+                logger.error(f"读取数据库 {db_path} 失败: {e}")
+            finally:
                 reader.close()
 
         return []
