@@ -1,13 +1,18 @@
 # FriendBattle — AI好友Battle系统
 
-![GitHub stars](https://img.shields.io/github/stars/le700/FriendBattle?style=social)
-![GitHub forks](https://img.shields.io/github/forks/le700/FriendBattle?style=social)
-![GitHub license](https://img.shields.io/github/license/le700/FriendBattle)
-![GitHub last commit](https://img.shields.io/github/last-commit/le700/FriendBattle)
-![Python version](https://img.shields.io/badge/python-3.12-blue.svg)
+<p align="center">
+  <img src="https://img.shields.io/github/stars/le700/FriendBattle?style=social" alt="GitHub stars">
+  <img src="https://img.shields.io/github/forks/le700/FriendBattle?style=social" alt="GitHub forks">
+  <img src="https://img.shields.io/github/license/le700/FriendBattle" alt="GitHub license">
+  <img src="https://img.shields.io/github/last-commit/le700/FriendBattle" alt="GitHub last commit">
+  <img src="https://img.shields.io/badge/python-3.12-blue.svg" alt="Python version">
+  <img src="https://img.shields.io/badge/build-passing-brightgreen" alt="Build Status">
+</p>
 
-> 🔥 **让你的微信好友"克隆人"互相对骂，笑到喷饭！**
-> ⭐ 一个让你停不下来的AI社交娱乐神器
+<p align="center">
+  <strong>🔥 让你的微信好友"克隆人"互相对骂，笑到喷饭！</strong><br>
+  <strong>⭐ 一个让你停不下来的AI社交娱乐神器</strong>
+</p>
 
 ---
 
@@ -20,6 +25,45 @@
 [🔥 快速开始](#-快速开始) · [✨ 核心功能](#-核心功能) · [🎭 Battle策略](#-battle-策略) · [📖 使用指南](#-使用指南)
 
 </div>
+
+## 📸 效果展示
+
+> 💡 想象一下：把你平时最逗比的两个朋友的聊天记录导进来，然后让AI克隆他们互怼，效果拔群！
+
+<table>
+<tr>
+<td><strong>辩题：甜豆花 vs 咸豆花</strong></td>
+<td><strong>辩题：程序员该不该写注释</strong></td>
+</tr>
+<tr>
+<td>
+<pre>
+【小明 🤬 杠精模式】
+豆花当然是甜的好吃！
+你告诉我，豆花放糖不香吗？
+咸豆花是什么黑暗料理？
+
+【小红 😏 阴阳怪气模式】
+哟，咸豆花党急了急了~
+也就只有你们才会在豆花里放盐
+甜豆花才是永恒的经典好吗！
+</pre>
+</td>
+<td>
+<pre>
+【老张 🧑‍💻 工程师模式】
+写注释是职业素养！
+你自己写的代码三个月后
+还看得懂吗？
+
+【小李 🤪 摸鱼模式】
+能跑就行，注释那么多
+老板以为我在写小说呢？
+代码就是最好的文档！
+</pre>
+</td>
+</tr>
+</table>
 
 ---
 
@@ -297,6 +341,37 @@ python friendbattle.py cli debate
 - **RAG记忆库**：可选安装chromadb，让AI更好地理解上下文
 - **多AI切换**：可以随时切换不同的AI提供商
 - **策略混合**：可以为每个辩论者选择不同的策略
+
+---
+
+## ❓ FAQ - 常见问题
+
+### Q: 需要微信Root吗？
+**A:** 不需要！本项目可以直接读取微信数据库，也支持导入导出的聊天记录文件。
+
+### Q: 哪些AI提供商支持？
+**A:** OpenAI、Claude、Gemini、DeepSeek、智谱AI，还有本地模型！
+
+### Q: 聊天记录会上传到服务器吗？
+**A:** 绝对不会！所有数据都在本地处理，保护你的隐私安全。
+
+### Q: 没有微信聊天记录能玩吗？
+**A:** 可以！内置了多种预设性格，直接就能让AI互怼！
+
+### Q: EXE版本什么时候出？
+**A:** GitHub Actions已经在自动打包了，很快就能在Release页下载！
+
+---
+
+## 🤝 参与贡献
+
+欢迎提交Issue和Pull Request！让我们一起让这个项目更好玩！
+
+1. Fork本仓库
+2. 创建你的功能分支 (`git checkout -b feature/AmazingFeature`)
+3. 提交你的更改 (`git commit -m 'Add some AmazingFeature'`)
+4. 推送到分支 (`git push origin feature/AmazingFeature`)
+5. 开启一个Pull Request
 
 ---
 
