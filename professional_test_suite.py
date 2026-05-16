@@ -217,7 +217,7 @@ def charlie_integration_tests():
         
         # 3. 创建辩论
         engine = DebateEngine()
-        debate = engine.create_debate("集成测试话题", "TestA", "TestB")
+        debate = engine.create_debate("集成测试话题", ["TestA", "TestB"])
         engine.add_turn(debate.id, "TestA", "测试观点A", "rational")
         engine.add_turn(debate.id, "TestB", "测试观点B", "contrarian")
         

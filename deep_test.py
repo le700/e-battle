@@ -220,25 +220,24 @@ def test_debate_engine():
         engine = DebateEngine()
         debate = engine.create_debate(
             topic="测试辩题",
-            debater1="小明",
-            debater2="小红"
+            debaters=["小明", "小红"]
         )
         return debate is not None and debate.topic == "测试辩题"
 
     def test_debate_status():
         engine = DebateEngine()
-        debate = engine.create_debate("测试", "A", "B")
+        debate = engine.create_debate("测试", ["A", "B"])
         return debate.status == DebateStatus.PENDING
 
     def test_add_turn():
         engine = DebateEngine()
-        debate = engine.create_debate("测试", "A", "B")
+        debate = engine.create_debate("测试", ["A", "B"])
         engine.add_turn(debate.id, "A", "这是A的发言", "contrarian")
         return len(debate.turns) == 1
 
     def test_complete_debate():
         engine = DebateEngine()
-        debate = engine.create_debate("测试", "A", "B")
+        debate = engine.create_debate("测试", ["A", "B"])
         engine.complete_debate(debate.id)
         return debate.status == DebateStatus.COMPLETED
 

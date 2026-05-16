@@ -52,14 +52,38 @@ class Debate:
     created_at: datetime = field(default_factory=datetime.now)
     completed_at: Optional[datetime] = None
     turns: List[DebateTurn] = field(default_factory=list)
-    debater1: str = ""
-    debater2: str = ""
-    skill1: str = ""
-    skill2: str = ""
+    debaters: List[str] = field(default_factory=list)
+    skills: Dict[str, str] = field(default_factory=dict)
 
+    @property
+    def debater1(self) -> str:
+        """辩手1"""
+        return self.debaters[0] if len(self.debaters) > 0 else ""
+    
+    @property
+    def debater2(self) -> str:
+        """辩手2"""
+        return self.debaters[1] if len(self.debaters) > 1 else ""
+    
+    @property
+    def skill1(self) -> str:
+        """辩手1策略"""
+        return self.skills.get(self.debater1, "")
+    
+    @property
+    def skill2(self) -> str:
+        """辩手2策略"""
+        return self.skills.get(self.debater2, "")
+    
+    @property
+    def is_multiplayer(self) -> bool:
+        """是否是多人模式"""
+        return len(self.debaters) > 2
+    
     def add_turn(self, speaker: str, content: str, skill_used: str = ""):
         """添加辩论回合"""
-        round_num = len([t for t in self.turns if t.speaker == speaker]) + 1
+        speaker_turns = [t for t in self.turns if t.speaker == speaker]
+        round_num = len(speaker_turns) + 1
         turn = DebateTurn(
             round_num=round_num,
             speaker=speaker,
@@ -77,10 +101,12 @@ class Debate:
             "created_at": self.created_at.isoformat(),
             "completed_at": self.completed_at.isoformat() if self.completed_at else None,
             "turns": [turn.to_dict() for turn in self.turns],
+            "debaters": self.debaters,
             "debater1": self.debater1,
             "debater2": self.debater2,
-            "skill1": self.skill1,
-            "skill2": self.skill2
+            "skills": self.skills,
+            "mode": "multiplayer" if self.is_multiplayer else "duel",
+            "player_count": len(self.debaters)
         }
 
     def save(self, output_dir: Path):
@@ -191,39 +217,69 @@ class DebateEngine:
 
         Args:
             topic: 辩论主题
-            rounds: 辩论回合数
+            rounds: 辩论回合数（每人发言次数）
             max_tokens: 最大生成token数
             temperature: 温度参数
 
         Returns:
             辩论记录
         """
-        if len(self.debaters) != 2:
-            raise ValueError("辩论需要两个辩手")
-
+        if len(self.debaters) < 2:
+            raise ValueError("辩论至少需要两个辩手")
+        
+        is_multiplayer = len(self.debaters) > 2
         debater_names = list(self.debaters.keys())
+        
         debate = Debate(
             id=str(uuid.uuid4())[:8],
             topic=topic,
             status=DebateStatus.IN_PROGRESS,
-            debater1=debater_names[0],
-            debater2=debater_names[1],
-            skill1=self.debaters[debater_names[0]].skill.name,
-            skill2=self.debaters[debater_names[1]].skill.name
+            debaters=debater_names,
+            skills={name: self.debaters[name].skill.name for name in debater_names}
         )
 
         print(f"\n{'='*60}")
         print(f"辩论主题：{topic}")
-        print(f"正方：{debater_names[0]} ({self.debaters[debater_names[0]].skill.name})")
-        print(f"反方：{debater_names[1]} ({self.debaters[debater_names[1]].skill.name})")
+        print(f"模式：{'多人Battle' if is_multiplayer else '双人Battle'}")
+        print(f"参赛者：{', '.join([f'{name} ({self.debaters[name].skill.name})' for name in debater_names])}")
         print(f"{'='*60}\n")
 
         debate.add_turn(
             speaker="System",
-            content=f"辩论主题：{topic}",
+            content=f"辩论主题：{topic} | 模式：{'多人Battle' if is_multiplayer else '双人Battle'}",
             skill_used="System"
         )
 
+        if is_multiplayer:
+            self._run_multiplayer_battle(
+                debate, topic, debater_names, rounds, max_tokens, temperature
+            )
+        else:
+            self._run_duel_battle(
+                debate, topic, debater_names, rounds, max_tokens, temperature
+            )
+
+        debate.status = DebateStatus.COMPLETED
+        debate.completed_at = datetime.now()
+        debate.save(self.output_dir)
+
+        print(f"\n{'='*60}")
+        print(f"辩论结束！共 {len([t for t in debate.turns if t.speaker != 'System'])} 轮")
+        print(f"辩论记录已保存至：{debate.save(self.output_dir)}")
+        print(f"{'='*60}\n")
+
+        return debate
+
+    def _run_duel_battle(
+        self,
+        debate: Debate,
+        topic: str,
+        debater_names: List[str],
+        rounds: int,
+        max_tokens: int,
+        temperature: float
+    ):
+        """双人Battle"""
         for round_num in range(1, rounds + 1):
             print(f"\n--- 第 {round_num} 轮 ---")
 
@@ -255,17 +311,53 @@ class DebateEngine:
 
                 print(f"{debater_name}: {response}\n")
 
-        debate.status = DebateStatus.COMPLETED
-        debate.completed_at = datetime.now()
+    def _run_multiplayer_battle(
+        self,
+        debate: Debate,
+        topic: str,
+        debater_names: List[str],
+        rounds: int,
+        max_tokens: int,
+        temperature: float
+    ):
+        """多人Battle"""
+        num_players = len(debater_names)
+        
+        for round_num in range(1, rounds + 1):
+            print(f"\n{'='*40}")
+            print(f"第 {round_num} 轮 - 多人Battle")
+            print(f"{'='*40}")
 
-        debate.save(self.output_dir)
+            for i, debater_name in enumerate(debater_names):
+                opponents = [name for name in debater_names if name != debater_name]
+                other_speakers = [t["speaker"] for t in debate.turns[1:] if t["speaker"] != debater_name]
+                last_opponent = other_speakers[-1] if other_speakers else "无"
+                
+                context = DebateContext(
+                    topic=topic,
+                    round_num=round_num,
+                    total_rounds=rounds,
+                    history=[turn.to_dict() for turn in debate.turns[1:]],
+                    current_speaker=debater_name,
+                    opponent_speaker=", ".join(opponents)
+                )
 
-        print(f"\n{'='*60}")
-        print(f"辩论结束！共 {len(debate.turns) - 1} 轮")
-        print(f"辩论记录已保存至：{debate.save(self.output_dir)}")
-        print(f"{'='*60}\n")
+                response = self._generate_response(
+                    debater_name=debater_name,
+                    opponent_name=", ".join(opponents),
+                    context=context,
+                    max_tokens=max_tokens,
+                    temperature=temperature
+                )
 
-        return debate
+                debate.add_turn(
+                    speaker=debater_name,
+                    content=response,
+                    skill_used=self.debaters[debater_name].skill.name
+                )
+
+                print(f"\n💬 {debater_name} [{i+1}/{num_players}]:")
+                print(f"   {response}")
 
     def _generate_response(
         self,
@@ -307,9 +399,43 @@ class DebateEngine:
 
         return response
 
-    def create_debate(self, topic: str, debater1: str, debater2: str, skill1: str = "rational", skill2: str = "contrarian") -> Debate:
+    def create_debate(self, topic: str, debaters: List[str], skills: Optional[List[str]] = None) -> Debate:
         """
-        创建辩论
+        创建辩论（支持双人/多人模式）
+
+        Args:
+            topic: 辩论主题
+            debaters: 辩手列表，如 ["小明", "小红"] 或 ["小明", "小红", "小李"]
+            skills: 辩手策略列表，默认使用 rational
+
+        Returns:
+            Debate: 创建的辩论实例
+        """
+        from .skills import get_skill
+
+        if len(debaters) < 2:
+            raise ValueError("辩论至少需要两个辩手")
+        
+        skills = skills or ["rational"] * len(debaters)
+        
+        for i, debater_name in enumerate(debaters):
+            skill_name = skills[i] if i < len(skills) else "rational"
+            self.add_debater(debater_name, skill=get_skill(skill_name))
+
+        debate = Debate(
+            id=str(uuid.uuid4())[:8],
+            topic=topic,
+            status=DebateStatus.PENDING,
+            debaters=debaters,
+            skills={debaters[i]: skills[i] if i < len(skills) else "rational" for i in range(len(debaters))}
+        )
+
+        self.debates[debate.id] = debate
+        return debate
+
+    def create_duel_debate(self, topic: str, debater1: str, debater2: str, skill1: str = "rational", skill2: str = "contrarian") -> Debate:
+        """
+        创建双人辩论（兼容旧API）
 
         Args:
             topic: 辩论主题
@@ -321,24 +447,7 @@ class DebateEngine:
         Returns:
             Debate: 创建的辩论实例
         """
-        from .skills import get_skill
-
-        # 添加辩手
-        self.add_debater(debater1, skill=get_skill(skill1))
-        self.add_debater(debater2, skill=get_skill(skill2))
-
-        debate = Debate(
-            id=str(uuid.uuid4())[:8],
-            topic=topic,
-            status=DebateStatus.PENDING,
-            debater1=debater1,
-            debater2=debater2,
-            skill1=skill1,
-            skill2=skill2
-        )
-
-        self.debates[debate.id] = debate
-        return debate
+        return self.create_debate(topic, [debater1, debater2], [skill1, skill2])
 
     def get_debate(self, debate_id: str) -> Debate:
         """

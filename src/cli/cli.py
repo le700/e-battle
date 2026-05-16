@@ -77,13 +77,35 @@ def delete_friend_cli(manager):
 
 
 def select_friends_cli(manager):
-    """选择好友进行对话"""
+    """选择好友进行对话（支持双人/多人模式）"""
     friends = manager.get_friend_list()
     
     if len(friends) < 2:
         print("❌ 至少需要两个好友才能进行对话")
         return
     
+    print("\n📋 当前好友列表:")
+    for i, friend in enumerate(friends, 1):
+        print(f"{i}. {friend.name}")
+    
+    # 选择模式
+    print("\n🎮 选择Battle模式:")
+    print("1. 双人Battle（选择2人）")
+    if len(friends) >= 3:
+        print("2. 多人Battle（选择3人及以上）")
+    
+    mode_choice = input("\n请选择模式 [默认: 1]: ").strip() or "1"
+    
+    if mode_choice == "2" and len(friends) >= 3:
+        # 多人模式
+        return select_multiplayers_cli(manager, friends)
+    else:
+        # 双人模式
+        return select_duel_cli(manager, friends)
+
+
+def select_duel_cli(manager, friends):
+    """双人Battle选择"""
     print("\n📋 选择第一个好友:")
     for i, friend in enumerate(friends, 1):
         print(f"{i}. {friend.name}")
@@ -99,14 +121,12 @@ def select_friends_cli(manager):
         return
     
     print("\n📋 选择第二个好友:")
-    for i, friend in enumerate(friends, 1):
-        if friend.name != name1:
-            print(f"{i}. {friend.name}")
+    available = [f for i, f in enumerate(friends) if i != idx1]
+    for i, friend in enumerate(available, 1):
+        print(f"{i}. {friend.name}")
     
     try:
         idx2 = int(input("输入序号: ")) - 1
-        # 重新计算实际索引（排除已选的第一个好友）
-        available = [f for f in friends if f.name != name1]
         if idx2 < 0 or idx2 >= len(available):
             print("❌ 无效序号")
             return
@@ -115,8 +135,55 @@ def select_friends_cli(manager):
         print("❌ 请输入数字")
         return
     
-    print(f"\n⚔️ 已选择: {name1} vs {name2}")
-    print("可以开始辩论了！")
+    print(f"\n⚔️ 【双人Battle】{name1} vs {name2}")
+    print("✅ 可以开始辩论了！")
+
+
+def select_multiplayers_cli(manager, friends):
+    """多人Battle选择"""
+    print("\n🎭 多人Battle模式")
+    print("请选择参赛者（输入序号，用空格分隔，输入q完成选择）:")
+    
+    selected = []
+    while True:
+        print("\n📋 当前好友列表:")
+        for i, friend in enumerate(friends, 1):
+            status = "✓ 已选择" if friend.name in selected else ""
+            print(f"{i}. {friend.name} {status}")
+        
+        if len(selected) >= 3:
+            print("\n💡 已选择3人及以上，可以开始Battle！")
+            confirm = input("输入y确认开始，输入其他继续添加: ").strip().lower()
+            if confirm == 'y':
+                break
+        
+        print(f"\n已选择: {', '.join(selected) if selected else '暂无'}")
+        choice = input("\n输入序号添加参赛者（或q完成: ").strip()
+        
+        if choice.lower() == 'q':
+            if len(selected) < 2:
+                print("❌ 至少需要2人！")
+                continue
+            break
+        
+        try:
+            idx = int(choice) - 1
+            if idx < 0 or idx >= len(friends):
+                print("❌ 无效序号")
+                continue
+            
+            name = friends[idx].name
+            if name in selected:
+                print(f"❌ {name} 已经在列表中")
+            else:
+                selected.append(name)
+                print(f"✅ 添加了 {name}")
+        except ValueError:
+            print("❌ 请输入数字")
+    
+    print(f"\n⚔️ 【多人Battle】{' vs '.join(selected)}")
+    print(f"👥 共 {len(selected)} 人参赛")
+    print("✅ 可以开始Battle了！")
 
 
 def create_sample_friends_cli(manager):
