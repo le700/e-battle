@@ -1,7 +1,7 @@
-# Friend吵架 — AI代吵架系统
+# 赛博吵架 — e-battle AI代吵架系统
 
 <p align="center">
-  <img src="assets/logo.png" alt="Friend吵架 Logo" width="256" height="256">
+  <img src="assets/logo.png" alt="赛博吵架 Logo" width="256" height="256">
 </p>
 
 <p align="center">
@@ -9,10 +9,10 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/github/stars/le700/Friend吵架?style=social" alt="GitHub stars">
-  <img src="https://img.shields.io/github/forks/le700/Friend吵架?style=social" alt="GitHub forks">
-  <img src="https://img.shields.io/github/license/le700/Friend吵架" alt="GitHub license">
-  <img src="https://img.shields.io/github/last-commit/le700/Friend吵架" alt="GitHub last commit">
+  <img src="https://img.shields.io/github/stars/le700/赛博吵架?style=social" alt="GitHub stars">
+  <img src="https://img.shields.io/github/forks/le700/赛博吵架?style=social" alt="GitHub forks">
+  <img src="https://img.shields.io/github/license/le700/赛博吵架" alt="GitHub license">
+  <img src="https://img.shields.io/github/last-commit/le700/赛博吵架" alt="GitHub last commit">
   <img src="https://img.shields.io/badge/python-3.12-blue.svg" alt="Python version">
   <img src="https://img.shields.io/badge/build-passing-brightgreen" alt="Build Status">
 </p>
@@ -28,7 +28,7 @@
 
 ## 🎯 一句话介绍
 
-**Friend吵架** 可以让你克隆两个好友的聊天风格，然后用AI让它们针对任何话题进行吵架！
+**赛博吵架** 可以让你克隆两个好友的聊天风格，然后用AI让它们针对任何话题进行吵架！
 
 [🔥 快速开始](#-快速开始) · [✨ 核心功能](#-核心功能) · [🎭 吵架策略](#-battle-策略) · [📖 使用指南](#-使用指南)
 
@@ -125,8 +125,8 @@
 ### 💻 本地运行（推荐）
 
 ```bash
-git clone https://github.com/le700/Friend吵架.git
-cd Friend吵架
+git clone https://github.com/le700/赛博吵架.git
+cd 赛博吵架
 
 # 快速安装（只安装核心依赖）
 pip install -r requirements.txt
@@ -140,9 +140,9 @@ python friendbattle.py gui      # GUI Web界面
 
 ### 📥 Windows用户（最简单）
 
-下载EXE版本（Coming Soon）：[Releases](https://github.com/le700/Friend吵架/releases)
+下载EXE版本（Coming Soon）：[Releases](https://github.com/le700/赛博吵架/releases)
 
-1. 下载 `Friend吵架.exe`
+1. 下载 `赛博吵架.exe`
 2. 双击运行
 3. 访问 http://localhost:3000
 
@@ -150,7 +150,7 @@ python friendbattle.py gui      # GUI Web界面
 
 ## 🎭 吵架策略
 
-Friend吵架提供9种精心设计的吵架策略：
+赛博吵架提供9种精心设计的吵架策略：
 
 | 策略 | 风格 | 适合场景 |
 |------|------|---------|
@@ -176,7 +176,7 @@ Friend吵架提供9种精心设计的吵架策略：
 
 1. **完全关闭微信** - 确保微信没有在运行
 2. **重新打开微信并登录** - 使用手机扫码登录
-3. **打开Friend吵架的Web界面** - 访问 `/wechat` 页面
+3. **打开赛博吵架的Web界面** - 访问 `/wechat` 页面
 4. **点击"重新检测密钥"** - 系统会自动提取微信数据库密钥
 5. **选择好友** - 从列表中选择要导入的好友
 6. **点击"导入"** - 一键创建AI好友克隆
@@ -229,7 +229,7 @@ pip install transformers>=4.35.0 torch>=2.0.0 accelerate>=0.25.0
 
 ```
 ======================================================================
-                    Friend吵架
+                    赛博吵架
                AI 好友吵架系统
 ======================================================================
 
@@ -278,7 +278,7 @@ python friendbattle.py cli select
 ## 🏗️ 项目结构
 
 ```
-Friend吵架/
+赛博吵架/
 ├── friendbattle.py          # 主入口脚本
 ├── src/
 │   ├── clone/               # 克隆模块
@@ -427,6 +427,6 @@ MIT License - 详见 [LICENSE](LICENSE)
 
 **⭐ 如果觉得有趣，给个 Star 吧！**
 
-[![Star](https://img.shields.io/github/stars/le700/Friend吵架?style=social)](https://github.com/le700/Friend吵架)
+[![Star](https://img.shields.io/github/stars/le700/赛博吵架?style=social)](https://github.com/le700/赛博吵架)
 
 </div>

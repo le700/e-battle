@@ -1,7 +1,7 @@
-# FriendBattle — AI Argument Proxy System
+# e-battle — Cyber Argument System
 
 <p align="center">
-  <img src="assets/logo.png" alt="FriendBattle Logo" width="256" height="256">
+  <img src="assets/logo.png" alt="e-battle Logo" width="256" height="256">
 </p>
 
 <p align="center">
@@ -9,10 +9,10 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/github/stars/le700/FriendBattle?style=social" alt="GitHub stars">
-  <img src="https://img.shields.io/github/forks/le700/FriendBattle?style=social" alt="GitHub forks">
-  <img src="https://img.shields.io/github/license/le700/FriendBattle" alt="GitHub license">
-  <img src="https://img.shields.io/github/last-commit/le700/FriendBattle" alt="GitHub last commit">
+  <img src="https://img.shields.io/github/stars/le700/e-battle?style=social" alt="GitHub stars">
+  <img src="https://img.shields.io/github/forks/le700/e-battle?style=social" alt="GitHub forks">
+  <img src="https://img.shields.io/github/license/le700/e-battle" alt="GitHub license">
+  <img src="https://img.shields.io/github/last-commit/le700/e-battle" alt="GitHub last commit">
   <img src="https://img.shields.io/badge/python-3.12-blue.svg" alt="Python version">
   <img src="https://img.shields.io/badge/build-passing-brightgreen" alt="Build Status">
 </p>
@@ -28,7 +28,7 @@
 
 ## 🎯 Quick Introduction
 
-**FriendBattle** lets you clone two WeChat friends' chat styles, then make them argue on any topic with AI!
+**e-battle** lets you clone two WeChat friends' chat styles, then make them argue on any topic with AI!
 
 [🚀 Quick Start](#-quick-start) · [✨ Core Features](#-core-features) · [🎭 Battle Strategies](#-argue-strategies) · [📖 User Guide](#-user-guide)
 
@@ -123,8 +123,8 @@ But... I'm still team sweet tofu pudding😏
 ### 💻 Local Run (Recommended)
 
 ```bash
-git clone https://github.com/le700/FriendBattle.git
-cd FriendBattle
+git clone https://github.com/le700/e-battle.git
+cd e-battle
 
 # Quick install (only core dependencies)
 pip install -r requirements.txt
@@ -138,9 +138,9 @@ python friendargue.py gui      # GUI Web interface
 
 ### 📥 Windows Users (Easiest)
 
-Download EXE version (Coming Soon): [Releases](https://github.com/le700/FriendBattle/releases)
+Download EXE version (Coming Soon): [Releases](https://github.com/le700/e-battle/releases)
 
-1. Download `FriendBattle.exe`
+1. Download `e-battle.exe`
 2. Double-click to run
 3. Visit http://localhost:3000
 
@@ -148,7 +148,7 @@ Download EXE version (Coming Soon): [Releases](https://github.com/le700/FriendBa
 
 ## 🎭 Battle Strategies
 
-FriendBattle provides 9 carefully designed argue strategies:
+e-battle provides 9 carefully designed argue strategies:
 
 | Strategy | Style | Best For |
 |----------|-------|----------|
@@ -174,7 +174,7 @@ We provide a completely independent WeChat data import feature, **no other softw
 
 1. **Completely close WeChat** - Make sure WeChat isn't running
 2. **Reopen WeChat and log in** - Use phone to scan QR code
-3. **Open FriendBattle Web interface** - Visit `/wechat` page
+3. **Open e-battle Web interface** - Visit `/wechat` page
 4. **Click "Re-detect Key"** - System automatically extracts WeChat database key
 5. **Select friend** - Choose friend to import from list
 6. **Click "Import"** - One-click AI friend clone creation
@@ -227,7 +227,7 @@ Beautiful interactive terminal interface:
 
 ```
 ======================================================================
-                    FriendBattle
+                    e-battle
                AI Friend Battle System
 ======================================================================
 
@@ -276,7 +276,7 @@ After launch, visit http://localhost:3000
 ## 🏗️ Project Structure
 
 ```
-FriendBattle/
+e-battle/
 ├── friendargue.py          # Main entry script
 ├── src/
 │   ├── clone/               # Clone module
@@ -390,6 +390,6 @@ MIT License - See [LICENSE](LICENSE) for details.
 
 **⭐ If you find this fun, give a Star!**
 
-[![Star](https://img.shields.io/github/stars/le700/FriendBattle?style=social)](https://github.com/le700/FriendBattle)
+[![Star](https://img.shields.io/github/stars/le700/e-battle?style=social)](https://github.com/le700/e-battle)
 
 </div>
