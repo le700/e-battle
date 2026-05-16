@@ -275,7 +275,10 @@ class FriendCloner:
 
         if output_dir:
             output_dir.mkdir(parents=True, exist_ok=True)
-            profile_path = output_dir / f"{name}_profile.json"
+            # 使用MD5哈希生成安全的文件名
+            import hashlib
+            hash_name = hashlib.md5(name.encode('utf-8')).hexdigest()[:16]
+            profile_path = output_dir / f"friend_{hash_name}_profile.json"
             with open(profile_path, "w", encoding="utf-8") as f:
                 json.dump({
                     "name": profile.name,
@@ -462,7 +465,10 @@ class FriendCloner:
 
         if output_dir:
             output_dir.mkdir(parents=True, exist_ok=True)
-            profile_path = output_dir / f"{name}_profile.json"
+            # 使用MD5哈希生成安全的文件名
+            import hashlib
+            hash_name = hashlib.md5(name.encode('utf-8')).hexdigest()[:16]
+            profile_path = output_dir / f"friend_{hash_name}_profile.json"
             with open(profile_path, "w", encoding="utf-8") as f:
                 json.dump({
                     "name": profile.name,

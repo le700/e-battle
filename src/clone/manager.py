@@ -113,6 +113,10 @@ class FriendManager:
         if friend_name in self.friends:
             raise ValueError(f"好友 '{friend_name}' 已存在！")
         
+        # 使用MD5哈希生成安全ID
+        import hashlib
+        safe_id = hashlib.md5(friend_name.encode('utf-8')).hexdigest()[:16]
+        
         # 创建克隆器并分析聊天记录
         cloner = FriendCloner(platform=platform)
         
@@ -128,7 +132,7 @@ class FriendManager:
         )
         
         # 创建记忆库
-        memory_path = self.memory_dir / friend_name
+        memory_path = self.memory_dir / f"friend_{safe_id}"
         memory_path.mkdir(exist_ok=True)
         
         # 添加好友信息
@@ -136,7 +140,7 @@ class FriendManager:
             name=friend_name,
             platform=platform,
             created_at=datetime.now(),
-            profile_path=self.profiles_dir / f"{friend_name}_profile.json",
+            profile_path=self.profiles_dir / f"friend_{safe_id}_profile.json",
             memory_path=memory_path,
             message_count=analysis["total_messages"],
             last_used_at=None

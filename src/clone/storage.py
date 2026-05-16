@@ -53,8 +53,10 @@ class AvatarStorage:
         Returns:
             角色存储路径
         """
-        avatar_id = profile.name.lower().replace(" ", "_")
-        avatar_dir = self.avatars_dir / avatar_id
+        # 使用MD5哈希生成安全的角色ID（避免中文/特殊字符问题）
+        import hashlib
+        avatar_id = hashlib.md5(profile.name.encode('utf-8')).hexdigest()[:16]
+        avatar_dir = self.avatars_dir / f"friend_{avatar_id}"
         avatar_dir.mkdir(parents=True, exist_ok=True)
 
         profile_data = {
