@@ -1,129 +1,313 @@
-# FriendBattle - AI好友辩论 Battle
+# FriendBattle — AI好友Battle系统
 
-让两个AI克隆的好友角色进行精彩 Battle 的开源项目
+![GitHub stars](https://img.shields.io/github/stars/le700/FriendBattle?style=social)
+![GitHub forks](https://img.shields.io/github/forks/le700/FriendBattle?style=social)
+![GitHub license](https://img.shields.io/github/license/le700/FriendBattle)
+![GitHub last commit](https://img.shields.io/github/last-commit/le700/FriendBattle)
+![Python version](https://img.shields.io/badge/python-3.12-blue.svg)
 
 > 🔥 **让你的微信好友"克隆人"互相对骂，笑到喷饭！**
-> ⭐ 一个让 100 万人上瘾的 AI 社交娱乐神器
+> ⭐ 一个让你停不下来的AI社交娱乐神器
 
-[![Stars](https://img.shields.io/github/stars/le700/FriendBattle)](https://github.com/le700/FriendBattle/stargazers)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Python](https://img.shields.io/badge/Python-3.12-blue.svg)](https://www.python.org/)
-[![Docker](https://img.shields.io/badge/Docker-Ready-blue.svg)](https://www.docker.com/)
+---
+
+<div align="center">
 
 ## 🎯 一句话介绍
 
-**FriendBattle** 可以让你克隆两个微信/Telegram 好友的聊天风格，然后用 AI 让它们针对任何话题进行 Battle！
+**FriendBattle** 可以让你克隆两个微信好友的聊天风格，然后用AI让它们针对任何话题进行Battle！
 
-- 🤔 "甜豆花好吃还是咸豆花好吃？"
-- 😂 "周杰伦和林俊杰谁的歌更好听？"
-- 😤 "《原神》和《王者荣耀》谁更火？"
+[🔥 快速开始](#-快速开始) · [✨ 核心功能](#-核心功能) · [🎭 Battle策略](#-battle-策略) · [📖 使用指南](#-使用指南)
 
-让你的好友 AI 替你吵架！
+</div>
 
-## ✨ 核心功能
+---
 
-| 功能 | 说明 |
-|------|------|
-| 🤖 **AI 克隆** | 从微信/Telegram 聊天记录克隆好友语言风格 |
-| 🎭 **6 种 Battle 策略** | 杠精、理性、搞笑、激进、和事佬、阴阳怪气 |
-| 💬 **实时 Battle** | Web 界面观看两个 AI 互怼 |
-| 📱 **社交分享** | 一键生成朋友圈/微博分享图 |
-| 🐳 **Docker 部署** | 一行命令，开箱即用 |
+## 🎭 示例Battle
 
-## 🚀 30 秒快速开始
-
-### 使用 Docker（推荐）
-
-```bash
-# 一行命令，启动 Battle！
-docker run -p 3000:3000 le700/friend-battle
-```
-
-### 本地运行
-
-```bash
-# 克隆项目
-git clone https://github.com/le700/FriendBattle.git
-cd FriendBattle
-
-# 安装依赖
-pip install -r requirements.txt
-
-# 启动！
-python src/web/app.py
-```
-
-## 📸 使用流程
+**辩题：甜豆花 vs 咸豆花**
 
 ```
-1️⃣  导出微信聊天记录
-2️⃣  上传到 FriendBattle
-3️⃣  选择两个好友的克隆人
-4️⃣  选择 Battle 话题
-5️⃣  观看 AI 互怼！
-6️⃣  分享到朋友圈！
-```
-
-## 🎭 Battle 策略
-
-| 策略 | 风格 | 适合场景 |
-|------|------|---------|
-| 🤬 **杠精** | 总是反驳对方 | 搞笑对战 |
-| 🧠 **理性派** | 摆事实讲道理 | 严肃讨论 |
-| 😂 **搞笑** | 金句频出 | 娱乐 Battle |
-| 🔥 **激进** | 观点鲜明激烈 | 激烈对战 |
-| 🤝 **和事佬** | 试图调解 | 和谐讨论 |
-| 😏 **阴阳怪气** | 表面客气实则讽刺 | 高级互怼 |
-
-## 💬 支持的平台
-
-| 平台 | 状态 | 支持格式 |
-|------|------|---------|
-| ✅ **微信** | 完全支持 | HTML / JSON / TXT |
-| ✅ **Telegram** | 完全支持 | JSON |
-| 🔄 **QQ** | 开发中 | - |
-
-## 🎬 示例 Battle
-
-```
-📌 辩题：甜豆花 vs 咸豆花
-
 【小明 🤬 杠精模式】
 豆花当然是甜的好吃！
 你告诉我，豆花放糖不香吗？
+咸豆花是什么黑暗料理？
+
+【小红 😏 阴阳怪气模式】
+哟，咸豆花党急了急了~
+也就只有你们才会在豆花里放盐
+甜豆花才是永恒的经典好吗！
+
+【小明 🤬 杠精模式】
+经典？甜豆花那是甜品好吗！
+咸豆花才是正餐！
+你早餐吃甜品？
 
 【小红 🧠 理性模式】
 从营养学角度，两者各有优势。
 北方咸豆花历史悠久，
 南方甜豆花口味丰富。
+不过...我还是站甜豆花😏
 ```
 
-## 🏗️ 技术栈
+---
 
-- **Python 3.12** - 核心语言
-- **Flask** - Web 框架
-- **PyWxDump** - 微信数据处理
-- **Transformers** - AI 模型
-- **Docker** - 容器化部署
+## ✨ 核心功能
 
-## 📦 系统要求
+| 功能 | 说明 |
+|------|------|
+| 🤖 **AI克隆** | 从微信聊天记录克隆好友语言风格 |
+| 🧠 **RAG记忆库** | 可选向量数据库，AI记得上下文 |
+| 🎭 **9种Battle策略** | 杠精、理性、搞笑、激进、和事佬、阴阳怪气、学者、毒舌、摸鱼 |
+| 💬 **实时Battle** | Web界面观看两个AI互怼 |
+| 📱 **内置微信导出** | 无需安装其他软件，一键导出聊天记录 |
+| 🌐 **多AI支持** | OpenAI、Claude、Gemini、DeepSeek、智谱AI、本地模型 |
+| 🖥️ **三种界面** | CLI命令行、TUI终端界面、GUI Web界面 |
+| 👥 **好友管理** | 导入、删除、管理多个好友档案 |
 
-**最低配置**：8GB 内存、6GB 显存
-**推荐配置**：16GB+ 内存、12GB+ 显存
+---
 
-## 🔥 为什么选 FriendBattle？
+## 🚀 快速开始
 
-- ✅ 完全支持微信
-- ✅ 一键 Docker 部署
-- ✅ 内置社交分享
-- ✅ 6种 Battle 策略
+### 💻 本地运行（推荐）
+
+```bash
+git clone https://github.com/le700/FriendBattle.git
+cd FriendBattle
+
+# 快速安装（只安装核心依赖）
+pip install -r requirements.txt
+
+# 三种运行方式，任选其一
+python friendbattle.py          # 菜单选择界面
+python friendbattle.py cli      # CLI命令行
+python friendbattle.py tui      # TUI终端界面
+python friendbattle.py gui      # GUI Web界面
+```
+
+### 📥 Windows用户（最简单）
+
+下载EXE版本（Coming Soon）：[Releases](https://github.com/le700/FriendBattle/releases)
+
+1. 下载 `FriendBattle.exe`
+2. 双击运行
+3. 访问 http://localhost:3000
+
+---
+
+## 🎭 Battle策略
+
+FriendBattle提供9种精心设计的辩论策略：
+
+| 策略 | 风格 | 适合场景 |
+|------|------|---------|
+| 🤬 **杠精** | 总是反驳对方 | 搞笑对战 |
+| 🧠 **理性派** | 摆事实讲道理 | 严肃讨论 |
+| 😂 **搞笑** | 金句频出 | 娱乐Battle |
+| 🔥 **激进** | 观点鲜明激烈 | 激烈对战 |
+| 🤝 **和事佬** | 试图调解 | 和谐讨论 |
+| 😏 **阴阳怪气** | 表面客气实则讽刺 | 高级互怼 |
+| 🎓 **学者** | 引经据典，书生气 | 学术讨论 |
+| 🗡️ **毒舌** | 一针见血，说话带刺 | 激烈互怼 |
+| 😴 **摸鱼** | 敷衍但有趣 | 轻松闲聊 |
+
+---
+
+## 📖 使用指南
+
+### 1️⃣ 微信聊天记录导入
+
+我们提供了完全独立的微信数据导入功能，**无需安装任何其他软件**！
+
+**操作流程：**
+
+1. **完全关闭微信** - 确保微信没有在运行
+2. **重新打开微信并登录** - 使用手机扫码登录
+3. **打开FriendBattle的Web界面** - 访问 `/wechat` 页面
+4. **点击"重新检测密钥"** - 系统会自动提取微信数据库密钥
+5. **选择好友** - 从列表中选择要导入的好友
+6. **点击"导入"** - 一键创建AI好友克隆
+
+**支持的聊天记录格式：**
+- 微信官方HTML导出
+- JSON格式
+- TXT文本格式
+- 直接从微信数据库读取（推荐）
+
+### 2️⃣ 创建AI好友
+
+```bash
+# 从聊天记录导入
+python friendbattle.py cli import /path/to/chat.txt "好友名"
+
+# 创建示例好友
+python friendbattle.py cli sample
+```
+
+### 3️⃣ 开始Battle！
+
+选择两个好友，设置辩题，开始观看AI互怼！
+
+---
+
+## 🔧 可选高级功能
+
+需要更强大的功能？按需安装：
+
+### 🧠 RAG记忆库（向量检索）
+
+```bash
+pip install chromadb>=0.4.20 sentence-transformers>=2.2.0
+```
+
+### 🤖 本地模型支持
+
+```bash
+pip install transformers>=4.35.0 torch>=2.0.0 accelerate>=0.25.0
+```
+
+---
+
+## 🖥️ 三种界面模式
+
+### 📱 TUI终端界面（最推荐）
+
+美观的交互式终端界面：
+
+```
+======================================================================
+                    FriendBattle
+               AI 好友辩论系统
+======================================================================
+
+📱 主菜单
+----------------------------------------
+  1. 📋 查看好友列表
+  2. 📤 导入聊天记录
+  3. 🗑️ 删除好友
+  4. ⚔️ 选择好友辩论
+  5. 🎨 创建示例好友
+  0. 👋 退出
+----------------------------------------
+
+请输入选择 [0-5]:
+```
+
+### 🖥️ CLI命令行界面
+
+适合脚本和自动化操作：
+
+```bash
+# 列出好友
+python friendbattle.py cli list
+
+# 导入聊天记录
+python friendbattle.py cli import /path/to/chat.txt "好友名"
+
+# 创建示例好友
+python friendbattle.py cli sample
+
+# 删除好友
+python friendbattle.py cli delete "好友名"
+
+# 选择好友进行辩论
+python friendbattle.py cli select
+```
+
+### 🌐 GUI Web界面
+
+可视化操作，最友好的方式：
+
+启动后访问 http://localhost:3000
+
+---
+
+## 🏗️ 项目结构
+
+```
+FriendBattle/
+├── friendbattle.py          # 主入口脚本
+├── src/
+│   ├── clone/               # 克隆模块
+│   │   ├── cloner.py        # 好友克隆器
+│   │   ├── manager.py       # 好友管理器
+│   │   ├── memory.py        # RAG记忆库
+│   │   └── parser.py        # 聊天记录解析
+│   ├── debate/              # 辩论引擎
+│   │   ├── engine.py        # 辩论引擎核心
+│   │   └── skills.py        # 辩论策略库
+│   ├── web/                 # Web界面
+│   │   ├── app.py           # Flask应用
+│   │   └── templates/       # HTML模板
+│   ├── wechat_scanner/      # 微信数据库扫描
+│   ├── wechat_image/        # 微信图片解密
+│   └── wechat_integration/  # 微信集成接口
+├── data/                    # 数据目录
+│   ├── profiles/            # 好友档案
+│   └── chatlogs/            # 聊天记录
+├── config/
+│   └── config.yaml          # 配置文件
+└── requirements.txt         # 依赖列表（核心依赖）
+```
+
+---
+
+## 🌐 支持的AI提供商
+
+| 提供商 | 模型 | 说明 |
+|--------|------|------|
+| **OpenAI** | gpt-3.5-turbo, gpt-4, gpt-4o | 最稳定的选择 |
+| **Claude** | claude-3-sonnet, claude-3-opus | 长文本能力强 |
+| **Gemini** | gemini-pro, gemini-1.5-pro | Google出品 |
+| **DeepSeek** | deepseek-chat | 免费额度高 |
+| **智谱AI** | glm-4, glm-4v | 国内访问快 |
+| **本地模型** | Qwen2, Llama-3 | 完全离线 |
+
+---
+
+## 📝 开发路线图
+
+- [x] AI克隆引擎
+- [x] 微信聊天记录支持（完全独立实现）
+- [x] Web界面
+- [x] Windows EXE打包
+- [x] CLI命令行界面
+- [x] TUI终端用户界面
+- [x] 好友管理器
+- [x] RAG记忆库系统（可选）
+- [x] 增强的角色分析
+- [x] 优化依赖，快速安装
+- [x] 9种Battle策略
+- [x] 独立的微信数据库扫描
+- [x] 微信图片解密
+- [ ] 语音克隆
+- [ ] 实时视频生成
+- [ ] 多人Battle模式
+- [ ] Battle模板市场
+
+---
 
 ## 📜 许可证
 
-MIT License
+MIT License - 详见 [LICENSE](LICENSE)
+
+---
 
 ## ⚠️ 免责声明
 
 1. 本项目仅供娱乐和学习使用
-2. AI 生成内容不代表真实人物观点
+2. AI生成内容不代表真实人物观点
 3. 请勿用于伤害他人或传播虚假信息
+4. 使用本项目即表示同意承担相关责任
+
+---
+
+<div align="center">
+
+## 💡 你的脑洞有多大，Battle就有多精彩！
+
+**⭐ 如果觉得有趣，给个 Star 吧！**
+
+[![Star](https://img.shields.io/github/stars/le700/FriendBattle?style=social)](https://github.com/le700/FriendBattle)
+
+</div>
