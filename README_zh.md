@@ -265,6 +265,41 @@ FriendBattle/
 
 ---
 
+## 📖 使用指南
+
+### 1️⃣ 第一步：导出聊天记录
+
+使用内置的微信导出功能，或手动准备聊天记录文件（支持TXT、JSON等格式）。
+
+### 2️⃣ 第二步：克隆好友
+
+```bash
+python friendbattle.py cli clone
+```
+选择"导入聊天记录"，然后：
+- 选择平台（txt/json/wechat/telegram）
+- 选择要克隆的聊天记录文件
+- 命名好友档案
+
+### 3️⃣ 第三步：开始Battle
+
+```bash
+python friendbattle.py gui   # 推荐，Web界面最直观
+```
+或者使用CLI：
+```bash
+python friendbattle.py cli debate
+```
+选择两个已克隆的好友，设置辩题，选择Battle策略，开始观看！
+
+### 💡 高级功能
+
+- **RAG记忆库**：可选安装chromadb，让AI更好地理解上下文
+- **多AI切换**：可以随时切换不同的AI提供商
+- **策略混合**：可以为每个辩论者选择不同的策略
+
+---
+
 ## 📝 开发路线图
 
 - [x] AI克隆引擎
