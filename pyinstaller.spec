@@ -1,11 +1,16 @@
 # -*- mode: python ; coding: utf-8 -*-
 
 import sys
+import os
 from pathlib import Path
 
 block_cipher = None
 
-current_dir = Path(__file__).parent
+if '__file__' in locals():
+    current_dir = Path(__file__).parent
+else:
+    current_dir = Path('.').resolve()
+
 src_dir = current_dir / "src"
 web_dir = src_dir / "web"
 templates_dir = web_dir / "templates"
