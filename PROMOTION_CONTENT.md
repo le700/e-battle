@@ -1,4 +1,4 @@
-# 🎯 FriendBattle 推广文案合集
+# 🎯 e-battle 推广文案合集
 
 ## Twitter/X 推文
 
@@ -10,7 +10,7 @@
 
 一个让好友"替你吵架"的离谱开源项目
 
-github.com/le700/FriendBattle
+github.com/le700/e-battle
 
 #AI #ChatGPT #开源 #Python #微信
 ```
@@ -21,7 +21,7 @@ github.com/le700/FriendBattle
 
 🔥 火药味十足！
 
-github.com/le700/FriendBattle
+github.com/le700/e-battle
 ```
 
 ### 推文 3
@@ -30,8 +30,8 @@ github.com/le700/FriendBattle
 
 我：让两个 AI 克隆人互怼 😂
 
-# 开源项目 FriendBattle
-github.com/le700/FriendBattle
+# 开源项目 e-battle
+github.com/le700/e-battle
 ```
 
 ### 推文 4
@@ -42,12 +42,12 @@ github.com/le700/FriendBattle
 
 全程高能，笑到肚子疼
 
-github.com/le700/FriendBattle
+github.com/le700/e-battle
 ```
 
 ### 推文 5（技术向）
 ```
-开源了一个有趣的项目：FriendBattle
+开源了一个有趣的项目：e-battle
 
 - 克隆微信/Telegram 聊天记录
 - 用 AI 生成好友的语言风格
@@ -55,7 +55,7 @@ github.com/le700/FriendBattle
 
 Python + Flask + Transformers
 
-github.com/le700/FriendBattle
+github.com/le700/e-battle
 ```
 
 ---
@@ -77,7 +77,7 @@ github.com/le700/FriendBattle
 
 🤣 比我本人还真实！
 
-👇 开源项目 FriendBattle，让你的好友替你吵架！
+👇 开源项目 e-battle，让你的好友替你吵架！
 ```
 
 ### 版本 2（推荐转发）
@@ -93,7 +93,7 @@ github.com/le700/FriendBattle
 
 😂 全程高能！
 
-⭐ GitHub：github.com/le700/FriendBattle
+⭐ GitHub：github.com/le700/e-battle
 ```
 
 ---
@@ -104,7 +104,7 @@ github.com/le700/FriendBattle
 ```
 今天分享一个我自己做的"离谱"开源项目
 
-叫 FriendBattle
+叫 e-battle
 
 🔥 功能：
 1. 克隆你微信好友的聊天风格
@@ -120,7 +120,7 @@ github.com/le700/FriendBattle
 
 真的比我本人还懂他们
 
-开源地址：github.com/le700/FriendBattle
+开源地址：github.com/le700/e-battle
 
 #开源项目 #AI #微信 #程序员 #搞笑
 ```
@@ -131,7 +131,7 @@ github.com/le700/FriendBattle
 
 全程高能 😂
 
-github.com/le700/FriendBattle
+github.com/le700/e-battle
 ```
 
 ---
@@ -149,14 +149,14 @@ github.com/le700/FriendBattle
 ## Show HN 标题
 
 ```
-Show HN: 我做了个让微信好友"克隆人"互骂的开源项目 (FriendBattle)
+Show HN: 我做了个让微信好友"克隆人"互骂的开源项目 (e-battle)
 ```
 
 ### Show HN 正文
 ```
 大家好！
 
-我开源了一个有趣的项目：FriendBattle
+我开源了一个有趣的项目：e-battle
 
 核心功能：
 - 从微信/Telegram 聊天记录克隆好友的语言风格
@@ -176,7 +176,7 @@ Show HN: 我做了个让微信好友"克隆人"互骂的开源项目 (FriendBatt
 
 非常欢迎大家试用和提建议！
 
-GitHub: github.com/le700/FriendBattle
+GitHub: github.com/le700/e-battle
 ```
 
 ---
@@ -187,25 +187,25 @@ GitHub: github.com/le700/FriendBattle
 ```
 I built an open source project that lets your WeChat friends' AI clones battle each other
 
-It's called FriendBattle
+It's called e-battle
 
 You give it chat logs from WeChat/Telegram, it clones your friends' speaking style with AI, then you can make two clones debate any topic.
 
 It's hilarious 😂
 
-GitHub: github.com/le700/FriendBattle
+GitHub: github.com/le700/e-battle
 ```
 
 ### r/ArtificialIntelligence
 ```
 Made an AI project that clones people's chat style and makes them "battle" each other
 
-FriendBattle - let your WeChat friends' AI avatars debate for you
+e-battle - let your WeChat friends' AI avatars debate for you
 
 Supports WeChat, Telegram
 Python + Flask + Transformers
 
-Link: github.com/le700/FriendBattle
+Link: github.com/le700/e-battle
 
 Would love feedback!
 ```

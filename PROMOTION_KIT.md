@@ -1,6 +1,6 @@
-# 🎯 FriendBattle 宣传物料包
+# 🎯 e-battle 宣传物料包
 
-这里有所有你需要的宣传物料，让 FriendBattle 在 GitHub 上获得更多关注！
+这里有所有你需要的宣传物料，让 e-battle 在 GitHub 上获得更多关注！
 
 ## 📱 社交媒体分享
 
@@ -14,9 +14,9 @@
 
 一个让好友"替你吵架"的离谱开源项目
 
-github.com/le700/FriendBattle
+github.com/le700/e-battle
 
-#AI #ChatGPT #开源 #Python #微信 #FriendBattle
+#AI #ChatGPT #开源 #Python #微信 #e-battle
 ```
 
 **📌 主推文案 2**
@@ -25,14 +25,14 @@ github.com/le700/FriendBattle
 
 🔥 火药味十足！
 
-github.com/le700/FriendBattle
+github.com/le700/e-battle
 
 #AI #开源 #搞笑
 ```
 
 **📌 技术向文案**
 ```
-开源了一个有趣的项目：FriendBattle
+开源了一个有趣的项目：e-battle
 
 ✨ 新功能：
 - RAG 记忆库，AI 记得聊天历史
@@ -42,7 +42,7 @@ github.com/le700/FriendBattle
 
 Python + Flask + ChromaDB
 
-github.com/le700/FriendBattle
+github.com/le700/e-battle
 
 #Python #AI #开源 #RAG
 ```
@@ -53,7 +53,7 @@ github.com/le700/FriendBattle
 ```
 今天分享一个我自己做的"离谱"开源项目
 
-叫 FriendBattle
+叫 e-battle
 
 🔥 核心功能：
 1. 克隆你微信好友的聊天风格（支持RAG记忆库！）
@@ -70,9 +70,9 @@ github.com/le700/FriendBattle
 
 真的比我本人还懂他们
 
-开源地址：github.com/le700/FriendBattle
+开源地址：github.com/le700/e-battle
 
-#开源项目 #AI #微信 #程序员 #搞笑 #FriendBattle #RAG
+#开源项目 #AI #微信 #程序员 #搞笑 #e-battle #RAG
 ```
 
 **🚀 短文案**
@@ -83,7 +83,7 @@ github.com/le700/FriendBattle
 
 全程高能 😂
 
-github.com/le700/FriendBattle
+github.com/le700/e-battle
 ```
 
 ### 微信朋友圈文案
@@ -100,10 +100,10 @@ github.com/le700/FriendBattle
 
 🤣 比我本人还真实！
 
-👇 开源项目 FriendBattle，让你的好友替你吵架！
+👇 开源项目 e-battle，让你的好友替你吵架！
 还新增了三种界面和记忆库！
 
-github.com/le700/FriendBattle
+github.com/le700/e-battle
 ```
 
 ---
@@ -139,7 +139,7 @@ chatbot
 ### 仓库描述
 
 ```
-🤖 FriendBattle - AI 好友互怼系统！从微信/电报聊天记录克隆好友，让他们的AI替你Battle任何话题！支持RAG记忆库、三种界面（CLI/TUI/GUI）
+🤖 e-battle - AI 好友互怼系统！从微信/电报聊天记录克隆好友，让他们的AI替你Battle任何话题！支持RAG记忆库、三种界面（CLI/TUI/GUI）
 ```
 
 ### 社交媒体预览
@@ -153,11 +153,11 @@ chatbot
 ### Hacker News (Show HN)
 
 ```
-Show HN: FriendBattle – AI clones of your WeChat friends, with RAG memory and 3 interfaces
+Show HN: e-battle – AI clones of your WeChat friends, with RAG memory and 3 interfaces
 
 Hey HN!
 
-I built FriendBattle, an open source project that lets you:
+I built e-battle, an open source project that lets you:
 
 1. Clone your friends' speaking style from WeChat/Telegram chat logs
 2. Create multiple friend profiles and manage them
@@ -169,14 +169,14 @@ Tech stack: Python, Flask, ChromaDB
 
 Would love your feedback!
 
-https://github.com/le700/FriendBattle
+https://github.com/le700/e-battle
 ```
 
 ### Reddit
 
 **r/programming:**
 ```
-I built FriendBattle – AI clones of your WeChat friends with RAG memory and 3 interfaces (CLI/TUI/GUI)
+I built e-battle – AI clones of your WeChat friends with RAG memory and 3 interfaces (CLI/TUI/GUI)
 
 It's a fun project that:
 - Clones friends' chat style from WeChat/Telegram
@@ -187,12 +187,12 @@ It's a fun project that:
 
 Built with Python, Flask, ChromaDB
 
-GitHub: https://github.com/le700/FriendBattle
+GitHub: https://github.com/le700/e-battle
 ```
 
 **r/ArtificialIntelligence:**
 ```
-[Project] FriendBattle – Clone your friends' chat style with AI and make them battle
+[Project] e-battle – Clone your friends' chat style with AI and make them battle
 
 Just released an update with:
 - RAG memory system (vector database for context)
@@ -201,19 +201,19 @@ Just released an update with:
 
 Super fun to play with!
 
-https://github.com/le700/FriendBattle
+https://github.com/le700/e-battle
 ```
 
 ### V2EX / 掘金
 
 **V2EX 标题：**
 ```
-[开源] FriendBattle - 让微信好友的 AI 克隆人互怼！支持 RAG 记忆库，三种界面
+[开源] e-battle - 让微信好友的 AI 克隆人互怼！支持 RAG 记忆库，三种界面
 ```
 
 **内容：**
 ```
-分享一个有趣的开源项目：FriendBattle
+分享一个有趣的开源项目：e-battle
 
 🎉 功能：
 - 从微信/电报聊天记录克隆好友语言风格
@@ -227,7 +227,7 @@ https://github.com/le700/FriendBattle
 
 技术栈：Python, Flask, ChromaDB
 
-GitHub: https://github.com/le700/FriendBattle
+GitHub: https://github.com/le700/e-battle
 
 欢迎 Star！
 ```
@@ -239,11 +239,11 @@ GitHub: https://github.com/le700/FriendBattle
 ### 视频脚本（30秒）
 
 ```
-[0-5秒] 标题：FriendBattle - AI 好友互怼
+[0-5秒] 标题：e-battle - AI 好友互怼
 [5-10秒] 快速剪辑：选择两个好友头像
 [10-20秒] 屏幕录制：两个 AI 正在互怼，弹幕飘过"哈哈哈"
 [20-25秒] 文字：三种界面 - CLI / TUI / GUI
-[25-30秒] 结尾：github.com/le700/FriendBattle，求 Star！
+[25-30秒] 结尾：github.com/le700/e-battle，求 Star！
 ```
 
 ### GIF 演示内容
@@ -252,7 +252,7 @@ GitHub: https://github.com/le700/FriendBattle
 2. 导入两个好友聊天记录
 3. 选择辩题：甜豆花 vs 咸豆花
 4. 观看 Battle 过程
-5. 最后显示：github.com/le700/FriendBattle
+5. 最后显示：github.com/le700/e-battle
 
 ---
 

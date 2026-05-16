@@ -1,4 +1,4 @@
-# 📦 FriendBattle 打包指南
+# 📦 e-battle 打包指南
 
 ## 目标
 
@@ -28,7 +28,7 @@ pyinstaller pyinstaller.spec --clean
 ### 方法三：GitHub Actions 自动构建
 
 已配置 GitHub Actions，每次 push 会自动构建：
-- 构建产物位于 `dist/FriendBattle.exe`
+- 构建产物位于 `dist/e-battle.exe`
 - 可在 Release 页面下载
 
 ## 打包依赖
@@ -42,13 +42,13 @@ pip install -r requirements.txt
 
 ```
 dist/
-├── FriendBattle.exe      # 主程序（约 500MB）
-└── FriendBattle/         # 解压后的文件（可选）
+├── e-battle.exe      # 主程序（约 500MB）
+└── e-battle/         # 解压后的文件（可选）
 ```
 
 ## 使用方法
 
-1. **下载** `FriendBattle.exe`
+1. **下载** `e-battle.exe`
 2. **双击运行**
 3. **等待** 程序启动（首次启动可能需要下载模型）
 4. **访问** http://localhost:3000
@@ -80,7 +80,7 @@ dist/
 
 ### 问题 3：启动后闪退
 
-**解决方案**：运行 `FriendBattle.exe --debug` 查看错误日志
+**解决方案**：运行 `e-battle.exe --debug` 查看错误日志
 
 ## 版本说明
 
@@ -94,7 +94,7 @@ dist/
 ### GitHub Release
 
 1. 创建 Release
-2. 上传 `FriendBattle.exe`
+2. 上传 `e-battle.exe`
 3. 添加更新说明
 
 ### 自动更新

@@ -3,7 +3,7 @@
 set -e
 
 echo "================================"
-echo "FriendBattle - AI好友辩论 Battle"
+echo "e-battle - AI好友辩论 Battle"
 echo "================================"
 echo ""
 
@@ -27,7 +27,7 @@ docker build -t le700/friend-battle:latest -f docker/Dockerfile .
 echo "✅ 构建完成"
 
 echo ""
-echo "🚀 启动 FriendBattle..."
+echo "🚀 启动 e-battle..."
 docker run -d \
   --name friend-battle \
   -p 3000:3000 \
@@ -36,7 +36,7 @@ docker run -d \
 
 echo ""
 echo "================================"
-echo "🎉 FriendBattle 已启动！"
+echo "🎉 e-battle 已启动！"
 echo "================================"
 echo ""
 echo "📍 访问：http://localhost:3000"

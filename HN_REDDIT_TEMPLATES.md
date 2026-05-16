@@ -11,7 +11,7 @@ Show HN: I built an open source project that lets your WeChat friends' AI clones
 ```markdown
 Hey everyone!
 
-I built an open source project called **FriendBattle** that lets your AI clones of WeChat/Telegram friends battle each other. It's surprisingly fun and hilarious 😂
+I built an open source project called **e-battle** that lets your AI clones of WeChat/Telegram friends battle each other. It's surprisingly fun and hilarious 😂
 
 ## What it does
 
@@ -46,8 +46,8 @@ Live at: friendbattle.example.com (coming soon!)
 
 ## Links
 
-- GitHub: https://github.com/le700/FriendBattle
-- Docs: https://github.com/le700/FriendBattle/blob/main/README.md
+- GitHub: https://github.com/le700/e-battle
+- Docs: https://github.com/le700/e-battle/blob/main/README.md
 
 Would love your feedback and suggestions! 🚀
 ```
@@ -86,9 +86,9 @@ Feel free to ask any questions!
 ```markdown
 Hey r/programming!
 
-I just released FriendBattle - an open source project that clones your WeChat/Telegram friends' chat style using AI and makes them battle each other 😂
+I just released e-battle - an open source project that clones your WeChat/Telegram friends' chat style using AI and makes them battle each other 😂
 
-**GitHub**: https://github.com/le700/FriendBattle
+**GitHub**: https://github.com/le700/e-battle
 
 **Features**:
 - Clone friends' speaking style from chat logs
@@ -115,7 +115,7 @@ Would love to hear your thoughts and feedback!
 ```markdown
 大家好！
 
-我开源了一个有趣的项目：FriendBattle
+我开源了一个有趣的项目：e-battle
 
 功能：
 - 克隆微信/Telegram 聊天记录
@@ -124,7 +124,7 @@ Would love to hear your thoughts and feedback!
 
 效果拔群 😂
 
-GitHub：https://github.com/le700/FriendBattle
+GitHub：https://github.com/le700/e-battle
 
 欢迎 Star 和试用！
 ```

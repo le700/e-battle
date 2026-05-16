@@ -27,8 +27,8 @@ class ChatLabHeader:
     """ChatLab 格式头部信息"""
     version: str = "0.0.2"
     exportedAt: int = 0
-    generator: str = "FriendBattle"
-    description: str = "Exported from FriendBattle AI Friend Debate"
+    generator: str = "e-battle"
+    description: str = "Exported from e-battle AI Friend Debate"
 
 
 @dataclass
@@ -113,8 +113,8 @@ class ChatLabExporter(Exporter):
             chatlab_header = ChatLabHeader(
                 version="0.0.2",
                 exportedAt=int(datetime.now().timestamp() * 1000),
-                generator="FriendBattle",
-                description="Exported from FriendBattle AI Friend Debate"
+                generator="e-battle",
+                description="Exported from e-battle AI Friend Debate"
             )
 
             meta = ChatLabMeta(
@@ -277,7 +277,7 @@ class HTMLExporter(Exporter):
     <div class="container">
         <div class="header">
             <h1>💬 {chat_name}</h1>
-            <p style="color: {text_color}; margin-top: 10px; opacity: 0.7;">由 FriendBattle 导出</p>
+            <p style="color: {text_color}; margin-top: 10px; opacity: 0.7;">由 e-battle 导出</p>
         </div>
         <div class="chat-container">
             {messages_html}
@@ -302,7 +302,7 @@ class JSONExporter(Exporter):
             export_data = {
                 "chat_name": kwargs.get("chat_name", "Unknown Chat"),
                 "exported_at": datetime.now().isoformat(),
-                "generator": "FriendBattle",
+                "generator": "e-battle",
                 "message_count": len(messages),
                 "messages": messages
             }
@@ -334,7 +334,7 @@ class TXTExporter(Exporter):
             chat_name = kwargs.get('chat_name', '聊天记录')
             lines.append(f"= {chat_name} =")
             lines.append(f"导出时间: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-            lines.append(f"导出工具: FriendBattle")
+            lines.append(f"导出工具: e-battle")
             lines.append("=" * 50)
             lines.append("")
 
@@ -381,7 +381,7 @@ class MarkdownExporter(Exporter):
             lines = []
             lines.append(f"# 💬 {kwargs.get('chat_name', '聊天记录')}\n")
             lines.append(f"**导出时间**: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-            lines.append(f"**导出工具**: FriendBattle")
+            lines.append(f"**导出工具**: e-battle")
             lines.append(f"**消息数量**: {len(messages)}\n")
             lines.append("---\n")
 

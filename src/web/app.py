@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-FriendBattle Web Application
+e-battle Web Application
 支持多 AI 提供商选择，内置微信导出
 """
 
@@ -57,7 +57,7 @@ def health_check():
     """API健康检查"""
     return jsonify({
         'status': 'healthy',
-        'service': 'FriendBattle',
+        'service': 'e-battle',
         'version': '2.0',
         'timestamp': datetime.now().isoformat()
     })
@@ -803,7 +803,7 @@ def main():
     host = config['web']['host']
     port = config['web']['port']
 
-    print(f"🚀 FriendBattle 启动于 http://{host}:{port}")
+    print(f"🚀 e-battle 启动于 http://{host}:{port}")
     print(f"📱 独立微信模块: 就绪")
     app.run(host=host, port=port, debug=True)
 

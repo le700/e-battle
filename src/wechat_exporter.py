@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-FriendBattle - 内置微信聊天记录导出工具
+e-battle - 内置微信聊天记录导出工具
 无需安装其他软件，一键导出聊天记录
 """
 
@@ -326,7 +326,7 @@ class AIProvider:
 
 
 def main():
-    print("🎭 FriendBattle - 微信导出工具")
+    print("🎭 e-battle - 微信导出工具")
     print("=" * 40)
     
     exporter = WeChatExporter()
@@ -348,7 +348,7 @@ def main():
         print(f"✅ 已生成示例数据: {sample}")
     
     print("\n🎉 导出完成！")
-    print("请打开 FriendBattle Web 界面上传聊天记录")
+    print("请打开 e-battle Web 界面上传聊天记录")
 
 
 if __name__ == "__main__":

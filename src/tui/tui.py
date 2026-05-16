@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-FriendBattle TUI - 终端用户界面
+e-battle TUI - 终端用户界面
 使用 Rich 和 Textual 创建美观的终端界面
 """
 
@@ -18,7 +18,7 @@ from clone.manager import FriendManager
 def print_header():
     """打印头部"""
     print("\n" + "=" * 70)
-    print("                    FriendBattle")
+    print("                    e-battle")
     print("               AI 好友辩论系统")
     print("=" * 70)
 
@@ -202,14 +202,14 @@ def main():
             elif choice == '5':
                 create_sample_friends_tui(manager)
             elif choice == '0':
-                print("\n👋 感谢使用 FriendBattle!")
+                print("\n👋 感谢使用 e-battle!")
                 print("   再见！")
                 break
             else:
                 print("\n❌ 无效选择，请输入 0-5")
                 
         except KeyboardInterrupt:
-            print("\n\n👋 感谢使用 FriendBattle!")
+            print("\n\n👋 感谢使用 e-battle!")
             break
         except Exception as e:
             print(f"\n❌ 发生错误: {e}")

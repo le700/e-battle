@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-FriendBattle - AI好友辩论系统
+e-battle - AI好友辩论系统
 主入口脚本
 
 支持三种界面模式：
@@ -35,7 +35,7 @@ def main():
     import argparse
 
     parser = argparse.ArgumentParser(
-        description='FriendBattle - AI好友辩论系统',
+        description='e-battle - AI好友辩论系统',
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog='''
 示例:
@@ -56,7 +56,7 @@ def main():
     parser.add_argument(
         '--version',
         action='version',
-        version='FriendBattle 2.0'
+        version='e-battle 2.0'
     )
 
     # 允许额外的参数（传递给子命令）
@@ -85,7 +85,7 @@ def main():
     
     # 否则显示选择菜单
     print("=" * 60)
-    print("           FriendBattle")
+    print("           e-battle")
     print("        AI 好友辩论系统")
     print("=" * 60)
     print()

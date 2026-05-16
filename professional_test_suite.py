@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-FriendBattle 专业测试套件
+e-battle 专业测试套件
 模拟世界互联网大厂测试团队的深度测试
 """
 import sys

@@ -1,1 +1,1 @@
-# FriendBattle CLI 模块
+# e-battle CLI 模块

@@ -1,4 +1,4 @@
-# 🚀 FriendBattle 推广指南
+# 🚀 e-battle 推广指南
 
 ## 📢 为什么还没人Star？
 
@@ -19,7 +19,7 @@
 |------|----------|
 | **V2EX** | "分享一个让你和朋友AI互怼的工具" |
 | **知乎** | "如何用AI让好友互怼？我做了个工具" |
-| **掘金** | "Python AI项目实战：FriendBattle设计思路" |
+| **掘金** | "Python AI项目实战：e-battle设计思路" |
 | **GitHub Trending** | 提交到GitHub Trending收集 |
 | **Reddit/r/python** | "Show HN: 让AI克隆微信好友互怼" |
 
@@ -39,7 +39,7 @@
 标题：分享一个周末做的小玩具：AI好友Battle系统 - 让你的微信好友克隆人互怼
 
 正文：
-周末花了3天时间做了个小玩具 - FriendBattle。
+周末花了3天时间做了个小玩具 - e-battle。
 
 功能：
 - 🤖 从微信聊天记录克隆好友的语言风格
@@ -47,7 +47,7 @@
 - 🖥️ 三种界面（CLI/TUI/GUI
 - 📱 内置微信数据库读取（完全独立实现
 
-地址：https://github.com/le700/FriendBattle
+地址：https://github.com/le700/e-battle
 
 截图：[放GIF动图]
 
@@ -60,7 +60,7 @@
 标题：如何用AI让你的微信好友"互怼？我做了个工具
 
 正文：
-我是一个程序员，最近被OpenClaw启发，也做了一个小工具叫FriendBattle。
+我是一个程序员，最近被OpenClaw启发，也做了一个小工具叫e-battle。
 
 这个工具能：
 1. 导入微信聊天记录
@@ -69,7 +69,7 @@
 
 已经支持9种策略：杠精、理性、搞笑、摸鱼、阴阳怪气...
 
-地址：https://github.com/le700/FriendBattle
+地址：https://github.com/le700/e-battle
 
 GitHub链接放在评论区，求Star！
 ```
@@ -78,7 +78,7 @@ GitHub链接放在评论区，求Star！
 
 ```
 【教程向】让AI克隆你朋友互怼！
-https://github.com/le700/FriendBattle
+https://github.com/le700/e-battle
 （配30秒演示视频
 
 开头（0:00-0:30）

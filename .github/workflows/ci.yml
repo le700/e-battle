@@ -1,4 +1,4 @@
-name: FriendBattle CI
+name: e-battle CI
 
 on:
   push:

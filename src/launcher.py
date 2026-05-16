@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-FriendBattle Launcher - Windows 启动器
+e-battle Launcher - Windows 启动器
 
-提供一个友好的 GUI 界面来启动 FriendBattle
+提供一个友好的 GUI 界面来启动 e-battle
 """
 
 import os
@@ -20,10 +20,10 @@ except ImportError:
     sys.exit(1)
 
 
-class FriendBattleLauncher:
+class e-battleLauncher:
     def __init__(self, root):
         self.root = root
-        self.root.title("FriendBattle - AI好友辩论 Battle")
+        self.root.title("e-battle - AI好友辩论 Battle")
         self.root.geometry("400x500")
         self.root.resizable(False, False)
 
@@ -40,7 +40,7 @@ class FriendBattleLauncher:
 
         title_label = ttk.Label(
             title_frame,
-            text="🎭 FriendBattle",
+            text="🎭 e-battle",
             font=("Arial", 24, "bold")
         )
         title_label.pack()
@@ -70,7 +70,7 @@ class FriendBattleLauncher:
 
         self.start_button = ttk.Button(
             button_frame,
-            text="🚀 启动 FriendBattle",
+            text="🚀 启动 e-battle",
             command=self.toggle_server,
             style="Accent.TButton"
         )
@@ -111,7 +111,7 @@ class FriendBattleLauncher:
 
         ttk.Label(
             footer_frame,
-            text="FriendBattle v1.0.0 | 让好友替你吵架！",
+            text="e-battle v1.0.0 | 让好友替你吵架！",
             font=("Arial", 10),
             foreground="#888"
         ).pack()
@@ -132,7 +132,7 @@ class FriendBattleLauncher:
 
     def start_server(self):
         self.status_label.config(text="🔄 启动中...")
-        self.start_button.config(text="⏹️ 停止 FriendBattle")
+        self.start_button.config(text="⏹️ 停止 e-battle")
         self.log_text.config(state=tk.NORMAL)
         self.log_text.delete(1.0, tk.END)
         self.log_text.config(state=tk.DISABLED)
@@ -183,7 +183,7 @@ class FriendBattleLauncher:
             import traceback
             self.log(traceback.format_exc())
             self.status_label.config(text="❌ 启动失败")
-            self.start_button.config(text="🚀 启动 FriendBattle")
+            self.start_button.config(text="🚀 启动 e-battle")
             self.server_running = False
 
     def stop_server(self):
@@ -192,7 +192,7 @@ class FriendBattleLauncher:
             self.stop_event.set()
 
         self.status_label.config(text="🟢 已停止")
-        self.start_button.config(text="🚀 启动 FriendBattle")
+        self.start_button.config(text="🚀 启动 e-battle")
         self.log("服务器已停止")
 
     def log(self, message):
@@ -215,7 +215,7 @@ class FriendBattleLauncher:
 
 def main():
     root = tk.Tk()
-    launcher = FriendBattleLauncher(root)
+    launcher = e-battleLauncher(root)
     root.protocol("WM_DELETE_WINDOW", launcher.on_closing)
     root.mainloop()
 

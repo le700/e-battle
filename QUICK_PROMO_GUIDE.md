@@ -1,4 +1,4 @@
-# 🚀 FriendBattle 快速推广指南
+# 🚀 e-battle 快速推广指南
 
 ## 5分钟快速开始推广你的项目！
 
@@ -38,7 +38,7 @@ chatbot
 
 #### 2. 更新仓库描述
 ```
-🤖 FriendBattle - AI 好友互怼系统！从微信/电报聊天记录克隆好友，让他们的AI替你Battle任何话题！支持RAG记忆库、三种界面（CLI/TUI/GUI）
+🤖 e-battle - AI 好友互怼系统！从微信/电报聊天记录克隆好友，让他们的AI替你Battle任何话题！支持RAG记忆库、三种界面（CLI/TUI/GUI）
 ```
 
 ---
@@ -55,9 +55,9 @@ chatbot
 
 一个让好友"替你吵架"的离谱开源项目
 
-github.com/le700/FriendBattle
+github.com/le700/e-battle
 
-#AI #ChatGPT #开源 #Python #微信 #FriendBattle
+#AI #ChatGPT #开源 #Python #微信 #e-battle
 ```
 
 **推文 2（跟进）**
@@ -66,14 +66,14 @@ github.com/le700/FriendBattle
 
 🔥 火药味十足！
 
-github.com/le700/FriendBattle
+github.com/le700/e-battle
 
 #AI #开源 #搞笑
 ```
 
 **推文 3（技术向）**
 ```
-开源了一个有趣的项目：FriendBattle
+开源了一个有趣的项目：e-battle
 
 ✨ 新功能：
 - RAG 记忆库，AI 记得聊天历史
@@ -83,7 +83,7 @@ github.com/le700/FriendBattle
 
 Python + Flask + ChromaDB
 
-github.com/le700/FriendBattle
+github.com/le700/e-battle
 
 #Python #AI #开源 #RAG
 ```
@@ -102,10 +102,10 @@ github.com/le700/FriendBattle
 
 🤣 比我本人还真实！
 
-👇 开源项目 FriendBattle，让你的好友替你吵架！
+👇 开源项目 e-battle，让你的好友替你吵架！
 还新增了三种界面和记忆库！
 
-github.com/le700/FriendBattle
+github.com/le700/e-battle
 ```
 
 ### 📢 微博（立即发布）
@@ -113,7 +113,7 @@ github.com/le700/FriendBattle
 ```
 今天分享一个我自己做的"离谱"开源项目
 
-叫 FriendBattle
+叫 e-battle
 
 🔥 核心功能：
 1. 克隆你微信好友的聊天风格（支持RAG记忆库！）
@@ -130,9 +130,9 @@ github.com/le700/FriendBattle
 
 真的比我本人还懂他们
 
-开源地址：github.com/le700/FriendBattle
+开源地址：github.com/le700/e-battle
 
-#开源项目 #AI #微信 #程序员 #搞笑 #FriendBattle #RAG
+#开源项目 #AI #微信 #程序员 #搞笑 #e-battle #RAG
 ```
 
 ---
@@ -142,11 +142,11 @@ github.com/le700/FriendBattle
 ### 📰 Hacker News (Show HN)
 
 ```
-Show HN: FriendBattle – AI clones of your WeChat friends, with RAG memory and 3 interfaces
+Show HN: e-battle – AI clones of your WeChat friends, with RAG memory and 3 interfaces
 
 Hey HN!
 
-I built FriendBattle, an open source project that lets you:
+I built e-battle, an open source project that lets you:
 
 1. Clone your friends' speaking style from WeChat/Telegram chat logs
 2. Create multiple friend profiles and manage them
@@ -158,7 +158,7 @@ Tech stack: Python, Flask, ChromaDB
 
 Would love your feedback!
 
-https://github.com/le700/FriendBattle
+https://github.com/le700/e-battle
 ```
 
 **发帖时间**：美国西部时间 06:00-08:00（北京 21:00-23:00）
@@ -169,7 +169,7 @@ https://github.com/le700/FriendBattle
 
 **r/programming:**
 ```
-I built FriendBattle – AI clones of your WeChat friends with RAG memory and 3 interfaces (CLI/TUI/GUI)
+I built e-battle – AI clones of your WeChat friends with RAG memory and 3 interfaces (CLI/TUI/GUI)
 
 It's a fun project that:
 - Clones friends' chat style from WeChat/Telegram
@@ -180,12 +180,12 @@ It's a fun project that:
 
 Built with Python, Flask, ChromaDB
 
-GitHub: https://github.com/le700/FriendBattle
+GitHub: https://github.com/le700/e-battle
 ```
 
 **r/ArtificialIntelligence:**
 ```
-[Project] FriendBattle – Clone your friends' chat style with AI and make them battle
+[Project] e-battle – Clone your friends' chat style with AI and make them battle
 
 Just released an update with:
 - RAG memory system (vector database for context)
@@ -194,7 +194,7 @@ Just released an update with:
 
 Super fun to play with!
 
-https://github.com/le700/FriendBattle
+https://github.com/le700/e-battle
 ```
 
 ---
@@ -203,9 +203,9 @@ https://github.com/le700/FriendBattle
 
 **V2EX:**
 ```
-[开源] FriendBattle - 让微信好友的 AI 克隆人互怼！支持 RAG 记忆库，三种界面
+[开源] e-battle - 让微信好友的 AI 克隆人互怼！支持 RAG 记忆库，三种界面
 
-分享一个有趣的开源项目：FriendBattle
+分享一个有趣的开源项目：e-battle
 
 🎉 功能：
 - 从微信/电报聊天记录克隆好友语言风格
@@ -219,7 +219,7 @@ https://github.com/le700/FriendBattle
 
 技术栈：Python, Flask, ChromaDB
 
-GitHub: https://github.com/le700/FriendBattle
+GitHub: https://github.com/le700/e-battle
 
 欢迎 Star！
 ```
@@ -285,7 +285,7 @@ GitHub: https://github.com/le700/FriendBattle
 
 ## 🔗 快速链接
 
-- **GitHub 仓库**：https://github.com/le700/FriendBattle
+- **GitHub 仓库**：https://github.com/le700/e-battle
 - **宣传文案**：PROMOTION_CONTENT.md
 - **宣传物料**：PROMOTION_KIT.md
 - **视觉指南**：VISUAL_GUIDE.md

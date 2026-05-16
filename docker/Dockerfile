@@ -1,7 +1,7 @@
 FROM nvidia/cuda:12.6.0-cudnn-runtime-ubuntu22.04
 
 LABEL maintainer="le700"
-LABEL description="FriendBattle - AI Friend Battle System"
+LABEL description="赛博吵架 e-battle - AI代吵架系统"
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV PYTHONUNBUFFERED=1

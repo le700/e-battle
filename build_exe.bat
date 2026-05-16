@@ -2,7 +2,7 @@
 setlocal
 
 echo ================================
-echo FriendBattle - Windows 打包脚本
+echo e-battle - Windows 打包脚本
 echo ================================
 echo.
 
@@ -42,12 +42,12 @@ pyinstaller pyinstaller.spec --clean
 echo.
 echo ✅ 打包完成！
 echo.
-echo 输出位置: %PROJECT_DIR%dist\FriendBattle.exe
+echo 输出位置: %PROJECT_DIR%dist\e-battle.exe
 echo.
 echo 使用方法:
-echo   1. 运行 dist\FriendBattle.exe
+echo   1. 运行 dist\e-battle.exe
 echo   2. 访问 http://localhost:3000
-echo   3. 开始你的 FriendBattle！
+echo   3. 开始你的 e-battle！
 echo.
 
 pause

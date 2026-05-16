@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-FriendBattle CLI - 命令行接口
+e-battle CLI - 命令行接口
 """
 
 import argparse
@@ -193,7 +193,7 @@ def create_sample_friends_cli(manager):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="FriendBattle - AI好友辩论系统")
+    parser = argparse.ArgumentParser(description="e-battle - AI好友辩论系统")
     subparsers = parser.add_subparsers(dest='command', help='可用命令')
     
     # list - 列出好友
@@ -251,7 +251,7 @@ def main():
     else:
         # 交互式模式
         print("=" * 50)
-        print("     FriendBattle CLI")
+        print("     e-battle CLI")
         print("=" * 50)
         print("1. 列出好友")
         print("2. 导入好友")

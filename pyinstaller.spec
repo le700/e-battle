@@ -61,7 +61,7 @@ exe = EXE(
     a.zipfiles,
     a.datas,
     [],
-    name="FriendBattle",
+    name="e-battle",
     debug=True,
     bootloader_ignore_signals=False,
     strip=False,

@@ -1,11 +1,11 @@
-# 🎨 FriendBattle 视觉物料
+# 🎨 e-battle 视觉物料
 
 ## 项目 Logo 设计
 
 ### 版本 1：简单文本
 ```
 ╭─────────────────────╮
-│  FriendBattle 🥊    │
+│  e-battle 🥊    │
 │  AI 好友互怼系统   │
 ╰─────────────────────╯
 ```
@@ -13,7 +13,7 @@
 ### 版本 2：ASCII 艺术
 ```
     ╔═══════════════════════╗
-    ║     FriendBattle      ║
+    ║     e-battle      ║
     ║                       ║
     ║   🤖    VS    🤖     ║
     ║   朋友1    朋友2     ║
@@ -29,7 +29,7 @@
      / , _/ _ \/ __/ / __/ _  / -_)
     /_/|_|\___/\__/  \__/____/\__/
 
-    FriendBattle - AI 好友互怼
+    e-battle - AI 好友互怼
 ```
 
 ---
@@ -136,12 +136,12 @@
 
 ### Prompt for Midjourney
 ```
-"logo design for 'FriendBattle', AI friend battle system, simple modern design, two cartoon characters arguing or debating, chat bubbles, social media theme, clean, minimalist, flat design, vector style, vibrant colors purple and orange --s 750 --v 5.2"
+"logo design for 'e-battle', AI friend battle system, simple modern design, two cartoon characters arguing or debating, chat bubbles, social media theme, clean, minimalist, flat design, vector style, vibrant colors purple and orange --s 750 --v 5.2"
 ```
 
 ### Prompt for DALL-E
 ```
-"A modern minimalist logo for 'FriendBattle' - an AI friend battle system. Two friendly cartoon robots arguing with speech bubbles. Clean flat design. Colors: purple and orange. Vector style."
+"A modern minimalist logo for 'e-battle' - an AI friend battle system. Two friendly cartoon robots arguing with speech bubbles. Clean flat design. Colors: purple and orange. Vector style."
 ```
 
 ---
@@ -190,14 +190,14 @@
 添加这些徽章到 README.md 顶部：
 
 ```
-![GitHub stars](https://img.shields.io/github/stars/le700/FriendBattle?style=social)
-![GitHub forks](https://img.shields.io/github/forks/le700/FriendBattle?style=social)
-![GitHub watchers](https://img.shields.io/github/watchers/le700/FriendBattle?style=social)
-![GitHub repo size](https://img.shields.io/github/repo-size/le700/FriendBattle)
-![GitHub license](https://img.shields.io/github/license/le700/FriendBattle)
-![GitHub last commit](https://img.shields.io/github/last-commit/le700/FriendBattle)
-![GitHub issues](https://img.shields.io/github/issues/le700/FriendBattle)
-![GitHub pull requests](https://img.shields.io/github/issues-pr/le700/FriendBattle)
+![GitHub stars](https://img.shields.io/github/stars/le700/e-battle?style=social)
+![GitHub forks](https://img.shields.io/github/forks/le700/e-battle?style=social)
+![GitHub watchers](https://img.shields.io/github/watchers/le700/e-battle?style=social)
+![GitHub repo size](https://img.shields.io/github/repo-size/le700/e-battle)
+![GitHub license](https://img.shields.io/github/license/le700/e-battle)
+![GitHub last commit](https://img.shields.io/github/last-commit/le700/e-battle)
+![GitHub issues](https://img.shields.io/github/issues/le700/e-battle)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/le700/e-battle)
 ```
 
 ---

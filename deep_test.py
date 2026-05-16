@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-FriendBattle 深度测试脚本
+e-battle 深度测试脚本
 全面测试项目核心功能、边界情况和错误处理
 """
 
@@ -406,7 +406,7 @@ def test_web_endpoints():
 
 def main():
     print("="*70)
-    print("🔍 FriendBattle 深度测试")
+    print("🔍 e-battle 深度测试")
     print("="*70)
     print(f"Python版本: {sys.version}")
     print(f"测试时间: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")

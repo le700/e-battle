@@ -1,1 +1,1 @@
-# FriendBattle TUI 模块
+# e-battle TUI 模块

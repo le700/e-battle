@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-FriendBattle 专业测试套件 v2.0
+e-battle 专业测试套件 v2.0
 模拟世界互联网大厂测试团队，20个专业测试角色深度测试
 """
 
@@ -146,7 +146,7 @@ class ProfessionalTestSuite:
 def main():
     """主测试函数"""
     print("=" * 80)
-    print("🧪 FriendBattle 专业测试套件 v2.0")
+    print("🧪 e-battle 专业测试套件 v2.0")
     print("模拟世界互联网大厂测试团队 - 20个专业测试角色")
     print("=" * 80)
     print(f"测试时间: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
@@ -520,7 +520,7 @@ def main():
             timeout=5
         )
         assert result.returncode == 0
-        assert "FriendBattle" in result.stdout
+        assert "e-battle" in result.stdout
         return True
 
     def test_web_page_loads():
@@ -1285,7 +1285,7 @@ def main():
         readme = Path("README.md").read_text(encoding='utf-8')
 
         # 检查必需部分
-        assert "FriendBattle" in readme
+        assert "e-battle" in readme
         assert "安装" in readme or "install" in readme.lower()
         assert len(readme) > 1000  # 应该足够详细
 
