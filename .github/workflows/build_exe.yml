@@ -28,18 +28,29 @@ jobs:
         New-Item -ItemType Directory -Force -Path assets
         New-Item -ItemType Directory -Force -Path data/chatlogs
         New-Item -ItemType Directory -Force -Path data/avatars
+        New-Item -ItemType Directory -Force -Path data/profiles
         New-Item -ItemType Directory -Force -Path data/debates
         New-Item -ItemType Directory -Force -Path data/shares
         
+    - name: List project structure
+      run: |
+        dir
+        dir src
+        
     - name: Build EXE
       run: |
-        pyinstaller pyinstaller.spec --clean
+        pyinstaller pyinstaller.spec --clean --log-level=DEBUG
+        
+    - name: List build output
+      run: |
+        dir dist
         
     - name: Upload artifact
       uses: actions/upload-artifact@v4
       with:
-        name: FriendBattle.exe
-        path: dist/FriendBattle.exe
+        name: FriendBattle
+        path: dist/
+        if-no-files-found: warn
         
     - name: Upload to Release
       if: github.event_name == 'release'
