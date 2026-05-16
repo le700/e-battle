@@ -24,15 +24,16 @@ jobs:
         python --version
         pip --version
         
+    - name: List directory structure
+      run: |
+        ls -la
+        ls -la tests/
+        
     - name: Install dependencies
       run: |
         pip install pytest
-        pip install -r requirements.txt
+        pip install -r requirements.txt --quiet
         
-    - name: List installed packages
+    - name: Run tests with verbose output
       run: |
-        pip list
-        
-    - name: Run tests
-      run: |
-        python -m pytest tests/ -v
+        python -m pytest tests/test_basic.py -v --tb=long
