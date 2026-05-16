@@ -22,6 +22,7 @@ from src.wechat_exporter import WeChatExporter, AIProvider
 from src.clone import FriendCloner
 from src.clone.manager import FriendManager
 from src.debate import DebateEngine, get_skill
+from src.export import export_chat, list_export_formats, get_exporter
 
 app = Flask(__name__)
 CORS(app)
@@ -435,6 +436,144 @@ def generate_share():
             'success': False,
             'message': f'生成失败: {str(e)}'
         })
+
+@app.route('/export')
+def export_page():
+    """导出页面"""
+    return render_template('export.html')
+
+@app.route('/api/export/formats', methods=['GET'])
+def get_export_formats():
+    """获取支持的导出格式"""
+    formats = list_export_formats()
+    return jsonify({'formats': formats})
+
+@app.route('/api/export', methods=['POST'])
+def handle_export():
+    """处理导出请求"""
+    try:
+        data = request.json
+        
+        format_name = data.get('format', 'chatlab')
+        chat_name = data.get('chat_name', '聊天记录')
+        message_filter = data.get('message_filter', 'all')
+        time_range = data.get('time_range', 'all')
+        theme = data.get('theme', 'light')
+        
+        # 获取好友的聊天记录
+        friends = friend_manager.list_friends()
+        if not friends:
+            return jsonify({
+                'success': False,
+                'error': '没有可导出的聊天记录，请先创建好友'
+            })
+        
+        # 使用第一个好友的聊天记录作为示例
+        # 在实际使用中，应该根据用户选择的好友来导出
+        sample_messages = [
+            {
+                "sender": "用户1",
+                "content": "你好！",
+                "timestamp": "2024-01-15 10:00:00"
+            },
+            {
+                "sender": "用户2",
+                "content": "你好啊，最近怎么样？",
+                "timestamp": "2024-01-15 10:01:00"
+            },
+            {
+                "sender": "用户1",
+                "content": "挺好的，你呢？",
+                "timestamp": "2024-01-15 10:02:00"
+            },
+            {
+                "sender": "用户2",
+                "content": "我也挺好的，周末有什么计划吗？",
+                "timestamp": "2024-01-15 10:03:00"
+            },
+            {
+                "sender": "用户1",
+                "content": "打算去看看电影，有推荐吗？",
+                "timestamp": "2024-01-15 10:04:00"
+            }
+        ]
+        
+        # 导出目录
+        export_dir = Path(__file__).parent.parent.parent / "exports"
+        export_dir.mkdir(parents=True, exist_ok=True)
+        
+        # 执行导出
+        output_path = export_chat(
+            messages=sample_messages,
+            output_dir=export_dir,
+            format_name=format_name,
+            chat_name=chat_name,
+            theme=theme
+        )
+        
+        if output_path:
+            return jsonify({
+                'success': True,
+                'filename': output_path.name,
+                'filepath': str(output_path),
+                'format': format_name,
+                'message': f'成功导出为 {format_name.upper()} 格式'
+            })
+        else:
+            return jsonify({
+                'success': False,
+                'error': '导出失败，请检查格式是否支持'
+            })
+            
+    except Exception as e:
+        return jsonify({
+            'success': False,
+            'error': f'导出失败: {str(e)}'
+        })
+
+@app.route('/api/export/preview', methods=['GET'])
+def get_export_preview():
+    """获取导出预览数据"""
+    # 返回示例消息用于预览
+    sample_messages = [
+        {
+            "sender": "用户1",
+            "content": "你好！",
+            "timestamp": "2024-01-15 10:00:00",
+            "time": "10:00"
+        },
+        {
+            "sender": "用户2",
+            "content": "你好啊，最近怎么样？",
+            "timestamp": "2024-01-15 10:01:00",
+            "time": "10:01"
+        },
+        {
+            "sender": "用户1",
+            "content": "挺好的，你呢？",
+            "timestamp": "2024-01-15 10:02:00",
+            "time": "10:02"
+        }
+    ]
+    
+    return jsonify({'messages': sample_messages})
+
+@app.route('/api/export/download', methods=['GET'])
+def download_export():
+    """下载导出的文件"""
+    from flask import send_file
+    
+    file_path = request.args.get('path', '')
+    file_path = Path(file_path)
+    
+    if not file_path.exists():
+        return jsonify({'error': '文件不存在'}), 404
+    
+    return send_file(
+        file_path,
+        as_attachment=True,
+        download_name=file_path.name
+    )
 
 @app.route('/api/chatlogs', methods=['GET'])
 def list_chatlogs():
