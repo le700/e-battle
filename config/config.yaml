@@ -73,6 +73,7 @@ web:
 data:
   chatlogs_dir: data/chatlogs
   avatars_dir: data/avatars
+  profiles_dir: data/profiles
   debates_dir: data/debates
   shares_dir: data/shares
 
