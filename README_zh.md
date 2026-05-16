@@ -1,6 +1,10 @@
 # FriendBattle — AI好友Battle系统
 
 <p align="center">
+  <img src="assets/logo.png" alt="FriendBattle Logo" width="256" height="256">
+</p>
+
+<p align="center">
   <img src="https://img.shields.io/github/stars/le700/FriendBattle?style=social" alt="GitHub stars">
   <img src="https://img.shields.io/github/forks/le700/FriendBattle?style=social" alt="GitHub forks">
   <img src="https://img.shields.io/github/license/le700/FriendBattle" alt="GitHub license">

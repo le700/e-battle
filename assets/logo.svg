@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF6B35;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FF8C42;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3498db;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2980b9;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="3" dy="3" stdDeviation="5" flood-color="#000" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  
+  <!-- Background Circle -->
+  <circle cx="256" cy="256" r="240" fill="#1a1a2e" />
+  
+  <!-- Battle Effect - Lightning/Clash -->
+  <path d="M256 120 L280 200 L360 180 L290 240 L340 300 L270 260 L256 340 L242 260 L172 300 L222 240 L152 180 L232 200 Z" 
+        fill="#FFD700" opacity="0.9">
+    <animate attributeName="opacity" values="0.9;1;0.9" dur="0.5s" repeatCount="indefinite" />
+  </path>
+  
+  <!-- Left Robot Head (Orange) -->
+  <g transform="translate(80, 140)" filter="url(#shadow)">
+    <!-- Head -->
+    <rect x="0" y="0" width="140" height="160" rx="20" fill="url(#grad1)" />
+    <!-- Eyes -->
+    <circle cx="40" cy="50" r="20" fill="#fff" />
+    <circle cx="100" cy="50" r="20" fill="#fff" />
+    <circle cx="45" cy="50" r="10" fill="#1a1a2e" />
+    <circle cx="105" cy="50" r="10" fill="#1a1a2e" />
+    <!-- Mouth -->
+    <path d="M30 110 Q70 140 110 110" stroke="#fff" stroke-width="8" fill="none" stroke-linecap="round" />
+    <!-- Antenna -->
+    <line x1="70" y1="0" x2="70" y2="-30" stroke="url(#grad1)" stroke-width="8" />
+    <circle cx="70" cy="-40" r="12" fill="#FFD700" />
+  </g>
+  
+  <!-- Right Robot Head (Blue) -->
+  <g transform="translate(292, 140)" filter="url(#shadow)">
+    <!-- Head -->
+    <rect x="0" y="0" width="140" height="160" rx="20" fill="url(#grad2)" />
+    <!-- Eyes -->
+    <circle cx="40" cy="50" r="20" fill="#fff" />
+    <circle cx="100" cy="50" r="20" fill="#fff" />
+    <circle cx="35" cy="50" r="10" fill="#1a1a2e" />
+    <circle cx="95" cy="50" r="10" fill="#1a1a2e" />
+    <!-- Mouth -->
+    <path d="M30 110 Q70 140 110 110" stroke="#fff" stroke-width="8" fill="none" stroke-linecap="round" />
+    <!-- Antenna -->
+    <line x1="70" y1="0" x2="70" y2="-30" stroke="url(#grad2)" stroke-width="8" />
+    <circle cx="70" cy="-40" r="12" fill="#FFD700" />
+  </g>
+  
+  <!-- VS Badge -->
+  <circle cx="256" cy="256" r="45" fill="#FF6B35" stroke="#FFD700" stroke-width="4" filter="url(#shadow)" />
+  <text x="256" y="270" text-anchor="middle" font-family="Arial Black, sans-serif" font-size="36" font-weight="bold" fill="#fff">VS</text>
+  
+  <!-- Sparkles -->
+  <g fill="#FFD700">
+    <polygon points="60,100 65,115 80,115 68,125 73,140 60,130 47,140 52,125 40,115 55,115" opacity="0.8">
+      <animate attributeName="opacity" values="0.8;1;0.8" dur="1s" repeatCount="indefinite" />
+    </polygon>
+    <polygon points="452,100 457,115 472,115 460,125 465,140 452,130 439,140 444,125 432,115 447,115" opacity="0.8">
+      <animate attributeName="opacity" values="0.8;1;0.8" dur="1.2s" repeatCount="indefinite" />
+    </polygon>
+    <polygon points="256,380 261,395 276,395 264,405 269,420 256,410 243,420 248,405 236,395 251,395" opacity="0.8">
+      <animate attributeName="opacity" values="0.8;1;0.8" dur="0.8s" repeatCount="indefinite" />
+    </polygon>
+  </g>
+</svg>
