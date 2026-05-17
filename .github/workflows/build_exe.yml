@@ -11,7 +11,7 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - uses: actions/checkout@v4.2.2
+    - uses: actions/checkout@v4
     
     - name: Set up Python
       uses: actions/setup-python@v5
@@ -20,26 +20,11 @@ jobs:
         
     - name: Install dependencies
       run: |
-        pip install pyinstaller
-        pip install -r requirements.txt
-        
-    - name: Create directories
-      run: |
-        New-Item -ItemType Directory -Force -Path assets
-        New-Item -ItemType Directory -Force -Path data/chatlogs
-        New-Item -ItemType Directory -Force -Path data/avatars
-        New-Item -ItemType Directory -Force -Path data/profiles
-        New-Item -ItemType Directory -Force -Path data/debates
-        New-Item -ItemType Directory -Force -Path data/shares
-        
-    - name: List project structure
-      run: |
-        dir
-        dir src
+        pip install pyinstaller flask flask-cors Pillow beautifulsoup4 lxml numpy pandas pyyaml
         
     - name: Build EXE
       run: |
-        pyinstaller pyinstaller.spec --clean --log-level=DEBUG
+        pyinstaller pyinstaller.spec --clean
         
     - name: List build output
       run: |
@@ -51,12 +36,3 @@ jobs:
         name: e-battle
         path: dist/
         if-no-files-found: warn
-        
-    - name: Upload to Release
-      if: github.event_name == 'release'
-      uses: actions/upload-release-asset@v1
-      with:
-        upload_url: ${{ github.event.release.upload_url }}
-        asset_path: dist/e-battle.exe
-        asset_name: e-battle.exe
-        asset_content_type: application/octet-stream
