@@ -29,43 +29,32 @@ jobs:
       run: |
         dir dist/
 
-    - name: Create Release with API
-      shell: pwsh
+    - name: Create Release and Upload
+      shell: bash
       env:
         RELEASE_TOKEN: ${{ secrets.RELEASE_TOKEN }}
       run: |
-        $TAG = "v$(Get-Date -Format 'yyyy.MM.dd-HHmmss')"
-        Write-Host "Tag: $TAG"
+        TAG="v$(date +%Y.%m.%d-%H%M%S)"
+        echo "Tag: $TAG"
         
-        $headers = @{
-            "Authorization" = "token $env:RELEASE_TOKEN"
-            "Accept" = "application/vnd.github.v3+json"
-        }
+        RESPONSE=$(curl -s -X POST "https://api.github.com/repos/le700/e-battle/releases" \
+          -H "Authorization: token $RELEASE_TOKEN" \
+          -H "Accept: application/vnd.github.v3+json" \
+          -d "{\"tag_name\":\"$TAG\",\"name\":\"e-battle $TAG\",\"body\":\"Automatic release\",\"draft\":false,\"prerelease\":false}")
         
-        $body = @{
-            tag_name = $TAG
-            name = "e-battle $TAG"
-            body = "Automatic release"
-            draft = $false
-            prerelease = $false
-        } | ConvertTo-Json
+        echo "Response: $RESPONSE"
         
-        Write-Host "Creating release..."
-        $response = Invoke-RestMethod -Uri "https://api.github.com/repos/le700/e-battle/releases" -Method Post -Headers $headers -Body $body -ContentType "application/json"
-        Write-Host "Release created: $($response.html_url)"
+        UPLOAD_URL=$(echo "$RESPONSE" | python3 -c "import sys,json; print(json.load(sys.stdin).get('upload_url', '').replace('{?name,label}', ''))")
+        echo "Upload URL: $UPLOAD_URL"
         
-        $uploadUrl = $response.upload_url -replace '\{.*\}', ""
-        Write-Host "Upload URL: $uploadUrl"
-        
-        Get-ChildItem -Path dist\* -File | ForEach-Object {
-            $fileName = $_.Name
-            $filePath = $_.FullName
-            Write-Host "Uploading $fileName..."
-            $fileContent = [System.IO.File]::ReadAllBytes($filePath)
-            $fileHeaders = @{
-                "Authorization" = "token $env:RELEASE_TOKEN"
-                "Content-Type" = "application/octet-stream"
-            }
-            Invoke-RestMethod -Uri "$uploadUrl?name=$fileName" -Method Post -Headers $fileHeaders -Body $fileContent
-            Write-Host "Uploaded $fileName"
-        }
+        for FILE in dist/*; do
+          if [ -f "$FILE" ]; then
+            FILENAME=$(basename "$FILE")
+            echo "Uploading $FILENAME..."
+            curl -s -X POST "$UPLOAD_URL?name=$FILENAME" \
+              -H "Authorization: token $RELEASE_TOKEN" \
+              -H "Content-Type: application/octet-stream" \
+              --data-binary "@$FILE"
+            echo "Uploaded $FILENAME"
+          fi
+        done
