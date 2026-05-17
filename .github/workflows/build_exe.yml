@@ -4,15 +4,10 @@ on:
   workflow_dispatch:
   push:
     branches: [ main ]
-  release:
-    types: [created]
 
 jobs:
   build:
     runs-on: windows-latest
-
-    outputs:
-      version: ${{ steps.version.outputs.version }}
 
     steps:
     - uses: actions/checkout@v4
@@ -30,23 +25,16 @@ jobs:
       run: |
         pyinstaller pyinstaller.spec --clean
 
-    - name: Generate Version Tag
-      id: version
-      shell: pwsh
-      run: |
-        $VERSION = "v$(Get-Date -Format 'yyyy.MM.dd-HHmmss')"
-        Write-Host "Generated version: $VERSION"
-        "version=$VERSION" >> $env:GITHUB_OUTPUT
-
     - name: List dist directory
       run: |
         dir dist/
 
-    - name: Create Release and Upload Asset
+    - name: Create Release
+      shell: pwsh
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      uses: softprops/action-gh-release@v2
-      with:
-        tag_name: ${{ steps.version.outputs.version }}
-        name: e-battle ${{ steps.version.outputs.version }}
-        files: dist/*
+      run: |
+        $TAG = "v$(Get-Date -Format 'yyyy.MM.dd-HHmmss')"
+        Write-Host "Tag: $TAG"
+        gh release create $TAG --title "e-battle $TAG" --notes "Automatic release"
+        gh release upload $TAG dist/* --clobber
