@@ -19,7 +19,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        pip install pyinstaller flask flask-cors Pillow beautifulsoup4 lxml numpy pandas pyyaml
+        pip install pyinstaller flask flask-cors Pillow beautifulsoup4 lxml numpy pandas pyyaml requests
 
     - name: Build EXE
       run: |
@@ -30,44 +30,70 @@ jobs:
       run: |
         ls -la dist/
 
-    - name: Create Release and Upload
-      shell: bash
+    - name: Create Release and Upload with Python
       env:
         RELEASE_TOKEN: ${{ secrets.RELEASE_TOKEN }}
       run: |
-        echo "RELEASE_TOKEN is set: ${RELEASE_TOKEN:0:5}..."
-        echo "Shell: $SHELL"
-        which python3
-        python3 --version
-        which curl
-        curl --version
-        
-        TAG="v$(date +%Y.%m.%d-%H%M%S)"
-        echo "Tag: $TAG"
-        
-        RESPONSE=$(curl -s -X POST "https://api.github.com/repos/le700/e-battle/releases" \
-          -H "Authorization: token $RELEASE_TOKEN" \
-          -H "Accept: application/vnd.github.v3+json" \
-          -d "{\"tag_name\":\"$TAG\",\"name\":\"e-battle $TAG\",\"body\":\"Automatic release\",\"draft\":false,\"prerelease\":false}")
-        
-        echo "Response: $RESPONSE"
-        
-        if echo "$RESPONSE" | grep -q "error"; then
-          echo "Error creating release!"
-          exit 1
-        fi
-        
-        UPLOAD_URL=$(echo "$RESPONSE" | python3 -c "import sys,json; print(json.load(sys.stdin).get('upload_url', '').replace('{?name,label}', ''))")
-        echo "Upload URL: $UPLOAD_URL"
-        
-        for FILE in dist/*; do
-          if [ -f "$FILE" ]; then
-            FILENAME=$(basename "$FILE")
-            echo "Uploading $FILENAME..."
-            UPLOAD_RESPONSE=$(curl -s -X POST "$UPLOAD_URL?name=$FILENAME" \
-              -H "Authorization: token $RELEASE_TOKEN" \
-              -H "Content-Type: application/octet-stream" \
-              --data-binary "@$FILE")
-            echo "Upload response: $UPLOAD_RESPONSE"
-          fi
-        done
+        python3 -c "
+import os
+import sys
+import json
+import datetime
+import requests
+
+token = os.environ.get('RELEASE_TOKEN')
+if not token:
+    print('ERROR: RELEASE_TOKEN not set')
+    sys.exit(1)
+
+tag = 'v' + datetime.datetime.now().strftime('%Y.%m.%d-%H%M%S')
+print(f'Tag: {tag}')
+
+headers = {
+    'Authorization': f'token {token}',
+    'Accept': 'application/vnd.github.v3+json'
+}
+
+print('Creating release...')
+data = {
+    'tag_name': tag,
+    'name': f'e-battle {tag}',
+    'body': 'Automatic release',
+    'draft': False,
+    'prerelease': False
+}
+response = requests.post(
+    'https://api.github.com/repos/le700/e-battle/releases',
+    headers=headers,
+    json=data
+)
+print(f'Status code: {response.status_code}')
+print(f'Response: {response.text}')
+
+if response.status_code != 201:
+    print('Failed to create release')
+    sys.exit(1)
+
+release_data = response.json()
+upload_url = release_data['upload_url'].replace('{?name,label}', '')
+print(f'Upload URL: {upload_url}')
+
+import os
+for filename in os.listdir('dist'):
+    filepath = os.path.join('dist', filename)
+    if os.path.isfile(filepath):
+        print(f'Uploading {filename}...')
+        with open(filepath, 'rb') as f:
+            upload_response = requests.post(
+                f'{upload_url}?name={filename}',
+                headers=headers,
+                data=f
+            )
+        print(f'Upload status: {upload_response.status_code}')
+        if upload_response.status_code == 201:
+            print(f'Successfully uploaded {filename}')
+        else:
+            print(f'Failed to upload {filename}: {upload_response.text}')
+
+print('Done!')
+"
