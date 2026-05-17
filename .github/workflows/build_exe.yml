@@ -9,6 +9,9 @@ on:
 jobs:
   build:
     runs-on: windows-latest
+    
+    outputs:
+      version: ${{ steps.version.outputs.version }}
 
     steps:
     - uses: actions/checkout@v4
@@ -26,13 +29,30 @@ jobs:
       run: |
         pyinstaller pyinstaller.spec --clean
         
-    - name: List build output
+    - name: Generate Version Tag
+      id: version
       run: |
-        dir dist
+        VERSION="v$(date +%Y.%m.%d-%H%M%S)"
+        echo "version=$VERSION" >> $GITHUB_OUTPUT
+        echo "Generated version: $VERSION"
         
-    - name: Upload artifact
-      uses: actions/upload-artifact@v4
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        name: e-battle
-        path: dist/
-        if-no-files-found: warn
+        tag_name: ${{ steps.version.outputs.version }}
+        release_name: e-battle ${{ steps.version.outputs.version }}
+        draft: false
+        prerelease: false
+        
+    - name: Upload Release Asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: dist/
+        asset_name: e-battle
+        asset_content_type: application/octet-stream
