@@ -38,6 +38,10 @@ jobs:
         Write-Host "Generated version: $VERSION"
         "version=$VERSION" >> $env:GITHUB_OUTPUT
 
+    - name: List dist directory
+      run: |
+        dir dist/
+
     - name: Create Release and Upload Asset
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -45,4 +49,4 @@ jobs:
       with:
         tag_name: ${{ steps.version.outputs.version }}
         name: e-battle ${{ steps.version.outputs.version }}
-        files: dist/e-battle.exe
+        files: dist/*
