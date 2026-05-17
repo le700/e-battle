@@ -20,7 +20,7 @@ except ImportError:
     sys.exit(1)
 
 
-class e-battleLauncher:
+class EBattleLauncher:
     def __init__(self, root):
         self.root = root
         self.root.title("e-battle - AI好友辩论 Battle")
@@ -215,7 +215,7 @@ class e-battleLauncher:
 
 def main():
     root = tk.Tk()
-    launcher = e-battleLauncher(root)
+    launcher = EBattleLauncher(root)
     root.protocol("WM_DELETE_WINDOW", launcher.on_closing)
     root.mainloop()
 
