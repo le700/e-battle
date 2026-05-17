@@ -19,12 +19,7 @@ a = Analysis(
     [str(src_dir / "launcher.py")],
     pathex=[str(current_dir)],
     binaries=[],
-    datas=[
-        (str(templates_dir), "src/web/templates"),
-        ("README.md", "."),
-        ("README_zh.md", "."),
-        ("config", "config"),
-    ],
+    datas=[],
     hiddenimports=[
         "flask",
         "flask_cors",
