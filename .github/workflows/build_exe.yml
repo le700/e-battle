@@ -29,12 +29,17 @@ jobs:
       run: |
         dir dist/
 
+    - name: Check GH CLI version
+      run: |
+        gh --version
+
     - name: Create Release
       shell: pwsh
       env:
         GH_TOKEN: ${{ secrets.RELEASE_TOKEN }}
       run: |
+        Write-Host "GH_TOKEN is set: $(if ($env:GH_TOKEN) { 'Yes' } else { 'No' })"
         $TAG = "v$(Get-Date -Format 'yyyy.MM.dd-HHmmss')"
         Write-Host "Tag: $TAG"
-        gh release create $TAG --title "e-battle $TAG" --notes "Automatic release"
+        gh release create $TAG --title "e-battle $TAG" --notes "Automatic release" --debug
         gh release upload $TAG dist/* --clobber
