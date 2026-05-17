@@ -26,14 +26,22 @@ jobs:
         pyinstaller pyinstaller.spec --clean
 
     - name: List dist directory
+      shell: bash
       run: |
-        dir dist/
+        ls -la dist/
 
     - name: Create Release and Upload
       shell: bash
       env:
         RELEASE_TOKEN: ${{ secrets.RELEASE_TOKEN }}
       run: |
+        echo "RELEASE_TOKEN is set: ${RELEASE_TOKEN:0:5}..."
+        echo "Shell: $SHELL"
+        which python3
+        python3 --version
+        which curl
+        curl --version
+        
         TAG="v$(date +%Y.%m.%d-%H%M%S)"
         echo "Tag: $TAG"
         
@@ -44,6 +52,11 @@ jobs:
         
         echo "Response: $RESPONSE"
         
+        if echo "$RESPONSE" | grep -q "error"; then
+          echo "Error creating release!"
+          exit 1
+        fi
+        
         UPLOAD_URL=$(echo "$RESPONSE" | python3 -c "import sys,json; print(json.load(sys.stdin).get('upload_url', '').replace('{?name,label}', ''))")
         echo "Upload URL: $UPLOAD_URL"
         
@@ -51,10 +64,10 @@ jobs:
           if [ -f "$FILE" ]; then
             FILENAME=$(basename "$FILE")
             echo "Uploading $FILENAME..."
-            curl -s -X POST "$UPLOAD_URL?name=$FILENAME" \
+            UPLOAD_RESPONSE=$(curl -s -X POST "$UPLOAD_URL?name=$FILENAME" \
               -H "Authorization: token $RELEASE_TOKEN" \
               -H "Content-Type: application/octet-stream" \
-              --data-binary "@$FILE"
-            echo "Uploaded $FILENAME"
+              --data-binary "@$FILE")
+            echo "Upload response: $UPLOAD_RESPONSE"
           fi
         done
