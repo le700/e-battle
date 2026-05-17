@@ -10,50 +10,39 @@ on:
 jobs:
   build:
     runs-on: windows-latest
-    
+
     outputs:
       version: ${{ steps.version.outputs.version }}
 
     steps:
     - uses: actions/checkout@v4
-    
+
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
         python-version: '3.12'
-        
+
     - name: Install dependencies
       run: |
         pip install pyinstaller flask flask-cors Pillow beautifulsoup4 lxml numpy pandas pyyaml
-        
+
     - name: Build EXE
       run: |
         pyinstaller pyinstaller.spec --clean
-        
+
     - name: Generate Version Tag
       id: version
+      shell: pwsh
       run: |
-        VERSION="v$(date +%Y.%m.%d-%H%M%S)"
-        echo "version=$VERSION" >> $GITHUB_OUTPUT
-        echo "Generated version: $VERSION"
-        
-    - name: Create Release
-      id: create_release
-      uses: actions/create-release@v1
+        $VERSION = "v$(Get-Date -Format 'yyyy.MM.dd-HHmmss')"
+        Write-Host "Generated version: $VERSION"
+        "version=$VERSION" >> $env:GITHUB_OUTPUT
+
+    - name: Create Release and Upload Asset
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      uses: softprops/action-gh-release@v2
       with:
         tag_name: ${{ steps.version.outputs.version }}
-        release_name: e-battle ${{ steps.version.outputs.version }}
-        draft: false
-        prerelease: false
-        
-    - name: Upload Release Asset
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: dist/
-        asset_name: e-battle
-        asset_content_type: application/octet-stream
+        name: e-battle ${{ steps.version.outputs.version }}
+        files: dist/e-battle.exe
