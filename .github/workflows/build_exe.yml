@@ -29,17 +29,43 @@ jobs:
       run: |
         dir dist/
 
-    - name: Check GH CLI version
-      run: |
-        gh --version
-
-    - name: Create Release
+    - name: Create Release with API
       shell: pwsh
       env:
-        GH_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+        RELEASE_TOKEN: ${{ secrets.RELEASE_TOKEN }}
       run: |
-        Write-Host "GH_TOKEN is set: $(if ($env:GH_TOKEN) { 'Yes' } else { 'No' })"
         $TAG = "v$(Get-Date -Format 'yyyy.MM.dd-HHmmss')"
         Write-Host "Tag: $TAG"
-        gh release create $TAG --title "e-battle $TAG" --notes "Automatic release" --debug
-        gh release upload $TAG dist/* --clobber
+        
+        $headers = @{
+            "Authorization" = "token $env:RELEASE_TOKEN"
+            "Accept" = "application/vnd.github.v3+json"
+        }
+        
+        $body = @{
+            tag_name = $TAG
+            name = "e-battle $TAG"
+            body = "Automatic release"
+            draft = $false
+            prerelease = $false
+        } | ConvertTo-Json
+        
+        Write-Host "Creating release..."
+        $response = Invoke-RestMethod -Uri "https://api.github.com/repos/le700/e-battle/releases" -Method Post -Headers $headers -Body $body -ContentType "application/json"
+        Write-Host "Release created: $($response.html_url)"
+        
+        $uploadUrl = $response.upload_url -replace '\{.*\}', ""
+        Write-Host "Upload URL: $uploadUrl"
+        
+        Get-ChildItem -Path dist\* -File | ForEach-Object {
+            $fileName = $_.Name
+            $filePath = $_.FullName
+            Write-Host "Uploading $fileName..."
+            $fileContent = [System.IO.File]::ReadAllBytes($filePath)
+            $fileHeaders = @{
+                "Authorization" = "token $env:RELEASE_TOKEN"
+                "Content-Type" = "application/octet-stream"
+            }
+            Invoke-RestMethod -Uri "$uploadUrl?name=$fileName" -Method Post -Headers $fileHeaders -Body $fileContent
+            Write-Host "Uploaded $fileName"
+        }
